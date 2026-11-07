@@ -1,11 +1,18 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
-
-<Layout>
-	<Welcome />
+<Layout title="Finance Calculators" description="Free financial tools.">
+  <main class="container">
+    <h1>Free Finance Calculators</h1>
+    <ul>
+      <li><a href="/tools/us-freelancer-tax-calculator">US Freelancer Tax Calculator (1099)</a></li>
+    </ul>
+  </main>
 </Layout>
+
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 48px 16px; text-align: center; }
+  ul { list-style: none; padding: 0; font-size: 20px; }
+  a { color: #2563eb; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+</style>

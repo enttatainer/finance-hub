@@ -1,0 +1,35 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import US_1099_Calc from '../../components/US_1099_Calc.astro';
+---
+<Layout 
+  title="US Freelancer Tax Calculator (1099)" 
+  description="Free 1099 tax calculator for US freelancers."
+>
+  <main class="container">
+    <h1>US Freelancer Tax Calculator (1099)</h1>
+    <p class="subtitle">Estimate your 2024 Self-Employment and Federal Income taxes.</p>
+
+    <US_1099_Calc />
+
+    <article class="article-content">
+      <h2>How to Use This Calculator</h2>
+      <p>Enter your total net profit (your 1099 income minus your business expenses) into the calculator above. The tool will instantly estimate the two main taxes you owe as a freelancer.</p>
+
+      <h2>The Math Behind 1099 Taxes</h2>
+      <p>As a freelancer, you are responsible for the full 15.3% FICA tax. However, you only pay this on 92.35% of your net profit.</p>
+      
+      <h2>Frequently Asked Questions (FAQ)</h2>
+      <h3>Do I need to pay taxes quarterly?</h3>
+      <p>Yes, if you expect to owe $1,000 or more.</p>
+    </article>
+  </main>
+</Layout>
+
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
+  h1 { text-align: center; margin-bottom: 8px; }
+  .subtitle { text-align: center; color: #6b7280; margin-bottom: 32px; }
+  .article-content { margin-top: 40px; line-height: 1.6; }
+  .article-content h2 { margin-top: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; }
+</style>
