@@ -1,0 +1,19 @@
+function calculateMortgage() {
+  const principal = parseFloat(document.getElementById('loanAmount').value);
+  const rate = parseFloat(document.getElementById('interestRate').value) / 100 / 12;
+  const years = parseFloat(document.getElementById('loanTerm').value);
+  const payments = years * 12;
+
+  if (isNaN(principal) || isNaN(rate) || isNaN(payments)) {
+    alert("Please fill out all fields");
+    return;
+  }
+
+  // The Math: M = P [ i(1 + i)^n ] / [ (1 + i)^n – 1 ]
+  const x = Math.pow(1 + rate, payments);
+  const monthly = (principal * x * rate) / (x - 1);
+
+  document.getElementById('monthlyPayment').innerText = "$" + monthly.toFixed(2);
+  document.getElementById('totalPayment').innerText = "$" + (monthly * payments).toFixed(2);
+  document.getElementById('totalInterest').innerText = "$" + ((monthly * payments) - principal).toFixed(2);
+}
