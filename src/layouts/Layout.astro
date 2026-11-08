@@ -12,18 +12,81 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- Google AdSense Script (Uncomment this after you get your AdSense Publisher ID) -->
+    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
   </head>
+  
   <body>
+    <!-- This is where your page content (calculator, text, etc.) goes -->
     <slot />
+    
+    <!-- Global Footer -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <p>&copy; {new Date().getFullYear()} Finance Hub. All rights reserved.</p>
+        <p class="footer-links">
+          <a href="/privacy">Privacy Policy</a> 
+          <span class="divider">|</span> 
+          <a href="/terms">Terms & Conditions</a>
+        </p>
+      </div>
+    </footer>
   </body>
 </html>
 
 <style is:global>
+  /* Global Reset & Base Styles */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
   body {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: #f3f4f6;
     color: #1f2937;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  /* This ensures the footer stays at the bottom even on short pages */
+  body > :global(main) {
+    flex: 1;
+  }
+
+  /* Footer Styling */
+  .site-footer {
+    background-color: #ffffff;
+    border-top: 1px solid #e5e7eb;
+    padding: 24px 16px;
+    text-align: center;
+    font-size: 14px;
+    color: #6b7280;
+    margin-top: auto;
+  }
+
+  .footer-content p {
+    margin: 8px 0;
+  }
+
+  .footer-links a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+  }
+
+  .divider {
+    margin: 0 8px;
+    color: #d1d5db;
   }
 </style>

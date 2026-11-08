@@ -1,0 +1,31 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Mortgage_Calc from '../../components/Mortgage_Calc.astro';
+---
+<Layout 
+  title="US Mortgage Calculator | Estimate Monthly Payments" 
+  description="Free mortgage calculator to estimate your monthly payments, total interest, and amortization schedule."
+>
+  <main class="container">
+    <h1>US Mortgage Calculator</h1>
+    <p class="subtitle">Estimate your monthly mortgage payment, including principal and interest.</p>
+
+    <Mortgage_Calc />
+
+    <article class="article-content">
+      <h2>How to Use This Calculator</h2>
+      <p>Enter your total loan amount, the annual interest rate, and the term (in years) into the calculator above. The tool will instantly calculate your estimated monthly payment.</p>
+
+      <h2>The Math Behind Mortgage Payments</h2>
+      <p>We use the standard amortization formula: <strong>M = P [ i(1 + i)^n ] / [ (1 + i)^n – 1 ]</strong>. Where M is the monthly payment, P is the principal, i is the monthly interest rate, and n is the number of payments.</p>
+    </article>
+  </main>
+</Layout>
+
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
+  h1 { text-align: center; margin-bottom: 8px; }
+  .subtitle { text-align: center; color: #6b7280; margin-bottom: 32px; }
+  .article-content { margin-top: 40px; line-height: 1.6; }
+  .article-content h2 { margin-top: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; }
+</style>
