@@ -1,45 +1,83 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 ---
-<Layout title="Self-Employed Health Insurance Deduction Calculator" description="Calculate your allowable tax deduction for health insurance premiums as a freelancer.">
+<Layout title="Self-Employed Health Insurance Deduction Calculator" description="Calculate your allowable tax deduction and estimated tax savings for health insurance premiums as a freelancer.">
   <main class="container">
     <h1>Self-Employed Health Insurance Deduction</h1>
-    <p class="subtitle">See how much of your health premiums you can deduct.</p>
+    <p class="subtitle">See how much of your health premiums you can deduct and the tax savings you unlock.</p>
+
     <div class="calc-box">
-      <div class="input-group"><label>Annual Net Profit ($)</label><input type="number" id="profit" placeholder="e.g. 60000" /></div>
-      <div class="input-group"><label>Annual Health Premiums Paid ($)</label><input type="number" id="premiums" placeholder="e.g. 8000" /></div>
+      <div class="input-group">
+        <label>Annual Net Profit ($)</label>
+        <input type="number" id="profit" placeholder="e.g. 60000" />
+      </div>
+      <div class="input-group">
+        <label>Annual Health Premiums Paid ($)</label>
+        <input type="number" id="premiums" placeholder="e.g. 8000" />
+      </div>
       <button id="calcBtn">Calculate Deduction</button>
       <div id="result" class="hidden result-box">
         <p class="total">Allowable Deduction: <strong id="deduction"></strong></p>
-        <p class="sub">Note: <span>You cannot deduct more than your net profit.</span></p>
+        <p class="sub">Adjusted Net Profit: <span id="adjustedProfit"></span></p>
+        <p class="sub">Estimated Tax Savings (at 25%): <span id="taxSavings" style="color: #16a34a; font-weight: bold;"></span></p>
       </div>
     </div>
+
     <article class="article-content">
       <h2>The Self-Employed Health Insurance Deduction</h2>
-      <p>If you are self-employed, you can deduct the premiums you paid for medical, dental, and long-term care insurance for yourself, your spouse, and your dependents. However, the deduction is limited to your net self-employment profit.</p>
+      <p>If you are self-employed, you can deduct the premiums you paid for medical, dental, and long-term care insurance for yourself, your spouse, and your dependents. This is known as the self-employed health insurance deduction.</p>
+      
+      <h2>How the Math Works</h2>
+      <p>You can deduct the full amount of your premiums, but the deduction is <strong>limited to your net self-employment profit</strong>. If you made $5,000 in profit but paid $8,000 in premiums, you can only deduct $5,000.</p>
+      <p>This deduction lowers your Adjusted Gross Income (AGI), which means you pay less income tax. Our calculator estimates your tax savings assuming a 25% marginal tax bracket, which is a common bracket for middle-income freelancers.</p>
     </article>
   </main>
 </Layout>
+
 <script>
   document.getElementById('calcBtn')?.addEventListener('click', () => {
     const profit = parseFloat(document.getElementById('profit').value);
     const premiums = parseFloat(document.getElementById('premiums').value);
-    if (isNaN(profit) || isNaN(premiums)) { alert("Fill all fields"); return; }
+    
+    if (isNaN(profit) || isNaN(premiums) || profit < 0 || premiums < 0) { 
+      alert("Please enter valid positive numbers."); 
+      return; 
+    }
 
+    // The IRS rule: You cannot deduct more than your net profit.
     const deduction = Math.min(profit, premiums);
+    
+    // How much of the profit is left after the deduction?
+    const adjustedProfit = profit - deduction;
+
+    // Assuming a 25% tax bracket for estimate
+    const taxSavings = deduction * 0.25;
 
     document.getElementById('deduction').innerText = "$" + deduction.toFixed(2);
+    document.getElementById('adjustedProfit').innerText = "$" + adjustedProfit.toFixed(2);
+    document.getElementById('taxSavings').innerText = "$" + taxSavings.toFixed(2);
+    
     document.getElementById('result').classList.remove('hidden');
   });
 </script>
+
 <style>
   .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
-  h1 { text-align: center; } .subtitle { text-align: center; color: #6b7280; margin-bottom: 32px; }
+  h1 { text-align: center; margin-bottom: 8px; } 
+  .subtitle { text-align: center; color: #6b7280; margin-bottom: 32px; }
+  
   .calc-box { background: white; padding: 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 400px; margin: 32px auto; }
-  .input-group { margin-bottom: 16px; } .input-group label { display: block; font-size: 14px; margin-bottom: 4px; }
+  .input-group { margin-bottom: 16px; }
+  .input-group label { display: block; font-size: 14px; margin-bottom: 4px; }
   .input-group input { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; }
   button { width: 100%; padding: 10px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+  button:hover { background: #1d4ed8; }
+  
   .result-box { margin-top: 24px; padding: 16px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; }
-  .hidden { display: none; } .total { font-size: 18px; margin: 0 0 8px 0; } .sub { font-size: 14px; color: #4b5563; }
-  .article-content { margin-top: 40px; line-height: 1.6; } .article-content h2 { margin-top: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; }
+  .hidden { display: none; }
+  .total { font-size: 18px; margin: 0 0 8px 0; font-weight: bold; }
+  .sub { font-size: 14px; color: #4b5563; margin: 6px 0; display: flex; justify-content: space-between; }
+  
+  .article-content { margin-top: 40px; line-height: 1.6; }
+  .article-content h2 { margin-top: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; }
 </style>
