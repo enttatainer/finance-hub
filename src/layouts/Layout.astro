@@ -23,6 +23,17 @@ const { title, description } = Astro.props;
   </head>
   
   <body>
+    <!-- Top Navigation Header -->
+    <header class="site-header">
+      <div class="header-content">
+        <a href="/" class="logo">Finance Hub</a>
+        <nav class="nav-links">
+          <a href="/">Home</a>
+          <a href="/blog">Blog</a>
+        </nav>
+      </div>
+    </header>
+
     <!-- This is where your page content (calculator, text, etc.) goes -->
     <slot />
     
@@ -31,6 +42,8 @@ const { title, description } = Astro.props;
       <div class="footer-content">
         <p>&copy; {new Date().getFullYear()} Finance Hub. All rights reserved.</p>
         <p class="footer-links">
+          <a href="/">Home</a>
+          <span class="divider">|</span>
           <a href="/blog">Blog</a>
           <span class="divider">|</span>
           <a href="/about">About Us</a>
@@ -61,9 +74,45 @@ const { title, description } = Astro.props;
     min-height: 100vh;
   }
 
-  /* This ensures the footer stays at the bottom even on short pages */
-  body > :global(main) {
+  /* FIX: Removed :global() to clear the warning */
+  body > main {
     flex: 1;
+  }
+
+  /* Header Styling */
+  .site-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 16px 0;
+  }
+  
+  .header-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #2563eb;
+    text-decoration: none;
+    letter-spacing: -0.05em;
+  }
+
+  .nav-links a {
+    color: #4b5563;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 24px;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover {
+    color: #2563eb;
   }
 
   /* Footer Styling */
