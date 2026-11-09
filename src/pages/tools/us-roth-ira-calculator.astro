@@ -1,0 +1,51 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="Roth IRA Growth Calculator | Tax-Free Retirement" description="Project your tax-free Roth IRA growth based on monthly contributions.">
+  <main class="container">
+    <h1>Roth IRA Growth Calculator</h1>
+    <p class="subtitle">See how your tax-free retirement account can grow.</p>
+    <div class="calc-box">
+      <div class="input-group"><label>Current Balance ($)</label><input type="number" id="balance" placeholder="e.g. 10000" /></div>
+      <div class="input-group"><label>Monthly Contribution ($)</label><input type="number" id="monthly" placeholder="e.g. 500" /></div>
+      <div class="input-group"><label>Expected Annual Return (%)</label><input type="number" id="rate" placeholder="e.g. 8" step="0.1" /></div>
+      <div class="input-group"><label>Years Until Retirement</label><input type="number" id="years" placeholder="e.g. 30" /></div>
+      <button id="calcBtn">Calculate Growth</button>
+      <div id="result" class="hidden result-box">
+        <p class="total">Future Tax-Free Value: <strong id="futureValue"></strong></p>
+        <p class="sub">Total Contributions: <span id="contrib"></span></p>
+      </div>
+    </div>
+    <article class="article-content">
+      <h2>Why Roth IRAs are Powerful</h2>
+      <p>A Roth IRA is funded with post-tax dollars. This means that when you withdraw the money in retirement, you pay absolutely zero taxes on the growth. This calculator shows the immense power of tax-free compounding over decades.</p>
+    </article>
+  </main>
+</Layout>
+<script>
+  document.getElementById('calcBtn')?.addEventListener('click', () => {
+    const p = parseFloat(document.getElementById('balance').value) || 0;
+    const c = parseFloat(document.getElementById('monthly').value) || 0;
+    const r = parseFloat(document.getElementById('rate').value) / 100 / 12;
+    const t = parseFloat(document.getElementById('years').value) * 12;
+    if (isNaN(p) || isNaN(r) || isNaN(t)) { alert("Fill all fields"); return; }
+
+    const futureValue = p * Math.pow(1 + r, t) + c * ((Math.pow(1 + r, t) - 1) / r);
+    const contrib = p + (c * t);
+
+    document.getElementById('futureValue').innerText = "$" + futureValue.toFixed(2);
+    document.getElementById('contrib').innerText = "$" + contrib.toFixed(2);
+    document.getElementById('result').classList.remove('hidden');
+  });
+</script>
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
+  h1 { text-align: center; } .subtitle { text-align: center; color: #6b7280; margin-bottom: 32px; }
+  .calc-box { background: white; padding: 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 400px; margin: 32px auto; }
+  .input-group { margin-bottom: 16px; } .input-group label { display: block; font-size: 14px; margin-bottom: 4px; }
+  .input-group input { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; }
+  button { width: 100%; padding: 10px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+  .result-box { margin-top: 24px; padding: 16px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; }
+  .hidden { display: none; } .total { font-size: 18px; margin: 0 0 8px 0; } .sub { font-size: 14px; color: #4b5563; }
+  .article-content { margin-top: 40px; line-height: 1.6; } .article-content h2 { margin-top: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; }
+</style>

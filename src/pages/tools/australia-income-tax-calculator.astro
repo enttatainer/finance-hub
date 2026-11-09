@@ -1,0 +1,55 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="Australia Income Tax Calculator 2024" description="Calculate your Australian take-home pay after income tax and Medicare levy.">
+  <main class="container">
+    <h1>Australia Income Tax Calculator</h1>
+    <p class="subtitle">Estimate your take-home pay after tax and Medicare.</p>
+    <div class="calc-box">
+      <div class="input-group"><label>Annual Gross Salary (AUD)</label><input type="number" id="salary" placeholder="e.g. 90000" /></div>
+      <button id="calcBtn">Calculate Take-Home</button>
+      <div id="result" class="hidden result-box">
+        <p class="total">Annual Take-Home: <strong id="takeHome"></strong></p>
+        <p class="sub">Monthly Take-Home: <span id="monthly"></span></p>
+        <p class="sub">Total Tax + Medicare: <span id="tax"></span></p>
+      </div>
+    </div>
+    <article class="article-content">
+      <h2>Australian Tax Brackets</h2>
+      <p>Australian residents pay tax based on progressive brackets. Additionally, a 2% Medicare Levy applies to most taxpayers to fund the public healthcare system. This calculator provides an estimate based on standard single-resident rates.</p>
+    </article>
+  </main>
+</Layout>
+<script>
+  document.getElementById('calcBtn')?.addEventListener('click', () => {
+    const salary = parseFloat(document.getElementById('salary').value);
+    if (isNaN(salary) || salary <= 0) { alert("Enter a valid salary"); return; }
+
+    let tax = 0;
+    if (salary <= 18200) tax = 0;
+    else if (salary <= 45000) tax = (salary - 18200) * 0.19;
+    else if (salary <= 120000) tax = 5092 + ((salary - 45000) * 0.325);
+    else if (salary <= 180000) tax = 29467 + ((salary - 120000) * 0.37);
+    else tax = 51667 + ((salary - 180000) * 0.45);
+
+    const medicare = salary * 0.02; // 2% Medicare Levy
+    const totalTax = tax + medicare;
+    const takeHome = salary - totalTax;
+
+    document.getElementById('takeHome').innerText = "$" + takeHome.toFixed(2);
+    document.getElementById('monthly').innerText = "$" + (takeHome / 12).toFixed(2);
+    document.getElementById('tax').innerText = "$" + totalTax.toFixed(2);
+    document.getElementById('result').classList.remove('hidden');
+  });
+</script>
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
+  h1 { text-align: center; } .subtitle { text-align: center; color: #6b7280; margin-bottom: 32px; }
+  .calc-box { background: white; padding: 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 400px; margin: 32px auto; }
+  .input-group { margin-bottom: 16px; } .input-group label { display: block; font-size: 14px; margin-bottom: 4px; }
+  .input-group input { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; }
+  button { width: 100%; padding: 10px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+  .result-box { margin-top: 24px; padding: 16px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; }
+  .hidden { display: none; } .total { font-size: 18px; margin: 0 0 8px 0; } .sub { font-size: 14px; color: #4b5563; }
+  .article-content { margin-top: 40px; line-height: 1.6; } .article-content h2 { margin-top: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; }
+</style>

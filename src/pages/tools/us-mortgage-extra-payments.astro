@@ -1,0 +1,74 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="Mortgage Calculator with Extra Payments" description="See how much time and interest you save by making extra monthly payments.">
+  <main class="container">
+    <h1>Mortgage Calculator with Extra Payments</h1>
+    <p class="subtitle">Discover the power of paying a little extra each month.</p>
+    <div class="calc-box">
+      <div class="input-group"><label>Loan Amount ($)</label><input type="number" id="amount" placeholder="e.g. 300000" /></div>
+      <div class="input-group"><label>Interest Rate (%)</label><input type="number" id="rate" placeholder="e.g. 6.5" step="0.1" /></div>
+      <div class="input-group"><label>Loan Term (Years)</label><input type="number" id="years" placeholder="e.g. 30" /></div>
+      <div class="input-group"><label>Extra Monthly Payment ($)</label><input type="number" id="extra" placeholder="e.g. 200" /></div>
+      <button id="calcBtn">Calculate Savings</button>
+      <div id="result" class="hidden result-box">
+        <p class="total">New Payoff Time: <strong id="newTime"></strong></p>
+        <p class="sub">Interest Saved: <span id="interestSaved"></span></p>
+        <p class="sub">Total Interest Paid: <span id="totalInterest"></span></p>
+      </div>
+    </div>
+    <article class="article-content">
+      <h2>Why Extra Payments Matter</h2>
+      <p>When you make extra payments, 100% of that money goes directly to the principal balance. This reduces the amount of interest that accrues the next month, creating a snowball effect that can shave years off your mortgage and save you tens of thousands of dollars.</p>
+    </article>
+  </main>
+</Layout>
+<script>
+  document.getElementById('calcBtn')?.addEventListener('click', () => {
+    const p = parseFloat(document.getElementById('amount').value);
+    const r = parseFloat(document.getElementById('rate').value) / 100 / 12;
+    const y = parseFloat(document.getElementById('years').value);
+    const extra = parseFloat(document.getElementById('extra').value) || 0;
+    if (isNaN(p) || isNaN(r) || isNaN(y)) { alert("Fill all fields"); return; }
+
+    // Original Math
+    const n = y * 12;
+    const x = Math.pow(1 + r, n);
+    const baseMonthly = (p * x * r) / (x - 1);
+    const baseTotalInterest = (baseMonthly * n) - p;
+
+    // Math with Extra Payments
+    let balance = p;
+    let months = 0;
+    let totalInterestPaid = 0;
+    const monthlyPayment = baseMonthly + extra;
+
+    while (balance > 0) {
+      const interest = balance * r;
+      balance = balance + interest - monthlyPayment;
+      totalInterestPaid += interest;
+      months++;
+      if (months > 1000) break; // safety
+    }
+
+    const yearsSaved = Math.floor((n - months) / 12);
+    const monthsSaved = (n - months) % 12;
+    const interestSaved = baseTotalInterest - totalInterestPaid;
+
+    document.getElementById('newTime').innerText = yearsSaved + " yrs, " + monthsSaved + " mos";
+    document.getElementById('interestSaved').innerText = "$" + interestSaved.toFixed(2);
+    document.getElementById('totalInterest').innerText = "$" + totalInterestPaid.toFixed(2);
+    document.getElementById('result').classList.remove('hidden');
+  });
+</script>
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
+  h1 { text-align: center; } .subtitle { text-align: center; color: #6b7280; margin-bottom: 32px; }
+  .calc-box { background: white; padding: 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 400px; margin: 32px auto; }
+  .input-group { margin-bottom: 16px; } .input-group label { display: block; font-size: 14px; margin-bottom: 4px; }
+  .input-group input { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; }
+  button { width: 100%; padding: 10px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+  .result-box { margin-top: 24px; padding: 16px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; }
+  .hidden { display: none; } .total { font-size: 18px; margin: 0 0 8px 0; } .sub { font-size: 14px; color: #4b5563; }
+  .article-content { margin-top: 40px; line-height: 1.6; } .article-content h2 { margin-top: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; }
+</style>

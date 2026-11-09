@@ -1,0 +1,61 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="UK Dividend Tax Calculator 2024/25" description="Calculate how much tax you owe on UK dividends.">
+  <main class="container">
+    <h1>UK Dividend Tax Calculator</h1>
+    <p class="subtitle">Estimate your tax liability on dividend income.</p>
+    <div class="calc-box">
+      <div class="input-group"><label>Total Dividend Income (£)</label><input type="number" id="dividends" placeholder="e.g. 20000" /></div>
+      <div class="input-group">
+        <label>Tax Band</label>
+        <select id="band">
+          <option value="basic">Basic Rate (20%)</option>
+          <option value="higher">Higher Rate (40%)</option>
+          <option value="additional">Additional Rate (45%)</option>
+        </select>
+      </div>
+      <button id="calcBtn">Calculate Tax</button>
+      <div id="result" class="hidden result-box">
+        <p class="total">Dividend Tax Owed: <strong id="taxOwed"></strong></p>
+        <p class="sub">Net Dividends Received: <span id="net"></span></p>
+      </div>
+    </div>
+    <article class="article-content">
+      <h2>Dividend Tax Allowance</h2>
+      <p>For the 2024/25 tax year, the tax-free dividend allowance is £500. Any dividends above this amount are taxed based on your income tax band.</p>
+    </article>
+  </main>
+</Layout>
+<script>
+  document.getElementById('calcBtn')?.addEventListener('click', () => {
+    const div = parseFloat(document.getElementById('dividends').value);
+    const band = document.getElementById('band').value;
+    if (isNaN(div) || div <= 0) { alert("Enter valid amount"); return; }
+
+    const allowance = 500;
+    let taxable = div - allowance;
+    if (taxable < 0) taxable = 0;
+
+    let rate = 0.0875; // Basic rate for dividends
+    if (band === 'higher') rate = 0.3375;
+    if (band === 'additional') rate = 0.3935;
+
+    const tax = taxable * rate;
+
+    document.getElementById('taxOwed').innerText = "£" + tax.toFixed(2);
+    document.getElementById('net').innerText = "£" + (div - tax).toFixed(2);
+    document.getElementById('result').classList.remove('hidden');
+  });
+</script>
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
+  h1 { text-align: center; } .subtitle { text-align: center; color: #6b7280; margin-bottom: 32px; }
+  .calc-box { background: white; padding: 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 400px; margin: 32px auto; }
+  .input-group { margin-bottom: 16px; } .input-group label { display: block; font-size: 14px; margin-bottom: 4px; }
+  .input-group input, .input-group select { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; }
+  button { width: 100%; padding: 10px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+  .result-box { margin-top: 24px; padding: 16px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; }
+  .hidden { display: none; } .total { font-size: 18px; margin: 0 0 8px 0; } .sub { font-size: 14px; color: #4b5563; }
+  .article-content { margin-top: 40px; line-height: 1.6; } .article-content h2 { margin-top: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; }
+</style>
