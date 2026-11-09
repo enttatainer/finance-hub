@@ -1,19 +1,70 @@
-function calculateMortgage() {
-  const principal = parseFloat(document.getElementById('loanAmount').value);
-  const rate = parseFloat(document.getElementById('interestRate').value) / 100 / 12;
-  const years = parseFloat(document.getElementById('loanTerm').value);
-  const payments = years * 12;
+<div class="calc-box">
+  <h2>Mortgage Payment Calculator</h2>
+  
+  <div class="input-group">
+    <label>Loan Amount ($)</label>
+    <input type="number" id="loanAmount" placeholder="e.g. 300000" />
+  </div>
 
-  if (isNaN(principal) || isNaN(rate) || isNaN(payments)) {
-    alert("Please fill out all fields");
-    return;
-  }
+  <div class="input-group">
+    <label>Annual Interest Rate (%)</label>
+    <input type="number" id="interestRate" placeholder="e.g. 6.5" step="0.1" />
+  </div>
 
-  // The Math: M = P [ i(1 + i)^n ] / [ (1 + i)^n – 1 ]
-  const x = Math.pow(1 + rate, payments);
-  const monthly = (principal * x * rate) / (x - 1);
+  <div class="input-group">
+    <label>Loan Term (Years)</label>
+    <input type="number" id="loanTerm" placeholder="e.g. 30" />
+  </div>
 
-  document.getElementById('monthlyPayment').innerText = "$" + monthly.toFixed(2);
-  document.getElementById('totalPayment').innerText = "$" + (monthly * payments).toFixed(2);
-  document.getElementById('totalInterest').innerText = "$" + ((monthly * payments) - principal).toFixed(2);
-}
+  <button id="calcBtn">Calculate Mortgage</button>
+
+  <div id="result" class="hidden result-box">
+    <p class="total">Monthly Payment: <strong id="monthlyPayment"></strong></p>
+    <p class="sub">Total Interest Paid: <span id="totalInterest"></span></p>
+    <p class="sub">Total Cost of Loan: <span id="totalPayment"></span></p>
+  </div>
+</div>
+
+<script>
+  document.getElementById('calcBtn')?.addEventListener('click', () => {
+    const principal = parseFloat(document.getElementById('loanAmount').value);
+    const rate = parseFloat(document.getElementById('interestRate').value) / 100 / 12;
+    const years = parseFloat(document.getElementById('loanTerm').value);
+    const payments = years * 12;
+
+    if (isNaN(principal) || isNaN(rate) || isNaN(payments)) {
+      alert("Please fill out all fields with valid numbers.");
+      return;
+    }
+
+    // The Math: M = P [ i(1 + i)^n ] / [ (1 + i)^n – 1 ]
+    const x = Math.pow(1 + rate, payments);
+    const monthly = (principal * x * rate) / (x - 1);
+
+    const monthlyEl = document.getElementById('monthlyPayment');
+    const totalInterestEl = document.getElementById('totalInterest');
+    const totalPaymentEl = document.getElementById('totalPayment');
+    const resultBox = document.getElementById('result');
+
+    if (monthlyEl && totalInterestEl && totalPaymentEl && resultBox) {
+      monthlyEl.innerText = "$" + monthly.toFixed(2);
+      totalInterestEl.innerText = "$" + ((monthly * payments) - principal).toFixed(2);
+      totalPaymentEl.innerText = "$" + (monthly * payments).toFixed(2);
+      resultBox.classList.remove('hidden');
+    }
+  });
+</script>
+
+<style>
+  .calc-box { background: white; padding: 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 400px; margin: 32px auto; }
+  .calc-box h2 { margin-top: 0; }
+  .input-group { margin-bottom: 16px; }
+  .input-group label { display: block; font-size: 14px; margin-bottom: 4px; }
+  .input-group input { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; }
+  button { width: 100%; padding: 10px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+  button:hover { background: #1d4ed8; }
+  .result-box { margin-top: 24px; padding: 16px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; }
+  .hidden { display: none; }
+  .total { font-size: 18px; margin: 0 0 8px 0; }
+  .sub { font-size: 14px; color: #4b5563; margin: 4px 0; }
+</style>
