@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Terms and Conditions" description="Terms and Conditions for Finance Hub.">
+  <main class="container">
+    <h1>Terms and Conditions</h1>
+    <p>Last updated: {new Date().toLocaleDateString()}</p>
+    <h2>1. Agreement to Terms</h2>
+    <p>These Terms and Conditions constitute a legally binding agreement made between you and our website.</p>
+    <h2>2. Financial Disclaimer</h2>
+    <p>The calculators and information provided on this website are for educational and informational purposes only. They do not constitute financial, legal, or tax advice. You should consult with a qualified professional before making any financial decisions.</p>
+    <h2>3. Limitations of Liability</h2>
+    <p>In no event shall we or our suppliers be liable for any damages arising out of the use or inability to use the materials on our website.</p>
+  </main>
+</Layout>
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; line-height: 1.6; }
+  h1 { border-bottom: 2px solid #e5e7eb; padding-bottom: 8px; }
+  h2 { margin-top: 32px; }
+</style>
