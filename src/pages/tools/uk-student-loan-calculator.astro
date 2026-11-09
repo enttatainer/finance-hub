@@ -1,0 +1,60 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="UK Student Loan Repayment Calculator (Plan 2)" description="Calculate your monthly UK student loan repayments under Plan 2 based on your salary.">
+  <main class="container">
+    <h1>UK Student Loan Calculator (Plan 2)</h1>
+    <p class="subtitle">Estimate your monthly repayments and interest under Plan 2.</p>
+
+    <div class="calc-box">
+      <div class="input-group">
+        <label>Annual Salary (£)</label>
+        <input type="number" id="salary" placeholder="e.g. 35000" />
+      </div>
+      <button id="calcBtn">Calculate Repayment</button>
+      <div id="result" class="hidden result-box">
+        <p class="total">Monthly Repayment: <strong id="monthlyRepay"></strong></p>
+        <p class="sub">Annual Repayment: <span id="annualRepay"></span></p>
+        <p class="sub">Take-Home Pay (Estimate): <span id="takeHome"></span></p>
+      </div>
+    </div>
+
+    <article class="article-content">
+      <h2>How Plan 2 Repayments Work</h2>
+      <p>Under Plan 2, you only start repaying your student loan when you earn over the threshold (currently £27,295 per year). You repay 9% of any income above this threshold, not 9% of your total salary.</p>
+      <p>Interest is added to your loan based on the Retail Price Index (RPI) plus up to 3%, depending on your income. Our calculator estimates your monthly deductions to help you budget.</p>
+    </article>
+  </main>
+</Layout>
+
+<script>
+  document.getElementById('calcBtn')?.addEventListener('click', () => {
+    const salary = parseFloat(document.getElementById('salary').value);
+    if (isNaN(salary) || salary <= 0) { alert("Enter a valid salary"); return; }
+    const threshold = 27295;
+    let annualRepay = 0;
+    if (salary > threshold) { annualRepay = (salary - threshold) * 0.09; }
+    const monthlyRepay = annualRepay / 12;
+    const takeHome = (salary - annualRepay) / 12;
+
+    document.getElementById('monthlyRepay').innerText = "£" + monthlyRepay.toFixed(2);
+    document.getElementById('annualRepay').innerText = "£" + annualRepay.toFixed(2);
+    document.getElementById('takeHome').innerText = "£" + takeHome.toFixed(2);
+    document.getElementById('result').classList.remove('hidden');
+  });
+</script>
+
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
+  h1 { text-align: center; margin-bottom: 8px; } .subtitle { text-align: center; color: #6b7280; margin-bottom: 32px; }
+  .calc-box { background: white; padding: 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 400px; margin: 32px auto; }
+  .input-group { margin-bottom: 16px; }
+  .input-group label { display: block; font-size: 14px; margin-bottom: 4px; }
+  .input-group input { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; }
+  button { width: 100%; padding: 10px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+  .result-box { margin-top: 24px; padding: 16px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; }
+  .hidden { display: none; }
+  .total { font-size: 18px; margin: 0 0 8px 0; } .sub { font-size: 14px; color: #4b5563; margin: 4px 0; }
+  .article-content { margin-top: 40px; line-height: 1.6; }
+  .article-content h2 { margin-top: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; }
+</style>

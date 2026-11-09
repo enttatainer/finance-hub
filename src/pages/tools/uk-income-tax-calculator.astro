@@ -1,0 +1,70 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="UK Income Tax Calculator 2024/2025" description="Calculate your take-home pay after UK income tax and National Insurance.">
+  <main class="container">
+    <h1>UK Income Tax Calculator (2024/25)</h1>
+    <p class="subtitle">Estimate your take-home pay after tax and NI.</p>
+
+    <div class="calc-box">
+      <div class="input-group">
+        <label>Annual Gross Salary (£)</label>
+        <input type="number" id="salary" placeholder="e.g. 45000" />
+      </div>
+      <button id="calcBtn">Calculate Take-Home</button>
+      <div id="result" class="hidden result-box">
+        <p class="total">Annual Take-Home: <strong id="takeHome"></strong></p>
+        <p class="sub">Monthly Take-Home: <span id="monthlyTakeHome"></span></p>
+        <p class="sub">Estimated Income Tax: <span id="taxPaid"></span></p>
+      </div>
+    </div>
+
+    <article class="article-content">
+      <h2>How UK Income Tax Works</h2>
+      <p>In the UK, you have a Personal Allowance (usually £12,570), which is tax-free. Income above this is taxed in bands: 20% Basic Rate, 40% Higher Rate, and 45% Additional Rate. This calculator provides a simplified estimate of your income tax.</p>
+    </article>
+  </main>
+</Layout>
+
+<script>
+  document.getElementById('calcBtn')?.addEventListener('click', () => {
+    const salary = parseFloat(document.getElementById('salary').value);
+    if (isNaN(salary) || salary <= 0) { alert("Enter a valid salary"); return; }
+
+    const allowance = 12570;
+    let taxable = salary - allowance;
+    if (taxable < 0) taxable = 0;
+
+    let tax = 0;
+    if (taxable <= 37700) {
+      tax = taxable * 0.20;
+    } else if (taxable <= 112570) {
+      tax = (37700 * 0.20) + ((taxable - 37700) * 0.40);
+    } else {
+      tax = (37700 * 0.20) + (74870 * 0.40) + ((taxable - 112570) * 0.45);
+    }
+
+    const takeHome = salary - tax;
+    const monthly = takeHome / 12;
+
+    document.getElementById('takeHome').innerText = "£" + takeHome.toFixed(2);
+    document.getElementById('monthlyTakeHome').innerText = "£" + monthly.toFixed(2);
+    document.getElementById('taxPaid').innerText = "£" + tax.toFixed(2);
+    document.getElementById('result').classList.remove('hidden');
+  });
+</script>
+
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
+  h1 { text-align: center; margin-bottom: 8px; } .subtitle { text-align: center; color: #6b7280; margin-bottom: 32px; }
+  .calc-box { background: white; padding: 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 400px; margin: 32px auto; }
+  .input-group { margin-bottom: 16px; }
+  .input-group label { display: block; font-size: 14px; margin-bottom: 4px; }
+  .input-group input { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; }
+  button { width: 100%; padding: 10px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+  .result-box { margin-top: 24px; padding: 16px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; }
+  .hidden { display: none; }
+  .total { font-size: 18px; margin: 0 0 8px 0; } .sub { font-size: 14px; color: #4b5563; margin: 4px 0; }
+  .article-content { margin-top: 40px; line-height: 1.6; }
+  .article-content h2 { margin-top: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; }
+</style>

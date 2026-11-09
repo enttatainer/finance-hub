@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 ---
-<Layout title="Free Finance Calculators | Finance Hub" description="Free, accurate financial calculators for US freelancers, homeowners, and global investors.">
+<Layout title="Free Finance Calculators | Finance Hub" description="Free, accurate financial calculators for US freelancers, homeowners, UK workers, and global investors.">
   <main class="container">
     
     <header class="hero">
@@ -10,69 +10,31 @@ import Layout from '../layouts/Layout.astro';
     </header>
 
     <div class="grid">
-      <!-- Tool 1: 1099 Tax -->
-      <a href="/tools/us-freelancer-tax-calculator" class="card">
-        <div class="card-icon">📝</div>
-        <h2>US Freelancer Tax Calculator (1099)</h2>
-        <p>Estimate your 2024 Self-Employment and Federal Income taxes accurately.</p>
-        <span class="cta">Calculate Taxes &rarr;</span>
-      </a>
-
-      <!-- Tool 2: Mortgage -->
-      <a href="/tools/us-mortgage-calculator" class="card">
-        <div class="card-icon">🏠</div>
-        <h2>US Mortgage Calculator</h2>
-        <p>Calculate your monthly payments, total interest, and amortization schedule.</p>
-        <span class="cta">Calculate Mortgage &rarr;</span>
-      </a>
-
-      <!-- Tool 3: Compound Interest -->
-      <a href="/tools/compound-interest-calculator" class="card">
-        <div class="card-icon">📈</div>
-        <h2>Compound Interest Calculator</h2>
-        <p>See how your investments grow over time with the magic of compounding.</p>
-        <span class="cta">Calculate Growth &rarr;</span>
-      </a>
-
-      <!-- Tool 4: Car Loan -->
-      <a href="/tools/us-car-loan-calculator" class="card">
-        <div class="card-icon">🚗</div>
-        <h2>US Car Loan Calculator</h2>
-        <p>Estimate your monthly auto loan payments, including down payments and trade-ins.</p>
-        <span class="cta">Calculate Auto Loan &rarr;</span>
-      </a>
-
-      <!-- Tool 5: Salary to Hourly -->
-      <a href="/tools/salary-to-hourly-calculator" class="card">
-        <div class="card-icon">⏱️</div>
-        <h2>Salary to Hourly Calculator</h2>
-        <p>Convert your annual salary into an hourly, weekly, and monthly wage.</p>
-        <span class="cta">Convert Salary &rarr;</span>
-      </a>
-
-      <!-- Tool 6: UK Stamp Duty -->
-      <a href="/tools/uk-stamp-duty-calculator" class="card">
-        <div class="card-icon">🇬🇧</div>
-        <h2>UK Stamp Duty Calculator (FTB)</h2>
-        <p>Calculate your SDLT bill instantly for properties in England and Northern Ireland.</p>
-        <span class="cta">Calculate Stamp Duty &rarr;</span>
-      </a>
-
-      <!-- Tool 7: Mortgage with PMI -->
-      <a href="/tools/us-mortgage-calculator-pmi" class="card">
-        <div class="card-icon">🏡</div>
-        <h2>Mortgage Calculator with PMI</h2>
-        <p>See your true monthly payment, including Private Mortgage Insurance.</p>
-        <span class="cta">Calculate PMI &rarr;</span>
-      </a>
-
-      <!-- Tool 8: DRIP -->
-      <a href="/tools/dividend-reinvestment-calculator" class="card">
-        <div class="card-icon">💰</div>
-        <h2>Dividend Reinvestment Calculator</h2>
-        <p>See how reinvesting your dividends can compound your wealth over time.</p>
-        <span class="cta">Calculate DRIP &rarr;</span>
-      </a>
+      <a href="/tools/us-freelancer-tax-calculator" class="card"><div class="card-icon">📝</div><h2>US Freelancer Tax Calculator (1099)</h2><p>Estimate your 2024 Self-Employment and Federal Income taxes.</p><span class="cta">Calculate Taxes &rarr;</span></a>
+      
+      <a href="/tools/us-mortgage-calculator" class="card"><div class="card-icon">🏠</div><h2>US Mortgage Calculator</h2><p>Calculate your monthly payments, total interest, and amortization.</p><span class="cta">Calculate Mortgage &rarr;</span></a>
+      
+      <a href="/tools/compound-interest-calculator" class="card"><div class="card-icon">📈</div><h2>Compound Interest Calculator</h2><p>See how your investments grow over time with compounding.</p><span class="cta">Calculate Growth &rarr;</span></a>
+      
+      <a href="/tools/us-car-loan-calculator" class="card"><div class="card-icon">🚗</div><h2>US Car Loan Calculator</h2><p>Estimate your monthly auto loan payments, including trade-ins.</p><span class="cta">Calculate Auto Loan &rarr;</span></a>
+      
+      <a href="/tools/salary-to-hourly-calculator" class="card"><div class="card-icon">⏱️</div><h2>Salary to Hourly Calculator</h2><p>Convert your annual salary into an hourly and monthly wage.</p><span class="cta">Convert Salary &rarr;</span></a>
+      
+      <a href="/tools/uk-stamp-duty-calculator" class="card"><div class="card-icon">🇬🇧</div><h2>UK Stamp Duty Calculator (FTB)</h2><p>Calculate your SDLT bill instantly for properties in the UK.</p><span class="cta">Calculate Stamp Duty &rarr;</span></a>
+      
+      <a href="/tools/us-mortgage-calculator-pmi" class="card"><div class="card-icon">🏡</div><h2>Mortgage Calculator with PMI</h2><p>See your true monthly payment, including Private Mortgage Insurance.</p><span class="cta">Calculate PMI &rarr;</span></a>
+      
+      <a href="/tools/dividend-reinvestment-calculator" class="card"><div class="card-icon">💰</div><h2>Dividend Reinvestment Calculator</h2><p>See how reinvesting your dividends can compound your wealth.</p><span class="cta">Calculate DRIP &rarr;</span></a>
+      
+      <a href="/tools/uk-student-loan-calculator" class="card"><div class="card-icon">🎓</div><h2>UK Student Loan Calculator (Plan 2)</h2><p>Estimate your monthly repayments and take-home pay.</p><span class="cta">Calculate Repayment &rarr;</span></a>
+      
+      <a href="/tools/us-401k-retirement-calculator" class="card"><div class="card-icon">💼</div><h2>401(k) Retirement Calculator</h2><p>Calculate how much your 401(k) will be worth at retirement.</p><span class="cta">Calculate Retirement &rarr;</span></a>
+      
+      <a href="/tools/heloc-payment-calculator" class="card"><div class="card-icon">🏦</div><h2>HELOC Payment Calculator</h2><p>Estimate your interest-only draw period payments.</p><span class="cta">Calculate HELOC &rarr;</span></a>
+      
+      <a href="/tools/us-boat-loan-calculator" class="card"><div class="card-icon">⛵</div><h2>Boat Loan Calculator</h2><p>Calculate your monthly boat loan payments and interest.</p><span class="cta">Calculate Boat Loan &rarr;</span></a>
+      
+      <a href="/tools/uk-income-tax-calculator" class="card"><div class="card-icon">💷</div><h2>UK Income Tax Calculator</h2><p>Calculate your take-home pay after UK income tax and NI.</p><span class="cta">Calculate Take-Home &rarr;</span></a>
     </div>
 
   </main>
@@ -80,32 +42,13 @@ import Layout from '../layouts/Layout.astro';
 
 <style>
   .container { max-width: 900px; margin: 0 auto; padding: 64px 16px; }
-  
   .hero { text-align: center; margin-bottom: 48px; }
   .hero h1 { font-size: 2.5rem; margin-bottom: 16px; color: #111827; font-weight: 800; letter-spacing: -0.025em; }
   .hero p { font-size: 1.25rem; color: #4b5563; }
-  
   .grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
   @media (min-width: 768px) { .grid { grid-template-columns: 1fr 1fr; } }
-  
-  .card { 
-    display: block; 
-    background: white; 
-    padding: 32px; 
-    border-radius: 12px; 
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); 
-    text-decoration: none; 
-    color: inherit; 
-    transition: transform 0.2s ease, box-shadow 0.2s ease; 
-    border: 1px solid #e5e7eb; 
-  }
-  
-  .card:hover { 
-    transform: translateY(-4px); 
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
-    border-color: #2563eb; 
-  }
-  
+  .card { display: block; background: white; padding: 32px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); text-decoration: none; color: inherit; transition: transform 0.2s ease, box-shadow 0.2s ease; border: 1px solid #e5e7eb; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); border-color: #2563eb; }
   .card-icon { font-size: 2rem; margin-bottom: 16px; }
   .card h2 { font-size: 1.25rem; margin-top: 0; margin-bottom: 12px; color: #1f2937; }
   .card p { color: #6b7280; margin-bottom: 24px; line-height: 1.6; }

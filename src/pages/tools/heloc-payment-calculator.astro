@@ -1,0 +1,62 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="HELOC Payment Calculator | Estimate Your Line of Credit" description="Calculate your monthly interest-only payments during the draw period of a Home Equity Line of Credit.">
+  <main class="container">
+    <h1>HELOC Payment Calculator</h1>
+    <p class="subtitle">Estimate your interest-only draw period payments.</p>
+
+    <div class="calc-box">
+      <div class="input-group">
+        <label>Total HELOC Amount ($)</label>
+        <input type="number" id="amount" placeholder="e.g. 50000" />
+      </div>
+      <div class="input-group">
+        <label>Current Interest Rate (%)</label>
+        <input type="number" id="rate" placeholder="e.g. 8.5" step="0.1" />
+      </div>
+      <button id="calcBtn">Calculate Monthly Payment</button>
+      <div id="result" class="hidden result-box">
+        <p class="total">Interest-Only Payment: <strong id="monthlyPay"></strong></p>
+        <p class="sub">Annual Interest Cost: <span id="annualPay"></span></p>
+      </div>
+    </div>
+
+    <article class="article-content">
+      <h2>Understanding HELOC Draw Periods</h2>
+      <p>A Home Equity Line of Credit (HELOC) has two phases: the draw period (usually 10 years) and the repayment period (usually 20 years). During the draw period, you can borrow against your credit line and typically only need to make interest-only payments.</p>
+      <p>This calculator helps you understand those initial draw-period payments. Once the repayment period starts, your principal is amortized, and payments will increase significantly.</p>
+    </article>
+  </main>
+</Layout>
+
+<script>
+  document.getElementById('calcBtn')?.addEventListener('click', () => {
+    const amount = parseFloat(document.getElementById('amount').value);
+    const rate = parseFloat(document.getElementById('rate').value) / 100 / 12;
+
+    if (isNaN(amount) || isNaN(rate)) { alert("Fill all fields"); return; }
+
+    const monthlyPay = amount * rate;
+    const annualPay = monthlyPay * 12;
+
+    document.getElementById('monthlyPay').innerText = "$" + monthlyPay.toFixed(2);
+    document.getElementById('annualPay').innerText = "$" + annualPay.toFixed(2);
+    document.getElementById('result').classList.remove('hidden');
+  });
+</script>
+
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
+  h1 { text-align: center; margin-bottom: 8px; } .subtitle { text-align: center; color: #6b7280; margin-bottom: 32px; }
+  .calc-box { background: white; padding: 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 400px; margin: 32px auto; }
+  .input-group { margin-bottom: 16px; }
+  .input-group label { display: block; font-size: 14px; margin-bottom: 4px; }
+  .input-group input { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; }
+  button { width: 100%; padding: 10px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+  .result-box { margin-top: 24px; padding: 16px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; }
+  .hidden { display: none; }
+  .total { font-size: 18px; margin: 0 0 8px 0; } .sub { font-size: 14px; color: #4b5563; margin: 4px 0; }
+  .article-content { margin-top: 40px; line-height: 1.6; }
+  .article-content h2 { margin-top: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; }
+</style>
