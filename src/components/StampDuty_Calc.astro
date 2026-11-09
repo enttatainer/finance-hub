@@ -1,0 +1,48 @@
+<div class="calc-box">
+  <h2>UK Stamp Duty Calculator (First Time Buyer)</h2>
+  <div class="input-group">
+    <label>Property Price (£)</label>
+    <input type="number" id="propertyPrice" placeholder="e.g. 450000" />
+  </div>
+  <button id="calcBtn">Calculate Stamp Duty</button>
+  <div id="result" class="hidden result-box">
+    <p class="total">Stamp Duty Owed: <strong id="sdltAmount"></strong></p>
+    <p class="sub">Effective Tax Rate: <span id="sdltRate"></span></p>
+  </div>
+</div>
+<script>
+  document.getElementById('calcBtn')?.addEventListener('click', () => {
+    const price = parseFloat(document.getElementById('propertyPrice').value);
+    if (isNaN(price) || price <= 0) { alert("Enter valid price"); return; }
+    
+    // UK First Time Buyer Relief (England/NI 2024 rules)
+    let sdlt = 0;
+    if (price <= 425000) {
+      sdlt = 0; // 0% up to £425k
+    } else if (price <= 625000) {
+      sdlt = (price - 425000) * 0.05; // 5% between £425k and £625k
+    } else {
+      // Standard rates apply if over £625k (not FTB relief)
+      if (price <= 250000) sdlt = 0;
+      else if (price <= 925000) sdlt = (price - 250000) * 0.05;
+      else if (price <= 1500000) sdlt = 33750 + ((price - 925000) * 0.10);
+      else sdlt = 91250 + ((price - 1500000) * 0.12);
+    }
+    
+    const rate = (sdlt / price) * 100;
+    document.getElementById('sdltAmount').innerText = "£" + sdlt.toFixed(2);
+    document.getElementById('sdltRate').innerText = rate.toFixed(2) + "%";
+    document.getElementById('result').classList.remove('hidden');
+  });
+</script>
+<style>
+  .calc-box { background: white; padding: 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 400px; margin: 32px auto; }
+  .input-group { margin-bottom: 16px; }
+  .input-group label { display: block; font-size: 14px; margin-bottom: 4px; }
+  .input-group input { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; }
+  button { width: 100%; padding: 10px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+  .result-box { margin-top: 24px; padding: 16px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; }
+  .hidden { display: none; }
+  .total { font-size: 18px; margin: 0 0 8px 0; }
+  .sub { font-size: 14px; color: #4b5563; }
+</style>

@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import MortgagePMI_Calc from '../../components/MortgagePMI_Calc.astro';
+---
+<Layout title="US Mortgage Calculator with PMI | Estimate Private Mortgage Insurance" description="Calculate your monthly mortgage payment including PMI if your down payment is less than 20%.">
+  <main class="container">
+    <h1>US Mortgage Calculator with PMI</h1>
+    <p class="subtitle">See your true monthly cost, including Private Mortgage Insurance.</p>
+    <MortgagePMI_Calc />
+    <article class="article-content">
+      <h2>What is PMI?</h2>
+      <p>Private Mortgage Insurance (PMI) is a type of insurance that protects the lender if you stop making payments on your mortgage. It is typically required if your down payment is less than 20% of the home's purchase price.</p>
+      <h2>How to Avoid PMI</h2>
+      <p>PMI usually costs between 0.5% and 1.5% of the loan amount per year. The best way to avoid it is to save for a 20% down payment. Alternatively, once you build 20% equity in your home, you can request your lender remove PMI.</p>
+    </article>
+  </main>
+</Layout>
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
+  h1 { text-align: center; } .subtitle { text-align: center; color: #6b7280; margin-bottom: 32px; }
+  .article-content { margin-top: 40px; line-height: 1.6; }
+  .article-content h2 { margin-top: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; }
+</style>

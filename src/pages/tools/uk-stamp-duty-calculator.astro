@@ -1,0 +1,24 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import StampDuty_Calc from '../../components/StampDuty_Calc.astro';
+---
+<Layout title="UK Stamp Duty Calculator (First Time Buyer) | 2024 Rates" description="Calculate your UK Stamp Duty Land Tax (SDLT) for first-time buyers instantly.">
+  <main class="container">
+    <h1>UK Stamp Duty Calculator (First Time Buyer)</h1>
+    <p class="subtitle">Estimate your SDLT bill for properties in England and Northern Ireland.</p>
+    <StampDuty_Calc />
+    <article class="article-content">
+      <h2>First Time Buyer Relief Rules (2024)</h2>
+      <p>As a first-time buyer in the UK, you qualify for significant Stamp Duty relief. You pay <strong>0%</strong> on the first £425,000 of the property price. You then pay 5% on the portion between £425,001 and £625,000.</p>
+      <p>If the property costs more than £625,000, you lose the first-time buyer relief entirely and pay standard rates.</p>
+      <h2>Why Budget for Stamp Duty?</h2>
+      <p>Stamp duty is a hefty upfront cost that must be paid within 14 days of completing your property purchase. Many first-time buyers forget to factor this into their savings, leaving them short on moving day. Always use a calculator to budget accurately.</p>
+    </article>
+  </main>
+</Layout>
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
+  h1 { text-align: center; } .subtitle { text-align: center; color: #6b7280; margin-bottom: 32px; }
+  .article-content { margin-top: 40px; line-height: 1.6; }
+  .article-content h2 { margin-top: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; }
+</style>

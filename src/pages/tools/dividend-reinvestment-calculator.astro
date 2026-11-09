@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import DRIP_Calc from '../../components/DRIP_Calc.astro';
+---
+<Layout title="Dividend Reinvestment Calculator (DRIP) | Compound Your Wealth" description="See how reinvesting your dividends can grow your portfolio exponentially over time.">
+  <main class="container">
+    <h1>Dividend Reinvestment Calculator (DRIP)</h1>
+    <p class="subtitle">Discover the power of compounding your dividend payouts.</p>
+    <DRIP_Calc />
+    <article class="article-content">
+      <h2>What is a DRIP?</h2>
+      <p>A Dividend Reinvestment Plan (DRIP) is an arrangement where your dividend payouts are automatically used to buy more shares of the same stock. This allows you to buy fractional shares and takes advantage of dollar-cost averaging.</p>
+      <h2>The Magic of Compounding Dividends</h2>
+      <p>When you reinvest dividends, your new shares generate their own dividends. Over 20 or 30 years, this exponential growth can turn a modest portfolio into a massive nest egg, far outpacing simple capital appreciation.</p>
+    </article>
+  </main>
+</Layout>
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
+  h1 { text-align: center; } .subtitle { text-align: center; color: #6b7280; margin-bottom: 32px; }
+  .article-content { margin-top: 40px; line-height: 1.6; }
+  .article-content h2 { margin-top: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; }
+</style>
