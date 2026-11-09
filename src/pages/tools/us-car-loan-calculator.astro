@@ -1,0 +1,31 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Car_Loan_Calc from '../../components/Car_Loan_Calc.astro';
+---
+<Layout 
+  title="US Car Loan Calculator | Estimate Auto Payments" 
+  description="Calculate your monthly car loan payment, including down payments, trade-ins, and interest rates."
+>
+  <main class="container">
+    <h1>US Car Loan Calculator</h1>
+    <p class="subtitle">Estimate your monthly auto loan payments instantly.</p>
+
+    <Car_Loan_Calc />
+
+    <article class="article-content">
+      <h2>How to Use This Calculator</h2>
+      <p>Enter the total price of the vehicle, your planned down payment, and any trade-in value. Then input the interest rate offered by your lender and the loan term in months (usually 36, 48, 60, or 72 months). The calculator will show your estimated monthly payment and total interest paid over the life of the loan.</p>
+
+      <h2>Why Your Down Payment Matters</h2>
+      <p>A larger down payment reduces the principal amount you need to borrow. This not only lowers your monthly payment but also saves you hundreds or even thousands of dollars in interest over the life of the loan. It also prevents you from going "upside down" (owing more than the car is worth) on the loan.</p>
+    </article>
+  </main>
+</Layout>
+
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
+  h1 { text-align: center; margin-bottom: 8px; }
+  .subtitle { text-align: center; color: #6b7280; margin-bottom: 32px; }
+  .article-content { margin-top: 40px; line-height: 1.6; }
+  .article-content h2 { margin-top: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; }
+</style>

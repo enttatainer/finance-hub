@@ -1,0 +1,77 @@
+<div class="calc-box">
+  <h2>Car Loan Payment Calculator</h2>
+  
+  <div class="input-group">
+    <label>Car Price ($)</label>
+    <input type="number" id="carPrice" placeholder="e.g. 25000" />
+  </div>
+  <div class="input-group">
+    <label>Down Payment ($)</label>
+    <input type="number" id="downPayment" placeholder="e.g. 3000" />
+  </div>
+  <div class="input-group">
+    <label>Trade-in Value ($)</label>
+    <input type="number" id="tradeIn" placeholder="0" />
+  </div>
+  <div class="input-group">
+    <label>Interest Rate (%)</label>
+    <input type="number" id="interestRate" placeholder="e.g. 5.5" step="0.1" />
+  </div>
+  <div class="input-group">
+    <label>Loan Term (Months)</label>
+    <input type="number" id="loanTerm" placeholder="e.g. 60" />
+  </div>
+
+  <button id="calcBtn">Calculate Car Loan</button>
+
+  <div id="result" class="hidden result-box">
+    <p class="total">Monthly Payment: <strong id="monthlyPayment"></strong></p>
+    <p class="sub">Total Interest Paid: <span id="totalInterest"></span></p>
+    <p class="sub">Total Loan Cost: <span id="totalLoan"></span></p>
+  </div>
+</div>
+
+<script>
+  document.getElementById('calcBtn')?.addEventListener('click', () => {
+    const price = parseFloat(document.getElementById('carPrice').value) || 0;
+    const down = parseFloat(document.getElementById('downPayment').value) || 0;
+    const trade = parseFloat(document.getElementById('tradeIn').value) || 0;
+    const rate = parseFloat(document.getElementById('interestRate').value) / 100 / 12;
+    const term = parseFloat(document.getElementById('loanTerm').value);
+
+    if (price <= 0 || isNaN(rate) || term <= 0) {
+      alert("Please enter valid numbers for Price, Rate, and Term.");
+      return;
+    }
+
+    const principal = price - down - trade;
+    if (principal <= 0) {
+        alert("Down payment and trade-in cover the full car price!");
+        return;
+    }
+
+    const x = Math.pow(1 + rate, term);
+    const monthly = (principal * x * rate) / (x - 1);
+    const totalCost = monthly * term;
+    const interest = totalCost - principal;
+
+    document.getElementById('monthlyPayment').innerText = "$" + monthly.toFixed(2);
+    document.getElementById('totalInterest').innerText = "$" + interest.toFixed(2);
+    document.getElementById('totalLoan').innerText = "$" + totalCost.toFixed(2);
+    document.getElementById('result').classList.remove('hidden');
+  });
+</script>
+
+<style>
+  .calc-box { background: white; padding: 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 400px; margin: 32px auto; }
+  .calc-box h2 { margin-top: 0; }
+  .input-group { margin-bottom: 16px; }
+  .input-group label { display: block; font-size: 14px; margin-bottom: 4px; }
+  .input-group input { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; }
+  button { width: 100%; padding: 10px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+  button:hover { background: #1d4ed8; }
+  .result-box { margin-top: 24px; padding: 16px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; }
+  .hidden { display: none; }
+  .total { font-size: 18px; margin: 0 0 8px 0; }
+  .sub { font-size: 14px; color: #4b5563; margin: 4px 0; }
+</style>

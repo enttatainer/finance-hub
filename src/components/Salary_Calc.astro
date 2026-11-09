@@ -1,0 +1,56 @@
+<div class="calc-box">
+  <h2>Salary to Hourly Calculator</h2>
+  
+  <div class="input-group">
+    <label>Annual Salary ($)</label>
+    <input type="number" id="annualSalary" placeholder="e.g. 50000" />
+  </div>
+  <div class="input-group">
+    <label>Hours Worked Per Week</label>
+    <input type="number" id="hoursPerWeek" value="40" />
+  </div>
+
+  <button id="calcBtn">Calculate Hourly Rate</button>
+
+  <div id="result" class="hidden result-box">
+    <p class="total">Hourly Rate: <strong id="hourlyRate"></strong></p>
+    <p class="sub">Monthly Pay: <span id="monthlyPay"></span></p>
+    <p class="sub">Weekly Pay: <span id="weeklyPay"></span></p>
+  </div>
+</div>
+
+<script>
+  document.getElementById('calcBtn')?.addEventListener('click', () => {
+    const salary = parseFloat(document.getElementById('annualSalary').value);
+    const hours = parseFloat(document.getElementById('hoursPerWeek').value);
+
+    if (isNaN(salary) || isNaN(hours) || hours <= 0) {
+      alert("Please enter valid numbers.");
+      return;
+    }
+
+    // Math assumes 52 weeks a year
+    const hourly = salary / (hours * 52);
+    const weekly = salary / 52;
+    const monthly = salary / 12;
+
+    document.getElementById('hourlyRate').innerText = "$" + hourly.toFixed(2);
+    document.getElementById('weeklyPay').innerText = "$" + weekly.toFixed(2);
+    document.getElementById('monthlyPay').innerText = "$" + monthly.toFixed(2);
+    document.getElementById('result').classList.remove('hidden');
+  });
+</script>
+
+<style>
+  .calc-box { background: white; padding: 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 400px; margin: 32px auto; }
+  .calc-box h2 { margin-top: 0; }
+  .input-group { margin-bottom: 16px; }
+  .input-group label { display: block; font-size: 14px; margin-bottom: 4px; }
+  .input-group input { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; }
+  button { width: 100%; padding: 10px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+  button:hover { background: #1d4ed8; }
+  .result-box { margin-top: 24px; padding: 16px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; }
+  .hidden { display: none; }
+  .total { font-size: 18px; margin: 0 0 8px 0; }
+  .sub { font-size: 14px; color: #4b5563; margin: 4px 0; }
+</style>
