@@ -1,0 +1,51 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout 
+  title="The Ultimate Freelancer Tax Guide (1099) | Finance Hub" 
+  description="A complete guide to understanding 1099 taxes, self-employment tax, and how to save money as a US freelancer."
+>
+  <main class="container">
+    <article class="prose">
+      <h1>The Ultimate Freelancer Tax Guide (1099)</h1>
+      <p class="meta">Published: {new Date().toLocaleDateString()}</p>
+
+      <p>Transitioning from a W-2 employee to a 1099 freelancer is an exciting leap into freedom. However, it comes with a harsh reality check: nobody is withholding taxes for you anymore. If you don't plan ahead, tax season can be a nightmare.</p>
+
+      <h2>The Two Types of Taxes You Owe</h2>
+      <p>As a freelancer, you are subject to two primary taxes: <strong>Income Tax</strong> and <strong>Self-Employment Tax</strong>.</p>
+      <p>The Self-Employment tax is the big shock for most new freelancers. When you were an employee, your employer paid half of your Medicare and Social Security taxes. Now, you are both the employer and the employee, meaning you pay the full 15.3% FICA tax.</p>
+      
+      <p>However, you only pay this on 92.35% of your net profit. If you want to see exactly how this math plays out, try our free <a href="/tools/us-freelancer-tax-calculator">US Freelancer Tax Calculator</a>.</p>
+
+      <h2>How to Pay Less Tax</h2>
+      <p>The golden rule of freelancing is: <em>Track everything.</em> Every legitimate business expense reduces your net profit, which reduces your tax bill. Common deductions include:</p>
+      <ul>
+        <li>Home office percentage (rent, internet, utilities)</li>
+        <li>Software subscriptions (Adobe, Microsoft 365)</li>
+        <li>Hardware (computers, monitors, even a soldering iron if you are an electronics engineer!)</li>
+        <li>Business travel and meals</li>
+      </ul>
+
+      <h2>Quarterly Estimated Taxes</h2>
+      <p>The IRS operates on a "pay-as-you-go" system. If you expect to owe more than $1,000 in taxes, you must make quarterly estimated payments in April, June, September, and January. Failure to do so results in underpayment penalties.</p>
+      <p>Use the <a href="/tools/us-freelancer-tax-calculator">Tax Calculator</a> to estimate your total bill, divide it by four, and set that money aside in a separate savings account.</p>
+
+      <h2>The Bottom Line</h2>
+      <p>Freelancing taxes are high, but the freedom and unlimited earning potential are worth it. Stay organized, use the right tools, and consult a CPA if your business grows.</p>
+    </article>
+  </main>
+</Layout>
+
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
+  .prose { line-height: 1.7; color: #374151; }
+  h1 { font-size: 2.5rem; font-weight: 800; color: #111827; margin-bottom: 8px; }
+  .meta { color: #6b7280; font-size: 0.9rem; margin-bottom: 32px; }
+  h2 { font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-top: 40px; margin-bottom: 16px; }
+  p { margin-bottom: 20px; }
+  ul { margin-bottom: 20px; padding-left: 24px; }
+  li { margin-bottom: 8px; }
+  a { color: #2563eb; text-decoration: none; font-weight: 600; }
+  a:hover { text-decoration: underline; }
+</style>

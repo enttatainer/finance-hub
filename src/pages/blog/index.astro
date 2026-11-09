@@ -1,0 +1,29 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="Finance Blog | Tips & Guides" description="Read the latest financial tips, guides, and mathematical breakdowns.">
+  <main class="container">
+    <h1>Finance Blog</h1>
+    <p class="subtitle">Deep dives into tax, investing, and financial math.</p>
+
+    <div class="article-list">
+      <a href="/blog/freelance-tax-guide" class="article-card">
+        <h2>The Ultimate Freelancer Tax Guide (1099)</h2>
+        <p>Learn how self-employment taxes work and how to avoid a massive IRS bill.</p>
+        <span class="read-more">Read Article &rarr;</span>
+      </a>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 48px 16px; }
+  h1 { text-align: center; font-size: 2.5rem; margin-bottom: 8px; }
+  .subtitle { text-align: center; color: #6b7280; margin-bottom: 48px; font-size: 1.2rem; }
+  .article-list { display: flex; flex-direction: column; gap: 24px; }
+  .article-card { display: block; background: white; padding: 24px; border-radius: 8px; text-decoration: none; color: inherit; border: 1px solid #e5e7eb; transition: transform 0.2s; }
+  .article-card:hover { transform: translateY(-2px); border-color: #2563eb; }
+  .article-card h2 { margin-top: 0; color: #1f2937; }
+  .article-card p { color: #6b7280; }
+  .read-more { color: #2563eb; font-weight: bold; }
+</style>
