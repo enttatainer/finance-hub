@@ -1,0 +1,77 @@
+<div class="calc-box">
+  <h2>Compound Interest Calculator</h2>
+  
+  <div class="input-group">
+    <label>Initial Principal ($)</label>
+    <input type="number" id="principal" placeholder="e.g. 10000" />
+  </div>
+
+  <div class="input-group">
+    <label>Annual Interest Rate (%)</label>
+    <input type="number" id="rate" placeholder="e.g. 5" step="0.1" />
+  </div>
+
+  <div class="input-group">
+    <label>Time (Years)</label>
+    <input type="number" id="years" placeholder="e.g. 10" />
+  </div>
+
+  <div class="input-group">
+    <label>Compounding Frequency</label>
+    <select id="compound">
+      <option value="1">Annually (1x/year)</option>
+      <option value="4">Quarterly (4x/year)</option>
+      <option value="12" selected>Monthly (12x/year)</option>
+      <option value="365">Daily (365x/year)</option>
+    </select>
+  </div>
+
+  <button id="calcBtn">Calculate Future Value</button>
+
+  <div id="result" class="hidden result-box">
+    <p class="total">Future Value: <strong id="finalAmount"></strong></p>
+    <p class="sub">Total Interest Earned: <span id="totalInterest"></span></p>
+  </div>
+</div>
+
+<script>
+  document.getElementById('calcBtn')?.addEventListener('click', () => {
+    const principal = parseFloat((document.getElementById('principal') as HTMLInputElement).value);
+    const rate = parseFloat((document.getElementById('rate') as HTMLInputElement).value) / 100;
+    const years = parseFloat((document.getElementById('years') as HTMLInputElement).value);
+    const compound = parseFloat((document.getElementById('compound') as HTMLSelectElement).value);
+
+    if (isNaN(principal) || isNaN(rate) || isNaN(years)) {
+      alert("Please fill in all fields with valid numbers.");
+      return;
+    }
+
+    // The Formula: A = P(1 + r/n)^(nt)
+    const amount = principal * Math.pow((1 + (rate / compound)), (compound * years));
+    const interest = amount - principal;
+
+    const finalEl = document.getElementById('finalAmount');
+    const interestEl = document.getElementById('totalInterest');
+    const resultBox = document.getElementById('result');
+
+    if (finalEl && interestEl && resultBox) {
+      finalEl.innerText = "$" + amount.toFixed(2);
+      interestEl.innerText = "$" + interest.toFixed(2);
+      resultBox.classList.remove('hidden');
+    }
+  });
+</script>
+
+<style>
+  .calc-box { background: white; padding: 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 400px; margin: 32px auto; }
+  .calc-box h2 { margin-top: 0; }
+  .input-group { margin-bottom: 16px; }
+  .input-group label { display: block; font-size: 14px; margin-bottom: 4px; }
+  .input-group input, .input-group select { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; }
+  button { width: 100%; padding: 10px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+  button:hover { background: #1d4ed8; }
+  .result-box { margin-top: 24px; padding: 16px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; }
+  .hidden { display: none; }
+  .total { font-size: 18px; margin: 0 0 8px 0; }
+  .sub { font-size: 14px; color: #4b5563; margin: 4px 0; }
+</style>

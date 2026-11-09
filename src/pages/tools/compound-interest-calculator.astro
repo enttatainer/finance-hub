@@ -1,0 +1,40 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Compound_Calc from '../../components/Compound_Calc.astro';
+---
+<Layout 
+  title="Compound Interest Calculator | Free Investment Tool" 
+  description="Calculate the future value of your investments with our free compound interest calculator. See how your money grows over time."
+>
+  <main class="container">
+    <h1>Compound Interest Calculator</h1>
+    <p class="subtitle">Discover the power of compounding and watch your wealth grow.</p>
+
+    <Compound_Calc />
+
+    <article class="article-content">
+      <h2>How to Use This Calculator</h2>
+      <p>Enter your initial deposit (principal), the expected annual interest rate, and how many years you plan to invest. Choose how often the interest compounds (monthly is the most common for savings accounts). The calculator will instantly show you the future value of your investment.</p>
+
+      <h2>The Math Behind Compound Interest</h2>
+      <p>Compound interest is often called the "eighth wonder of the world" because it allows your money to make money. The formula we use is:</p>
+      <p style="text-align: center; font-weight: bold; background: #e5e7eb; padding: 10px; border-radius: 4px;">A = P (1 + r/n)^(nt)</p>
+      <p>Where <strong>A</strong> is the future value, <strong>P</strong> is the principal, <strong>r</strong> is the annual interest rate, <strong>n</strong> is the number of times interest is compounded per year, and <strong>t</strong> is the time in years.</p>
+
+      <h2>Frequently Asked Questions (FAQ)</h2>
+      <h3>What is the difference between simple and compound interest?</h3>
+      <p>Simple interest is only calculated on the initial principal. Compound interest is calculated on the principal <em>plus</em> the accumulated interest from previous periods. This is why compound interest grows exponentially.</p>
+      
+      <h3>What is the Rule of 72?</h3>
+      <p>The Rule of 72 is a quick mental math trick to estimate how long it will take to double your money. Simply divide 72 by your annual interest rate. (e.g., at an 8% return, it takes roughly 9 years to double your money).</p>
+    </article>
+  </main>
+</Layout>
+
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
+  h1 { text-align: center; margin-bottom: 8px; }
+  .subtitle { text-align: center; color: #6b7280; margin-bottom: 32px; }
+  .article-content { margin-top: 40px; line-height: 1.6; }
+  .article-content h2 { margin-top: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; }
+</style>
