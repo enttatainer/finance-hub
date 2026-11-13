@@ -1,39 +1,89 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 ---
-<Layout title="How to Calculate Your Mortgage Payment (And Save Thousands)" description="Learn the exact formula used to calculate mortgage payments and discover strategies to save on interest.">
+<Layout title="How to Calculate Your Mortgage Payment (And Save Thousands)" description="Learn the exact mathematical formula used to calculate mortgage payments, how amortization works, and strategies to save on interest.">
   <main class="container">
     <article class="prose">
       <h1>How to Calculate Your Mortgage Payment</h1>
       <p class="meta">Written by the Engineering Team at Finance Hub</p>
 
-      <p>Buying a home is the biggest financial decision most people will ever make. Yet, many buyers have no idea how their monthly mortgage payment is actually calculated. They simply accept the number the bank gives them. As engineers and mathematicians, we prefer to look under the hood.</p>
+      <p>Buying a home is the biggest financial decision most people will ever make. Yet, many buyers have no idea how their monthly mortgage payment is actually calculated. They simply accept the number the bank gives them, sign on the dotted line, and hope for the best. As engineers and mathematicians, we prefer to look under the hood.</p>
+
+      <p>Understanding the math behind your mortgage is not just an academic exercise; it is a powerful tool for financial planning. When you know how the formula works, you can manipulate the variables—the interest rate, the term, and the down payment—to save yourself tens of thousands of dollars over the life of the loan.</p>
 
       <h2>The Formula Banks Don't Want to Explain</h2>
-      <p>Your monthly payment is calculated using the amortization formula. It looks intimidating, but it's just standard algebra:</p>
+      <p>For a standard fixed-rate mortgage, your monthly payment is calculated using the amortization formula. It looks intimidating, but it is just standard algebra. Banks use this formula to ensure they make a consistent profit while you slowly pay down the principal balance.</p>
       <p style="text-align: center; font-weight: bold; background: #f3f4f6; padding: 12px; border-radius: 6px;">M = P [ i(1 + i)^n ] / [ (1 + i)^n – 1 ]</p>
+      <p>Let's break down exactly what each variable means:</p>
       <ul>
-        <li><strong>M</strong> = Total monthly payment</li>
-        <li><strong>P</strong> = Principal loan amount</li>
-        <li><strong>i</strong> = Monthly interest rate (annual rate divided by 12)</li>
-        <li><strong>n</strong> = Number of payments (loan term in years multiplied by 12)</li>
+        <li><strong>M:</strong> The total monthly mortgage payment.</li>
+        <li><strong>P:</strong> The principal loan amount (the amount you are borrowing).</li>
+        <li><strong>i:</strong> Your monthly interest rate. Lenders provide an annual rate, so you must divide it by 12. For example, a 6% annual rate is 0.06 / 12 = 0.005.</li>
+        <li><strong>n:</strong> The number of payments over the life of the loan. A 30-year mortgage has 360 payments (30 years x 12 months).</li>
       </ul>
-      <p>Instead of doing this by hand, you can use our free <a href="/tools/us-mortgage-calculator">US Mortgage Calculator</a> to get an instant, accurate result.</p>
+      <p>Instead of doing this complex algebra by hand, you can plug your specific numbers into our free <a href="/tools/us-mortgage-calculator">US Mortgage Calculator</a> to get an instant, accurate result.</p>
 
-      <h2>Why Your First Payments are Mostly Interest</h2>
-      <p>In the early years of a mortgage, the bank takes the interest they are owed first, and whatever is left over goes toward the principal. This is called amortization. As the principal slowly decreases, the interest portion shrinks, and more of your payment goes toward paying down the actual loan.</p>
+      <h2>A Step-by-Step Mathematical Walkthrough</h2>
+      <p>Let's run a real-world example to see how the math works in practice. Imagine you are buying a house and need to borrow <strong>$300,000</strong> at an annual interest rate of <strong>6%</strong> for a <strong>30-year term</strong>.</p>
+      <ul>
+        <li><strong>P</strong> = 300,000</li>
+        <li><strong>i</strong> = 0.06 / 12 = 0.005</li>
+        <li><strong>n</strong> = 30 x 12 = 360</li>
+      </ul>
+      <p>First, we calculate the compound interest factor: <code>(1 + i)^n</code>.</p>
+      <p><code>(1.005)^360 = 6.022575</code></p>
+      <p>Next, we plug this back into the main formula:</p>
+      <p><code>M = 300,000 * [ 0.005(6.022575) ] / [ 6.022575 - 1 ]</code></p>
+      <p><code>M = 300,000 * 0.0301128 / 5.022575</code></p>
+      <p><code>M = 300,000 * 0.0059955</code></p>
+      <p><strong>M = $1,798.65</strong></p>
+      <p>Your base principal and interest payment is $1,798.65. But remember, this is not your total monthly cost. There are other factors at play.</p>
+
+      <h2>Breaking Down the 4 Components of Your Payment (PITI)</h2>
+      <p>Your monthly mortgage payment isn't just paying off the house. It is typically divided into four parts, an acronym known as <strong>PITI</strong>:</p>
+      <ul>
+        <li><strong>Principal:</strong> The actual amount you borrowed to buy the home. In the early years, a very small fraction of your payment goes toward this.</li>
+        <li><strong>Interest:</strong> The fee the lender charges you for borrowing their money. This is their profit.</li>
+        <li><strong>Taxes:</strong> Property taxes collected by your local government. Lenders usually collect a portion of this every month and hold it in an escrow account to pay the tax bill for you at the end of the year.</li>
+        <li><strong>Insurance:</strong> This includes homeowners insurance (which protects against fire, theft, etc.) and potentially Private Mortgage Insurance (PMI) if your down payment is less than 20%.</li>
+      </ul>
+
+      <h2>The Physics of Amortization: Why Early Payments are Mostly Interest</h2>
+      <p>In the early years of a mortgage, the bank takes the interest they are owed first, and whatever is left over goes toward the principal. This is called amortization.</p>
+      <p>Why does this happen? Because interest is calculated based on the <em>remaining balance</em> of the loan. When your balance is $300,000, 6% interest on that balance is a massive number. The bank takes their cut first. As the principal slowly decreases, the interest portion shrinks, and more of your payment goes toward paying down the actual loan.</p>
+      <p>By the end of your 30-year term, the math flips. Almost your entire payment goes to the principal, and only pennies go to interest. This is why making extra payments early in the loan is so mathematically powerful.</p>
 
       <h2>3 Strategies to Save Thousands on Interest</h2>
-      <p><strong>1. Make Extra Payments:</strong> Even an extra $100 a month toward the principal can shave years off your loan. Try our <a href="/tools/us-mortgage-extra-payments">Extra Payments Calculator</a> to see the exact savings.</p>
-      <p><strong>2. Avoid PMI:</strong> If you put less than 20% down, you have to pay Private Mortgage Insurance. Once you reach 20% equity, contact your lender to have it removed immediately.</p>
-      <p><strong>3. Shop Around:</strong> A 0.5% difference in interest rate can cost you tens of thousands of dollars over 30 years. Always get quotes from at least three different lenders.</p>
+      <p><strong>1. Make Extra Payments:</strong> Even an extra $100 a month toward the principal can shave years off your loan. When you make an extra payment, 100% of that money goes directly to the principal balance. This reduces the amount of interest that accrues the next month. Try our <a href="/tools/us-mortgage-extra-payments">Extra Payments Calculator</a> to see the exact savings and how many years you shave off.</p>
+      <p><strong>2. Avoid PMI:</strong> If you put less than 20% down, you have to pay Private Mortgage Insurance. This protects the bank, not you. Once you reach 20% equity in your home (either through paying down the loan or through home price appreciation), contact your lender immediately to have it removed. You can calculate the cost of this using our <a href="/tools/us-mortgage-calculator-pmi">PMI Calculator</a>.</p>
+      <p><strong>3. Shop Around for Rates:</strong> A 0.5% difference in interest rate might not sound like much, but it can cost you tens of thousands of dollars over 30 years. Always get quotes from at least three different lenders, including local credit unions and online brokers. Even a 0.125% difference is worth negotiating.</p>
+
+      <h2>Frequently Asked Questions (FAQ)</h2>
+      <h3>Does a longer loan term lower my monthly payment?</h3>
+      <p>Yes. A 30-year mortgage will have a much lower monthly payment than a 15-year mortgage because you are spreading the principal over a longer period. However, you will pay significantly more in total interest over the life of the loan.</p>
+      
+      <h3>What happens if I make a bi-weekly payment instead of monthly?</h3>
+      <p>If you pay half your mortgage payment every two weeks instead of once a month, you end up making 26 half-payments a year. This equals 13 full monthly payments. That one extra payment a year goes entirely to the principal and can cut about 4 to 5 years off a 30-year mortgage.</p>
+      
+      <h3>Can my monthly payment change over time?</h3>
+      <p>If you have a fixed-rate mortgage, your principal and interest payment will never change. However, your escrow payment (taxes and insurance) can change every year depending on property tax assessments and insurance premiums.</p>
+
+      <h2>Conclusion</h2>
+      <p>Understanding the mathematics behind your mortgage empowers you to make better decisions. Don't let the bank's numbers be a mystery. Use our <a href="/tools/us-mortgage-calculator">US Mortgage Calculator</a> to run different scenarios, test different interest rates, and see exactly how much house you can afford. </p>
     </article>
   </main>
 </Layout>
 <style>
   .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
-  .prose { line-height: 1.8; color: #374151; } h1 { font-size: 2.5rem; font-weight: 800; color: #111827; }
+  .prose { line-height: 1.8; color: #374151; } 
+  h1 { font-size: 2.5rem; font-weight: 800; color: #111827; line-height: 1.2; margin-bottom: 8px; }
   .meta { color: #6b7280; font-size: 0.9rem; margin-bottom: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 16px; }
-  h2 { font-size: 1.5rem; color: #1f2937; margin-top: 40px; margin-bottom: 16px; }
-  a { color: #2563eb; text-decoration: none; font-weight: 600; } a:hover { text-decoration: underline; }
+  h2 { font-size: 1.5rem; color: #1f2937; margin-top: 40px; margin-bottom: 16px; border-bottom: 1px solid #f3f4f6; padding-bottom: 8px; }
+  h3 { font-size: 1.2rem; color: #1f2937; margin-top: 24px; margin-bottom: 12px; }
+  p { margin-bottom: 20px; } 
+  ul { margin-bottom: 20px; padding-left: 24px; }
+  li { margin-bottom: 8px; }
+  code { background: #f3f4f6; padding: 2px 6px; border-radius: 4px; font-family: monospace; }
+  a { color: #2563eb; text-decoration: none; font-weight: 600; } 
+  a:hover { text-decoration: underline; }
 </style>
