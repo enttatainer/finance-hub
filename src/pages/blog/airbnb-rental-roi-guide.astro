@@ -1,0 +1,76 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout 
+  title="The Airbnb & Rental ROI Guide: Calculating Cash-on-Cash Return" 
+  description="Learn how to accurately calculate the ROI of a rental property and avoid the hidden costs that destroy profitability."
+>
+  <main class="container">
+    <article class="prose">
+      <h1>The Airbnb & Rental Property ROI Guide</h1>
+      <p class="meta">Written by the Engineering Team at Finance Hub | Updated for 2024</p>
+
+      <p>Real estate is one of the oldest and most reliable ways to build wealth. But it is also an emotional business. Too many investors buy a property because it "looks nice" or because they fell in love with the neighborhood, without ever running the math.</p>
+
+      <p>As engineers, we know that a rental property is simply a cash-flow machine. If the inputs (expenses) exceed the outputs (rent), the machine is broken. Today, we are going to break down the two most important metrics for evaluating a rental: Cap Rate and Cash-on-Cash Return.</p>
+
+      <h2>Metric 1: Capitalization Rate (Cap Rate)</h2>
+      <p>The Cap Rate measures the unleveraged return on a property. It tells you how much the property would yield if you bought it in cash. It is used to compare different properties in different markets.</p>
+      <p style="text-align: center; font-weight: bold; background: #f3f4f6; padding: 12px; border-radius: 6px;">Cap Rate = Net Operating Income (NOI) / Property Value</p>
+      <p><em>*Net Operating Income = Annual Rent - Operating Expenses (taxes, insurance, maintenance, management fees, but NOT the mortgage).*</em></p>
+
+      <h2>Metric 2: Cash-on-Cash Return (The Investor's Metric)</h2>
+      <p>Since most real estate investors use a mortgage (leverage) to buy property, the most important metric is the Cash-on-Cash return. It measures the annual cash flow you receive compared to the actual cash you invested out of pocket (down payment + closing costs).</p>
+      <p style="text-align: center; font-weight: bold; background: #f3f4f6; padding: 12px; border-radius: 6px;">Cash-on-Cash Return = Annual Pre-Tax Cash Flow / Total Cash Invested</p>
+
+      <p><strong>Let's run the math on a $250,000 property:</strong></p>
+      <ul>
+        <li><strong>Total Cash Invested:</strong> $50,000 (20% down payment) + $5,000 (closing costs) = $55,000.</li>
+        <li><strong>Monthly Rent:</strong> $2,500.</li>
+        <li><strong>Monthly Expenses:</strong> $1,500 (mortgage) + $300 (taxes/insurance) + $200 (maintenance/vacancy buffer) = $2,000.</li>
+        <li><strong>Monthly Cash Flow:</strong> $2,500 - $2,000 = $500.</li>
+        <li><strong>Annual Cash Flow:</strong> $500 x 12 = $6,000.</li>
+      </ul>
+      <p>Cash-on-Cash Return = $6,000 / $55,000 = <strong>10.9%</strong>.</p>
+      <p>This means every year, you are getting an 11% cash return on the money you actually put into the deal. That is significantly better than the stock market's historical 7% average. You can plug your own numbers into our <a href="/tools/airbnb-roi-calculator">Airbnb / Rental Property ROI Calculator</a> to analyze your deal.</p>
+
+      <h2>Short-Term (Airbnb) vs. Long-Term Rentals</h2>
+      <p>The ROI calculation above applies to both, but the inputs are radically different.</p>
+      <p><strong>Long-Term Rentals:</strong> Lower gross income, but highly predictable. You have one tenant for 12 months. Your vacancy rate might be 5%. Maintenance is low but can be expensive when a water heater blows.</p>
+      <p><strong>Short-Term Rentals (Airbnb):</strong> Higher gross income (you can charge more per night), but massive expenses. You have to pay for cleaning between every guest, furnish the entire house, and cover utilities. Your vacancy rate might be 30% (or much higher in the off-season). You must factor these into the calculator.</p>
+
+      <h2>The Hidden Traps That Kill ROI</h2>
+      <p><strong>1. The 50% Rule:</strong> Real estate investors use a rule of thumb that operating expenses (taxes, insurance, maintenance, management) will equal roughly 50% of your gross rent. If your math assumes expenses will be lower, you are likely underestimating.</p>
+      <p><strong>2. Capital Expenditures (CapEx):</strong> Your monthly maintenance budget covers small fixes. But what about a new roof ($10,000) or a new HVAC system ($6,000)? You must set aside 5% to 10% of your rent every month for CapEx.</p>
+      <p><strong>3. The "1% Rule":</strong> A quick way to filter deals is the 1% rule. Your monthly rent should be at least 1% of the purchase price. For a $250,000 house, you need $2,500 in monthly rent. If it's less, the math usually doesn't work.</p>
+
+      <h2>Frequently Asked Questions (FAQ)</h2>
+      
+      <h3>Is an Airbnb more profitable than a long-term rental?</h3>
+      <p>On paper, Airbnb can generate 2x to 3x the gross revenue of a long-term rental. However, because of the high operating costs (cleaning, furnishing, management fees, short-term rental regulations), the net profit can sometimes be similar to a long-term rental, but with much more work.</p>
+
+      <h3>What is a "good" Cash-on-Cash return?</h3>
+      <p>Most real estate investors aim for an 8% to 12% Cash-on-Cash return. If a deal gives you less than 8%, the risk and effort of managing a property often aren't worth it compared to passive index fund investing.</p>
+
+      <h3>How much should I put down on a rental?</h3>
+      <p>Conventional lenders require a minimum of 20% down for an investment property. Putting more down increases your Cash-on-Cash return but decreases the "leverage" benefit.</p>
+
+      <h2>The Bottom Line</h2>
+      <p>Don't let emotion drive your real estate investments. Run the numbers, account for vacancy, maintenance, and CapEx, and demand a Cash-on-Cash return that justifies the risk. Use our <a href="/tools/airbnb-roi-calculator">Rental Property ROI Calculator</a> to separate the profitable deals from the money pits.</p>
+    </article>
+  </main>
+</Layout>
+
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
+  .prose { line-height: 1.8; color: #374151; font-size: 1.05rem; } 
+  h1 { font-size: 2.5rem; font-weight: 800; color: #111827; margin-bottom: 8px; }
+  .meta { color: #6b7280; font-size: 0.9rem; margin-bottom: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 16px; }
+  h2 { font-size: 1.75rem; color: #1f2937; margin-top: 40px; margin-bottom: 16px; border-bottom: 1px solid #f3f4f6; padding-bottom: 8px; }
+  h3 { font-size: 1.3rem; color: #374151; margin-top: 24px; margin-bottom: 12px; }
+  p { margin-bottom: 20px; } 
+  ul { margin-bottom: 20px; padding-left: 24px; }
+  li { margin-bottom: 8px; }
+  a { color: #2563eb; text-decoration: none; font-weight: 600; } 
+  a:hover { text-decoration: underline; }
+</style>
