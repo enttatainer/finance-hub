@@ -1,0 +1,31 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="The Magic of Compounding: How to Build Wealth" description="Albert Einstein called it the 8th wonder of the world. Learn how compound interest works and how to use it.">
+  <main class="container">
+    <article class="prose">
+      <h1>The Magic of Compound Interest</h1>
+      <p class="meta">Written by the Engineering Team at Finance Hub</p>
+
+      <p>There is a famous quote often attributed to Albert Einstein: <em>"Compound interest is the eighth wonder of the world. He who understands it, earns it; he who doesn't, pays it."</em> Whether he actually said it or not, the math is undeniable.</p>
+
+      <h2>How it Works</h2>
+      <p>Simple interest is calculated only on your initial deposit. Compound interest is calculated on your initial deposit PLUS the interest you've already earned. In other words, your money makes money, and then that money makes money.</p>
+      <p>The formula is <strong>A = P(1 + r/n)^(nt)</strong>. But you don't need to do it by hand. Our <a href="/tools/compound-interest-calculator">Compound Interest Calculator</a> shows you exactly how your wealth can grow over time.</p>
+
+      <h2>The Rule of 72</h2>
+      <p>Want a fast way to estimate how long it will take to double your money? Use the Rule of 72. Simply take the number 72 and divide it by your annual interest rate. If you are earning 8% returns in the stock market, 72 / 8 = 9. Your money will double roughly every 9 years.</p>
+
+      <h2>Why Starting Early is Everything</h2>
+      <p>Time is the most important variable in compounding. If you invest $10,000 at age 25 with an 8% return, it will be worth over $217,000 by the time you are 65. If you wait until age 35 to invest the same amount, it will only be worth $100,000. The 10-year difference costs you over $100,000.</p>
+      <p>If you want to see how reinvesting dividends supercharges this effect, check out our <a href="/tools/dividend-reinvestment-calculator">DRIP Calculator</a>.</p>
+    </article>
+  </main>
+</Layout>
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
+  .prose { line-height: 1.8; color: #374151; } h1 { font-size: 2.5rem; font-weight: 800; color: #111827; }
+  .meta { color: #6b7280; font-size: 0.9rem; margin-bottom: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 16px; }
+  h2 { font-size: 1.5rem; color: #1f2937; margin-top: 40px; margin-bottom: 16px; }
+  a { color: #2563eb; text-decoration: none; font-weight: 600; } a:hover { text-decoration: underline; }
+</style>

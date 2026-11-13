@@ -1,0 +1,39 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="How to Calculate Your Mortgage Payment (And Save Thousands)" description="Learn the exact formula used to calculate mortgage payments and discover strategies to save on interest.">
+  <main class="container">
+    <article class="prose">
+      <h1>How to Calculate Your Mortgage Payment</h1>
+      <p class="meta">Written by the Engineering Team at Finance Hub</p>
+
+      <p>Buying a home is the biggest financial decision most people will ever make. Yet, many buyers have no idea how their monthly mortgage payment is actually calculated. They simply accept the number the bank gives them. As engineers and mathematicians, we prefer to look under the hood.</p>
+
+      <h2>The Formula Banks Don't Want to Explain</h2>
+      <p>Your monthly payment is calculated using the amortization formula. It looks intimidating, but it's just standard algebra:</p>
+      <p style="text-align: center; font-weight: bold; background: #f3f4f6; padding: 12px; border-radius: 6px;">M = P [ i(1 + i)^n ] / [ (1 + i)^n – 1 ]</p>
+      <ul>
+        <li><strong>M</strong> = Total monthly payment</li>
+        <li><strong>P</strong> = Principal loan amount</li>
+        <li><strong>i</strong> = Monthly interest rate (annual rate divided by 12)</li>
+        <li><strong>n</strong> = Number of payments (loan term in years multiplied by 12)</li>
+      </ul>
+      <p>Instead of doing this by hand, you can use our free <a href="/tools/us-mortgage-calculator">US Mortgage Calculator</a> to get an instant, accurate result.</p>
+
+      <h2>Why Your First Payments are Mostly Interest</h2>
+      <p>In the early years of a mortgage, the bank takes the interest they are owed first, and whatever is left over goes toward the principal. This is called amortization. As the principal slowly decreases, the interest portion shrinks, and more of your payment goes toward paying down the actual loan.</p>
+
+      <h2>3 Strategies to Save Thousands on Interest</h2>
+      <p><strong>1. Make Extra Payments:</strong> Even an extra $100 a month toward the principal can shave years off your loan. Try our <a href="/tools/us-mortgage-extra-payments">Extra Payments Calculator</a> to see the exact savings.</p>
+      <p><strong>2. Avoid PMI:</strong> If you put less than 20% down, you have to pay Private Mortgage Insurance. Once you reach 20% equity, contact your lender to have it removed immediately.</p>
+      <p><strong>3. Shop Around:</strong> A 0.5% difference in interest rate can cost you tens of thousands of dollars over 30 years. Always get quotes from at least three different lenders.</p>
+    </article>
+  </main>
+</Layout>
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
+  .prose { line-height: 1.8; color: #374151; } h1 { font-size: 2.5rem; font-weight: 800; color: #111827; }
+  .meta { color: #6b7280; font-size: 0.9rem; margin-bottom: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 16px; }
+  h2 { font-size: 1.5rem; color: #1f2937; margin-top: 40px; margin-bottom: 16px; }
+  a { color: #2563eb; text-decoration: none; font-weight: 600; } a:hover { text-decoration: underline; }
+</style>
