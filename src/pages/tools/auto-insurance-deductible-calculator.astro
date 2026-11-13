@@ -1,0 +1,64 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="Auto Insurance Deductible Calculator | Is a Higher Deductible Worth It?" description="Compare the savings on your monthly premium against the risk of a higher deductible.">
+  <main class="container">
+    <h1>Auto Insurance Deductible Calculator</h1>
+    <p class="subtitle">Find out if increasing your deductible will save you money.</p>
+
+    <div class="calc-box">
+      <div class="input-group"><label>Current Monthly Premium ($)</label><input type="number" id="currentPremium" placeholder="e.g. 150" /></div>
+      <div class="input-group"><label>Current Deductible ($)</label><input type="number" id="currentDeductible" placeholder="e.g. 500" /></div>
+      <div class="input-group"><label>New Premium with Higher Deductible ($)</label><input type="number" id="newPremium" placeholder="e.g. 120" /></div>
+      <div class="input-group"><label>New Higher Deductible ($)</label><input type="number" id="newDeductible" placeholder="e.g. 1000" /></div>
+      <button id="calcBtn">Calculate Break-Even</button>
+      <div id="result" class="hidden result-box">
+        <p class="total">Monthly Savings: <strong id="monthlySavings"></strong></p>
+        <p class="sub">Break-Even Point: <span id="breakEven"></span></p>
+        <p class="sub">Note: <span>If you don't have an accident within this time, you come out ahead.</span></p>
+      </div>
+    </div>
+
+    <article class="article-content">
+      <h2>The Deductible Gamble</h2>
+      <p>A higher deductible means you pay more out of pocket if you have an accident, but your monthly premium will be lower. The "break-even" point is how many months it takes for the monthly savings to equal the extra amount you would pay out of pocket for the higher deductible.</p>
+    </article>
+  </main>
+</Layout>
+
+<script>
+  document.getElementById('calcBtn')?.addEventListener('click', () => {
+    const cp = parseFloat(document.getElementById('currentPremium').value);
+    const cd = parseFloat(document.getElementById('currentDeductible').value);
+    const np = parseFloat(document.getElementById('newPremium').value);
+    const nd = parseFloat(document.getElementById('newDeductible').value);
+
+    if (isNaN(cp) || isNaN(cd) || isNaN(np) || isNaN(nd)) { alert("Fill all fields"); return; }
+
+    const monthlySavings = cp - np;
+    const deductibleDifference = nd - cd;
+
+    if (monthlySavings <= 0) {
+      alert("The new premium is not cheaper. There is no benefit to switching.");
+      return;
+    }
+
+    const breakEvenMonths = deductibleDifference / monthlySavings;
+
+    document.getElementById('monthlySavings').innerText = "$" + monthlySavings.toFixed(2);
+    document.getElementById('breakEven').innerText = breakEvenMonths.toFixed(1) + " months";
+    document.getElementById('result').classList.remove('hidden');
+  });
+</script>
+
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
+  h1 { text-align: center; } .subtitle { text-align: center; color: #6b7280; margin-bottom: 32px; }
+  .calc-box { background: white; padding: 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 400px; margin: 32px auto; }
+  .input-group { margin-bottom: 16px; } .input-group label { display: block; font-size: 14px; margin-bottom: 4px; }
+  .input-group input { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; }
+  button { width: 100%; padding: 10px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+  .result-box { margin-top: 24px; padding: 16px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; }
+  .hidden { display: none; } .total { font-size: 18px; margin: 0 0 8px 0; } .sub { font-size: 14px; color: #4b5563; }
+  .article-content { margin-top: 40px; line-height: 1.6; } .article-content h2 { margin-top: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; }
+</style>

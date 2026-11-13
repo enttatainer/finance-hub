@@ -1,15 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
 ---
-<Layout title="Free Finance Calculators | Finance Hub" description="20+ free, accurate financial calculators for US, UK, Canada, and Australia.">
+<Layout title="Free Finance Calculators | Finance Hub" description="25+ free, accurate financial calculators for US, UK, Canada, and Australia.">
   <main class="container">
     
     <header class="hero">
       <h1>Free Finance Calculators</h1>
-      <p>20+ fast, accurate, math-driven tools for your financial planning.</p>
+      <p>25+ fast, accurate, math-driven tools for your financial planning.</p>
     </header>
 
     <div class="grid">
+      
+      <!-- CATEGORY 1: TAX & LOANS -->
+      <h2 class="category-title">Tax, Loans & Investing</h2>
+
       <a href="/tools/us-freelancer-tax-calculator" class="card"><div class="card-icon">📝</div><h2>US Freelancer Tax (1099)</h2><p>Estimate 2024 Self-Employment and Federal Income taxes.</p><span class="cta">Calculate &rarr;</span></a>
       
       <a href="/tools/us-mortgage-calculator" class="card"><div class="card-icon">🏠</div><h2>US Mortgage Calculator</h2><p>Calculate monthly payments, total interest, and amortization.</p><span class="cta">Calculate &rarr;</span></a>
@@ -22,7 +26,7 @@ import Layout from '../layouts/Layout.astro';
       
       <a href="/tools/uk-stamp-duty-calculator" class="card"><div class="card-icon">🇬🇧</div><h2>UK Stamp Duty (FTB)</h2><p>Calculate your SDLT bill instantly for UK properties.</p><span class="cta">Calculate &rarr;</span></a>
       
-      <a href="/tools/us-mortgage-calculator-pmi" class="card"><div class="card-icon">🏡</div><h2>Mortgage Calculator with PMI</h2><p>See your true payment, including Private Mortgage Insurance.</p><span class="cta">Calculate &rarr;</span></a>
+      <a href="/tools/us-mortgage-calculator-pmi" class="card"><div class="card-icon">🏡</div><h2>Mortgage with PMI</h2><p>See your true payment, including Private Mortgage Insurance.</p><span class="cta">Calculate &rarr;</span></a>
       
       <a href="/tools/dividend-reinvestment-calculator" class="card"><div class="card-icon">💰</div><h2>Dividend Reinvestment (DRIP)</h2><p>See how reinvesting dividends can compound your wealth.</p><span class="cta">Calculate &rarr;</span></a>
       
@@ -36,7 +40,6 @@ import Layout from '../layouts/Layout.astro';
       
       <a href="/tools/uk-income-tax-calculator" class="card"><div class="card-icon">💷</div><h2>UK Income Tax</h2><p>Calculate take-home pay after UK income tax and NI.</p><span class="cta">Calculate &rarr;</span></a>
 
-      <!-- NEW TOOLS -->
       <a href="/tools/canada-mortgage-calculator" class="card"><div class="card-icon">🇨🇦</div><h2>Canada Mortgage Calculator</h2><p>Estimate payments with semi-annual compounding.</p><span class="cta">Calculate &rarr;</span></a>
       
       <a href="/tools/australia-income-tax-calculator" class="card"><div class="card-icon">🇦🇺</div><h2>Australia Income Tax</h2><p>Calculate take-home pay after tax and Medicare.</p><span class="cta">Calculate &rarr;</span></a>
@@ -50,6 +53,46 @@ import Layout from '../layouts/Layout.astro';
       <a href="/tools/us-self-employed-health-insurance" class="card"><div class="card-icon">🩺</div><h2>Self-Employed Health Deduction</h2><p>See how much of your health premiums you can deduct.</p><span class="cta">Calculate &rarr;</span></a>
       
       <a href="/tools/us-mortgage-extra-payments" class="card"><div class="card-icon">⚡</div><h2>Mortgage with Extra Payments</h2><p>See how much time and interest you save.</p><span class="cta">Calculate &rarr;</span></a>
+
+
+      <!-- CATEGORY 2: INSURANCE & REAL ESTATE -->
+      <h2 class="category-title">Insurance & Real Estate</h2>
+
+      <a href="/tools/life-insurance-needs-calculator" class="card">
+        <div class="card-icon">🛡️</div>
+        <h2>Life Insurance Needs (DIME)</h2>
+        <p>Find out how much coverage your family needs.</p>
+        <span class="cta">Calculate &rarr;</span>
+      </a>
+
+      <a href="/tools/auto-insurance-deductible-calculator" class="card">
+        <div class="card-icon">🚗</div>
+        <h2>Auto Insurance Deductible</h2>
+        <p>See if a higher deductible is worth the savings.</p>
+        <span class="cta">Calculate &rarr;</span>
+      </a>
+
+      <a href="/tools/home-closing-costs-calculator" class="card">
+        <div class="card-icon">📝</div>
+        <h2>Home Closing Costs</h2>
+        <p>Estimate the hidden fees of buying a home.</p>
+        <span class="cta">Calculate &rarr;</span>
+      </a>
+
+      <a href="/tools/airbnb-roi-calculator" class="card">
+        <div class="card-icon">🔑</div>
+        <h2>Airbnb / Rental ROI</h2>
+        <p>Analyze the profitability of a rental investment.</p>
+        <span class="cta">Calculate &rarr;</span>
+      </a>
+
+      <a href="/tools/us-property-tax-calculator" class="card">
+        <div class="card-icon">🏘️</div>
+        <h2>US Property Tax</h2>
+        <p>Estimate your annual property tax bill.</p>
+        <span class="cta">Calculate &rarr;</span>
+      </a>
+
     </div>
 
   </main>
@@ -57,14 +100,44 @@ import Layout from '../layouts/Layout.astro';
 
 <style>
   .container { max-width: 1000px; margin: 0 auto; padding: 64px 16px; }
+  
   .hero { text-align: center; margin-bottom: 48px; }
   .hero h1 { font-size: 2.5rem; margin-bottom: 16px; color: #111827; font-weight: 800; letter-spacing: -0.025em; }
   .hero p { font-size: 1.25rem; color: #4b5563; }
+  
   .grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
   @media (min-width: 768px) { .grid { grid-template-columns: 1fr 1fr; } }
-  @media (min-width: 1024px) { .grid { grid-template-columns: 1fr 1fr 1fr; } } /* 3 columns on desktop! */
-  .card { display: block; background: white; padding: 24px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); text-decoration: none; color: inherit; transition: transform 0.2s, box-shadow 0.2s; border: 1px solid #e5e7eb; }
-  .card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); border-color: #2563eb; }
+  @media (min-width: 1024px) { .grid { grid-template-columns: 1fr 1fr 1fr; } }
+  
+  /* Category Header Styling */
+  .category-title { 
+    grid-column: 1 / -1; 
+    font-size: 1.5rem; 
+    color: #374151; 
+    margin-top: 32px; 
+    margin-bottom: 8px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e5e7eb;
+  }
+
+  .card { 
+    display: block; 
+    background: white; 
+    padding: 24px; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); 
+    text-decoration: none; 
+    color: inherit; 
+    transition: transform 0.2s ease, box-shadow 0.2s ease; 
+    border: 1px solid #e5e7eb; 
+  }
+  
+  .card:hover { 
+    transform: translateY(-4px); 
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); 
+    border-color: #2563eb; 
+  }
+  
   .card-icon { font-size: 2rem; margin-bottom: 16px; }
   .card h2 { font-size: 1.15rem; margin-top: 0; margin-bottom: 12px; color: #1f2937; }
   .card p { color: #6b7280; margin-bottom: 24px; line-height: 1.5; font-size: 0.95rem; }
