@@ -2,50 +2,93 @@
 import Layout from '../../layouts/Layout.astro';
 ---
 <Layout 
-  title="The Ultimate Freelancer Tax Guide (1099) | Finance Hub" 
-  description="A complete guide to understanding 1099 taxes, self-employment tax, and how to save money as a US freelancer."
+  title="The Ultimate Freelancer Tax Guide (1099) for 2024" 
+  description="A complete, engineer-backed guide to understanding 1099 taxes, calculating self-employment tax, quarterly payments, and legal deductions."
 >
   <main class="container">
     <article class="prose">
       <h1>The Ultimate Freelancer Tax Guide (1099)</h1>
-      <p class="meta">Published: {new Date().toLocaleDateString()}</p>
+      <p class="meta">Written by the Engineering Team at Finance Hub | Updated for 2024</p>
 
-      <p>Transitioning from a W-2 employee to a 1099 freelancer is an exciting leap into freedom. However, it comes with a harsh reality check: nobody is withholding taxes for you anymore. If you don't plan ahead, tax season can be a nightmare.</p>
+      <p>Transitioning from a W-2 employee to a 1099 independent contractor is an exciting leap into freedom. You control your hours, your clients, and your income potential. However, it comes with a harsh reality check: <strong>nobody is withholding taxes for you anymore.</strong></p>
+
+      <p>If you don't plan ahead, tax season can be a nightmare that wipes out your savings. As engineers, we don't guess; we calculate. In this guide, we will break down the exact math of 1099 taxes, the deductions you are legally entitled to, and how to use our tools to avoid a massive IRS bill.</p>
 
       <h2>The Two Types of Taxes You Owe</h2>
-      <p>As a freelancer, you are subject to two primary taxes: <strong>Income Tax</strong> and <strong>Self-Employment Tax</strong>.</p>
-      <p>The Self-Employment tax is the big shock for most new freelancers. When you were an employee, your employer paid half of your Medicare and Social Security taxes. Now, you are both the employer and the employee, meaning you pay the full 15.3% FICA tax.</p>
+      <p>When you work a traditional job, your employer splits your tax burden with you. As a freelancer, you are both the employee and the employer. This means you are subject to two primary taxes:</p>
       
-      <p>However, you only pay this on 92.35% of your net profit. If you want to see exactly how this math plays out, try our free <a href="/tools/us-freelancer-tax-calculator">US Freelancer Tax Calculator</a>.</p>
+      <h3>1. Federal Income Tax</h3>
+      <p>This is the standard progressive tax based on your total taxable income. Depending on how much you make, you fall into tax brackets ranging from 10% to 37%. This is calculated after you take your standard deduction (which was $13,850 for single filers in 2023, and $14,600 for 2024).</p>
 
-      <h2>How to Pay Less Tax</h2>
-      <p>The golden rule of freelancing is: <em>Track everything.</em> Every legitimate business expense reduces your net profit, which reduces your tax bill. Common deductions include:</p>
+      <h3>2. Self-Employment (SE) Tax</h3>
+      <p>This is the big shock for most new freelancers. When you were an employee, your employer paid half of your Medicare and Social Security taxes (7.65%), and you paid the other half (7.65%). Now, you pay the full <strong>15.3% FICA tax</strong>.</p>
+      <p>However, the IRS gives you a slight break: you only pay this tax on <strong>92.35%</strong> of your net profit. If you want to skip the manual math and see exactly how this plays out on your income, use our free <a href="/tools/us-freelancer-tax-calculator">US Freelancer Tax Calculator</a>.</p>
+
+      <h2>The Math: A Step-by-Step Example</h2>
+      <p>Let’s look at a real-world example. Imagine you are a freelance software developer who made <strong>$80,000</strong> in gross revenue this year. You also had <strong>$10,000</strong> in business expenses (software, hardware, etc.).</p>
       <ul>
-        <li>Home office percentage (rent, internet, utilities)</li>
-        <li>Software subscriptions (Adobe, Microsoft 365)</li>
-        <li>Hardware (computers, monitors, even a soldering iron if you are an electronics engineer!)</li>
-        <li>Business travel and meals</li>
+        <li><strong>Step 1: Find Net Profit.</strong> $80,000 (Revenue) - $10,000 (Expenses) = <strong>$70,000</strong>.</li>
+        <li><strong>Step 2: Calculate SE Tax.</strong> $70,000 x 0.9235 = $64,645. Then, $64,645 x 0.153 (15.3%) = <strong>$9,890 in SE Tax.</strong></li>
+        <li><strong>Step 3: Calculate Income Tax.</strong> You can deduct half of your SE Tax ($4,945) from your income, and then subtract the standard deduction ($14,600). $70,000 - $4,945 - $14,600 = $50,455 taxable income. Based on the 2024 brackets, your federal income tax would be roughly <strong>$5,700</strong>.</li>
+        <li><strong>Total Tax Bill:</strong> $9,890 + $5,700 = <strong>$15,590</strong>.</li>
+      </ul>
+      <p>You must plan for this. If you spend all $80,000 of your revenue, you will be in serious trouble when the IRS comes knocking.</p>
+
+      <h2>How to Pay Less Tax (Legally)</h2>
+      <p>The golden rule of freelancing is: <em>Track everything.</em> Every legitimate business expense reduces your net profit, which reduces both your Income Tax and your SE Tax. The IRS allows you to deduct any "ordinary and necessary" expense required to run your business.</p>
+      
+      <h3>Top Deductions for Freelancers:</h3>
+      <ul>
+        <li><strong>Health Insurance Premiums:</strong> You can deduct the premiums you paid for medical, dental, and long-term care insurance for yourself and your family. Check out our <a href="/tools/us-self-employed-health-insurance">Self-Employed Health Insurance Calculator</a> to see your exact savings.</li>
+        <li><strong>Home Office Deduction:</strong> If you have a dedicated space in your home used exclusively for business, you can deduct a portion of your rent, mortgage interest, utilities, and internet.</li>
+        <li><strong>Software and Subscriptions:</strong> Adobe, Microsoft 365, accounting software, and hosting fees are 100% deductible.</li>
+        <li><strong>Hardware & Equipment:</strong> Computers, monitors, desks, and even a soldering iron if you are an electronics engineer. (Section 179 allows you to deduct the full cost in the year you buy it).</li>
+        <li><strong>Business Travel:</strong> Flights, hotels, and 50% of business meals are deductible.</li>
+        <li><strong>Retirement Contributions:</strong> Contributing to a SEP-IRA or Solo 401(k) reduces your taxable income significantly.</li>
       </ul>
 
-      <h2>Quarterly Estimated Taxes</h2>
-      <p>The IRS operates on a "pay-as-you-go" system. If you expect to owe more than $1,000 in taxes, you must make quarterly estimated payments in April, June, September, and January. Failure to do so results in underpayment penalties.</p>
-      <p>Use the <a href="/tools/us-freelancer-tax-calculator">Tax Calculator</a> to estimate your total bill, divide it by four, and set that money aside in a separate savings account.</p>
+      <h2>Quarterly Estimated Taxes: Don't Get Penalized</h2>
+      <p>The US tax system is "pay-as-you-go." If you expect to owe $1,000 or more in taxes for the year, the IRS requires you to make estimated tax payments four times a year.</p>
+      <p>The deadlines are:</p>
+      <ul>
+        <li>April 15 (for income earned Jan - Mar)</li>
+        <li>June 15 (for income earned Apr - May)</li>
+        <li>September 15 (for income earned Jun - Aug)</li>
+        <li>January 15 of the following year (for income earned Sep - Dec)</li>
+      </ul>
+      <p>Estimate your total tax bill using our calculator, divide it by four, and set that money aside in a separate high-yield savings account. Failure to pay quarterly results in underpayment penalties and interest charges from the IRS.</p>
+
+      <h2>The S-Corp Escape Hatch</h2>
+      <p>If your freelance business is consistently making over $80,000 to $100,000 in net profit, you should talk to a CPA about forming an S-Corporation. </p>
+      <p>An S-Corp allows you to split your income into a "reasonable salary" and a "distribution." You only pay the 15.3% Self-Employment tax on the salary portion, not the distributions. This legal structure can save you $5,000 to $10,000+ per year in taxes, though it requires more accounting overhead.</p>
+
+      <h2>Frequently Asked Questions (FAQ)</h2>
+      
+      <h3>Do I have to pay taxes if I made less than $10,000?</h3>
+      <p>Yes. Even if you make under the standard deduction threshold (meaning you owe $0 in federal income tax), you still must pay the 15.3% Self-Employment tax on any net profit over $400. You may also be required to file a state tax return.</p>
+
+      <h3>Can I deduct my cell phone bill?</h3>
+      <p>Yes, but only the percentage used for business. If you use your phone 50% for business and 50% for personal use, you can deduct 50% of the bill. Keep detailed records.</p>
+
+      <h3>What happens if I can't pay my tax bill?</h3>
+      <p>The IRS offers payment plans. If you owe a large sum, file your return on time (to avoid failure-to-file penalties) and contact the IRS to set up an installment agreement. Interest and late payment penalties will still accrue, but it prevents aggressive collection actions.</p>
 
       <h2>The Bottom Line</h2>
-      <p>Freelancing taxes are high, but the freedom and unlimited earning potential are worth it. Stay organized, use the right tools, and consult a CPA if your business grows.</p>
+      <p>Freelancing taxes are high, but the freedom and unlimited earning potential are worth it. Stay organized, use the right tools, and consult a CPA as your business grows. Use our <a href="/tools/us-freelancer-tax-calculator">US Freelancer Tax Calculator</a> today to ensure you are setting aside the right amount.</p>
     </article>
   </main>
 </Layout>
 
 <style>
   .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
-  .prose { line-height: 1.7; color: #374151; }
+  .prose { line-height: 1.8; color: #374151; font-size: 1.05rem; } 
   h1 { font-size: 2.5rem; font-weight: 800; color: #111827; margin-bottom: 8px; }
-  .meta { color: #6b7280; font-size: 0.9rem; margin-bottom: 32px; }
-  h2 { font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-top: 40px; margin-bottom: 16px; }
-  p { margin-bottom: 20px; }
+  .meta { color: #6b7280; font-size: 0.9rem; margin-bottom: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 16px; }
+  h2 { font-size: 1.75rem; color: #1f2937; margin-top: 40px; margin-bottom: 16px; border-bottom: 1px solid #f3f4f6; padding-bottom: 8px; }
+  h3 { font-size: 1.3rem; color: #374151; margin-top: 24px; margin-bottom: 12px; }
+  p { margin-bottom: 20px; } 
   ul { margin-bottom: 20px; padding-left: 24px; }
   li { margin-bottom: 8px; }
-  a { color: #2563eb; text-decoration: none; font-weight: 600; }
+  a { color: #2563eb; text-decoration: none; font-weight: 600; } 
   a:hover { text-decoration: underline; }
 </style>
