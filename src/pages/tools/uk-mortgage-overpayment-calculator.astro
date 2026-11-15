@@ -1,0 +1,109 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="UK Mortgage Overpayment Calculator | Save Interest" description="Calculate how much time and interest you save by overpaying your UK mortgage.">
+  <main class="container">
+    <h1>UK Mortgage Overpayment Calculator</h1>
+    <p class="subtitle">See the massive savings from keeping your payments the same.</p>
+
+    <div class="calc-box">
+      <div class="input-group">
+        <label>Current Mortgage Balance (£)</label>
+        <input type="number" id="balance" placeholder="e.g. 193000" />
+      </div>
+      <div class="input-group">
+        <label>Interest Rate (%)</label>
+        <input type="number" id="rate" placeholder="e.g. 5.25" step="0.01" />
+      </div>
+      <div class="input-group">
+        <label>Remaining Term (Years)</label>
+        <input type="number" id="term" placeholder="e.g. 31" />
+      </div>
+      <div class="input-group">
+        <label>Current Monthly Payment (£)</label>
+        <input type="number" id="payment" placeholder="e.g. 1005" />
+      </div>
+      <div class="input-group">
+        <label>Lump Sum Overpayment (£)</label>
+        <input type="number" id="overpayment" placeholder="e.g. 19300" />
+      </div>
+      <button id="calcBtn">Calculate Savings</button>
+      
+      <div id="result" class="hidden result-box">
+        <p class="total">New Payoff Time: <strong id="newTerm"></strong></p>
+        <p class="sub">Years Saved: <span id="yearsSaved"></span></p>
+        <p class="sub" style="color: #16a34a; font-weight: bold;">Total Interest Saved: <span id="interestSaved"></span></p>
+      </div>
+    </div>
+
+    <article class="article-content">
+      <h2>How Mortgage Overpayments Work in the UK</h2>
+      <p>Most UK mortgages allow you to overpay up to 10% of your remaining balance each year without incurring an Early Repayment Charge (ERC).</p>
+      
+      <h2>The Secret: "Keep Payments the Same"</h2>
+      <p>When you make a lump sum overpayment, your lender will usually offer to reduce your monthly payment. However, if you ask them to <strong>keep your monthly payment the same</strong> and reduce your term instead, the math works heavily in your favor.</p>
+      <p>Because the principal is smaller but your monthly payment is unchanged, you are aggressively attacking the principal. This calculator shows exactly how many years you will shave off your mortgage and how much interest you will save.</p>
+    </article>
+  </main>
+</Layout>
+
+<script>
+  document.getElementById('calcBtn')?.addEventListener('click', () => {
+    const balance = parseFloat(document.getElementById('balance').value);
+    const rate = parseFloat(document.getElementById('rate').value) / 100 / 12;
+    const termYears = parseFloat(document.getElementById('term').value);
+    const payment = parseFloat(document.getElementById('payment').value);
+    const overpayment = parseFloat(document.getElementById('overpayment').value);
+
+    if (isNaN(balance) || isNaN(rate) || isNaN(termYears) || isNaN(payment) || isNaN(overpayment)) {
+      alert("Please fill in all fields correctly.");
+      return;
+    }
+
+    // 1. Calculate Original Total Interest
+    let originalBalance = balance;
+    let originalInterest = 0;
+    for (let i = 0; i < termYears * 12; i++) {
+      const interest = originalBalance * rate;
+      originalInterest += interest;
+      originalBalance -= (payment - interest);
+      if (originalBalance <= 0) break;
+    }
+
+    // 2. Calculate New Scenario
+    let newBalance = balance - overpayment;
+    let newInterest = 0;
+    let months = 0;
+
+    while (newBalance > 0) {
+      const interest = newBalance * rate;
+      newInterest += interest;
+      newBalance = newBalance + interest - payment;
+      months++;
+      if (months > (termYears * 12) + 120) break; // Safety break
+    }
+
+    const newYears = Math.floor(months / 12);
+    const newMonths = months % 12;
+    const yearsSaved = termYears - (newYears + (newMonths / 12));
+    const interestSaved = originalInterest - newInterest;
+
+    document.getElementById('newTerm').innerText = newYears + " yrs, " + newMonths + " mos";
+    document.getElementById('yearsSaved').innerText = yearsSaved.toFixed(1) + " years";
+    document.getElementById('interestSaved').innerText = "£" + interestSaved.toFixed(2);
+    document.getElementById('result').classList.remove('hidden');
+  });
+</script>
+
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
+  h1 { text-align: center; } .subtitle { text-align: center; color: #6b7280; margin-bottom: 32px; }
+  .calc-box { background: white; padding: 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 400px; margin: 32px auto; }
+  .input-group { margin-bottom: 16px; } .input-group label { display: block; font-size: 14px; margin-bottom: 4px; }
+  .input-group input { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; }
+  button { width: 100%; padding: 10px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+  .result-box { margin-top: 24px; padding: 16px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; }
+  .hidden { display: none; } .total { font-size: 18px; margin: 0 0 8px 0; } .sub { font-size: 14px; color: #4b5563; margin: 4px 0; }
+  .article-content { margin-top: 40px; line-height: 1.6; }
+  .article-content h2 { margin-top: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; }
+</style>
