@@ -1,0 +1,108 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="UK Property Sell vs. Rent Out Calculator" description="Should you sell your property or rent it out? Calculate the true net profit and cash flow.">
+  <main class="container">
+    <h1>Sell vs. Rent Out Calculator</h1>
+    <p class="subtitle">Find out if holding onto your property is mathematically worth it.</p>
+
+    <div class="calc-box">
+      <div class="input-group">
+        <label>Property Value (£)</label>
+        <input type="number" id="value" placeholder="e.g. 140000" />
+      </div>
+      <div class="input-group">
+        <label>Remaining Mortgage (£)</label>
+        <input type="number" id="mortgage" placeholder="e.g. 93000" />
+      </div>
+      <div class="input-group">
+        <label>Help to Buy Equity Loan (£)</label>
+        <input type="number" id="htb" placeholder="e.g. 28000" />
+      </div>
+      <div class="input-group">
+        <label>Expected Monthly Rent (£)</label>
+        <input type="number" id="rent" placeholder="e.g. 950" />
+      </div>
+      <div class="input-group">
+        <label>New Mortgage Rate (to buy out HTB) (%)</label>
+        <input type="number" id="rate" placeholder="e.g. 5.0" step="0.1" />
+      </div>
+      <button id="calcBtn">Calculate Options</button>
+      
+      <div id="result" class="hidden result-box">
+        <p class="total">If you SELL: <strong id="sellCash" style="color: #16a34a;"></strong></p>
+        <p class="desc">Cash in hand after fees and paying off debt.</p>
+        
+        <p class="total" style="margin-top: 16px;">If you RENT: <strong id="rentCash" style="color: #dc2626;"></strong></p>
+        <p class="desc">True monthly cashflow (assuming 10% voids, 10% maintenance, 10% agent fees).</p>
+      </div>
+    </div>
+
+    <article class="article-content">
+      <h2>The Hidden Costs of Renting Out a Property</h2>
+      <p>Many accidental landlords look at the gross rent minus the mortgage and think that is their profit. This is a financial mistake. You must account for:</p>
+      <ul>
+        <li><strong>Void Periods:</strong> You will likely have 1 month a year with no tenant.</li>
+        <li><strong>Letting Agent Fees:</strong> Typically 10-12% of the rent.</li>
+        <li><strong>Maintenance:</strong> Boilers, roofs, and appliances break. Budget 1% of the property value annually.</li>
+        <li><strong>Section 24 Tax:</strong> As a higher-rate taxpayer, you can only claim 20% tax relief on your mortgage interest, destroying profitability.</li>
+      </ul>
+    </article>
+  </main>
+</Layout>
+
+<script>
+  document.getElementById('calcBtn')?.addEventListener('click', () => {
+    const value = parseFloat(document.getElementById('value').value);
+    const mortgage = parseFloat(document.getElementById('mortgage').value);
+    const htb = parseFloat(document.getElementById('htb').value);
+    const rent = parseFloat(document.getElementById('rent').value);
+    const rate = parseFloat(document.getElementById('rate').value) / 100 / 12;
+
+    if (isNaN(value) || isNaN(mortgage) || isNaN(htb) || isNaN(rent) || isNaN(rate)) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    // 1. SELL SCENARIO
+    const sellingFees = value * 0.02; // Assume 2% for solicitor and estate agent
+    const sellCash = value - mortgage - htb - sellingFees;
+
+    // 2. RENT SCENARIO
+    // To rent, you must remortgage to pay off the HTB loan.
+    const newTotalMortgage = mortgage + htb;
+    const term = 25 * 12;
+    const x = Math.pow(1 + rate, term);
+    const monthlyMortgagePayment = (newTotalMortgage * x * rate) / (x - 1);
+
+    // True costs
+    const agentFees = rent * 0.10; 
+    const maintenance = (value * 0.01) / 12;
+    const voidAllowance = rent * 0.10; // 10% for voids
+
+    const trueRentCashflow = rent - monthlyMortgagePayment - agentFees - maintenance - voidAllowance;
+
+    document.getElementById('sellCash').innerText = "£" + sellCash.toLocaleString('en-GB', {maximumFractionDigits: 0});
+    
+    if (trueRentCashflow < 0) {
+      document.getElementById('rentCash').innerText = "-£" + Math.abs(trueRentCashflow).toFixed(2) + " / month";
+    } else {
+      document.getElementById('rentCash').innerText = "£" + trueRentCashflow.toFixed(2) + " / month";
+    }
+
+    document.getElementById('result').classList.remove('hidden');
+  });
+</script>
+
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
+  h1 { text-align: center; } .subtitle { text-align: center; color: #6b7280; margin-bottom: 32px; }
+  .calc-box { background: white; padding: 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 400px; margin: 32px auto; }
+  .input-group { margin-bottom: 16px; } .input-group label { display: block; font-size: 14px; margin-bottom: 4px; }
+  .input-group input { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; }
+  button { width: 100%; padding: 10px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+  .result-box { margin-top: 24px; padding: 16px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; }
+  .hidden { display: none; } .total { font-size: 18px; margin: 0 0 4px 0; font-weight: bold; } .desc { font-size: 13px; color: #6b7280; margin: 0; }
+  .article-content { margin-top: 40px; line-height: 1.6; }
+  .article-content h2 { margin-top: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; }
+</style>

@@ -1,0 +1,83 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="50/30/20 Budget Calculator | Monthly Budget Planner" description="Split your monthly take-home pay into Needs, Wants, and Savings using the proven 50/30/20 rule.">
+  <main class="container">
+    <h1>50/30/20 Budget Calculator</h1>
+    <p class="subtitle">A simple framework to stop overspending and start saving.</p>
+
+    <div class="calc-box">
+      <div class="input-group">
+        <label>Monthly Take-Home Pay (£)</label>
+        <input type="number" id="income" placeholder="e.g. 5000" />
+      </div>
+      <button id="calcBtn">Calculate Budget</button>
+      
+      <div id="result" class="hidden result-box">
+        <div class="budget-item">
+          <p class="total">Needs (50%): <strong id="needs"></strong></p>
+          <p class="desc">Rent, Mortgage, Bills, Groceries</p>
+        </div>
+        <div class="budget-item">
+          <p class="total">Wants (30%): <strong id="wants"></strong></p>
+          <p class="desc">Amazon, Deliveroo, Games, Holidays</p>
+        </div>
+        <div class="budget-item">
+          <p class="total" style="color: #16a34a;">Savings/Debt (20%): <strong id="savings"></strong></p>
+          <p class="desc">Investments, Emergency Fund, Overpayments</p>
+        </div>
+      </div>
+    </div>
+
+    <article class="article-content">
+      <h2>What is the 50/30/20 Rule?</h2>
+      <p>Popularized by Senator Elizabeth Warren, the 50/30/20 rule is a simple way to budget your money without tracking every single penny.</p>
+      <ul>
+        <li><strong>50% Needs:</strong> The essential costs you cannot avoid (housing, utilities, basic groceries, transport).</li>
+        <li><strong>30% Wants:</strong> Your lifestyle choices. This is your "guilt-free" spending money (dining out, hobbies, subscriptions).</li>
+        <li><strong>20% Savings:</strong> Paying down debt or building wealth for the future.</li>
+      </ul>
+      <p>If your Needs are way over 50%, you are "house poor" or "bill poor." If your Wants are over 30%, you have a lifestyle leak.</p>
+    </article>
+  </main>
+</Layout>
+
+<script>
+  document.getElementById('calcBtn')?.addEventListener('click', () => {
+    const income = parseFloat(document.getElementById('income').value);
+
+    if (isNaN(income) || income <= 0) {
+      alert("Please enter a valid monthly income.");
+      return;
+    }
+
+    const needs = income * 0.50;
+    const wants = income * 0.30;
+    const savings = income * 0.20;
+
+    const fmt = (num) => "£" + num.toLocaleString('en-GB', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+    document.getElementById('needs').innerText = fmt(needs);
+    document.getElementById('wants').innerText = fmt(wants);
+    document.getElementById('savings').innerText = fmt(savings);
+    
+    document.getElementById('result').classList.remove('hidden');
+  });
+</script>
+
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
+  h1 { text-align: center; } .subtitle { text-align: center; color: #6b7280; margin-bottom: 32px; }
+  .calc-box { background: white; padding: 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 400px; margin: 32px auto; }
+  .input-group { margin-bottom: 16px; } .input-group label { display: block; font-size: 14px; margin-bottom: 4px; }
+  .input-group input { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; }
+  button { width: 100%; padding: 10px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+  .result-box { margin-top: 24px; padding: 16px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; }
+  .hidden { display: none; } 
+  .budget-item { border-bottom: 1px solid #e5e7eb; padding-bottom: 12px; margin-bottom: 12px; }
+  .budget-item:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+  .total { font-size: 18px; margin: 0 0 4px 0; font-weight: bold; } 
+  .desc { font-size: 12px; color: #6b7280; margin: 0; }
+  .article-content { margin-top: 40px; line-height: 1.6; }
+  .article-content h2 { margin-top: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; }
+</style>
