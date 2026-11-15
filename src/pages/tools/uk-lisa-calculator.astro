@@ -1,0 +1,70 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="UK Lifetime ISA (LISA) Calculator | Bonus & Penalty" description="Calculate your 25% government bonus and see the penalty for early withdrawal from a Lifetime ISA.">
+  <main class="container">
+    <h1>UK Lifetime ISA (LISA) Calculator</h1>
+    <p class="subtitle">See your government bonus and the cost of early withdrawal.</p>
+
+    <div class="calc-box">
+      <div class="input-group">
+        <label>Total Amount Deposited (£)</label>
+        <input type="number" id="deposit" placeholder="e.g. 4000" />
+      </div>
+      <div class="input-group">
+        <label>Current Balance (including bonus) (£)</label>
+        <input type="number" id="balance" placeholder="e.g. 5000" />
+      </div>
+      <button id="calcBtn">Calculate LISA</button>
+      <div id="result" class="hidden result-box">
+        <p class="total">Government Bonus (25%): <strong id="bonus"></strong></p>
+        <p class="sub" style="color: #dc2626; font-weight: bold;">Early Withdrawal Penalty (25%): <span id="penalty"></span></p>
+        <p class="sub">What you would actually get back if withdrawn: <span id="actualWithdrawal"></span></p>
+      </div>
+    </div>
+
+    <article class="article-content">
+      <h2>How the Lifetime ISA Works</h2>
+      <p>The UK government adds a 25% bonus to whatever you deposit into a LISA, up to £4,000 a year. This means if you deposit £4,000, they give you £1,000 for free.</p>
+      
+      <h2>The Brutal Early Withdrawal Penalty</h2>
+      <p>You can only withdraw money from a LISA tax-free if you are buying your first home (under £450,000), or you are over 60. If you withdraw for any other reason, the government charges a 25% penalty on the <em>entire balance</em>, not just the bonus.</p>
+      <p>Because the bonus is 25% and the penalty is 25%, you actually lose a portion of your own original money if you withdraw early. This calculator shows you exactly what you would lose.</p>
+    </article>
+  </main>
+</Layout>
+
+<script>
+  document.getElementById('calcBtn')?.addEventListener('click', () => {
+    const deposit = parseFloat(document.getElementById('deposit').value) || 0;
+    const balance = parseFloat(document.getElementById('balance').value) || 0;
+
+    if (deposit <= 0 && balance <= 0) { alert("Please enter valid numbers."); return; }
+
+    // 25% Bonus is calculated on deposits (max £4k/yr but we assume input is capped)
+    const maxDeposit = Math.min(deposit, 4000);
+    const bonus = maxDeposit * 0.25;
+    
+    // The penalty is 25% of the total balance if withdrawn early
+    const penalty = balance * 0.25;
+    const actualWithdrawal = balance - penalty;
+
+    document.getElementById('bonus').innerText = "£" + bonus.toFixed(2);
+    document.getElementById('penalty').innerText = "-£" + penalty.toFixed(2);
+    document.getElementById('actualWithdrawal').innerText = "£" + actualWithdrawal.toFixed(2);
+    document.getElementById('result').classList.remove('hidden');
+  });
+</script>
+
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
+  h1 { text-align: center; } .subtitle { text-align: center; color: #6b7280; margin-bottom: 32px; }
+  .calc-box { background: white; padding: 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 400px; margin: 32px auto; }
+  .input-group { margin-bottom: 16px; } .input-group label { display: block; font-size: 14px; margin-bottom: 4px; }
+  .input-group input { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; }
+  button { width: 100%; padding: 10px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+  .result-box { margin-top: 24px; padding: 16px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; }
+  .hidden { display: none; } .total { font-size: 18px; margin: 0 0 8px 0; } .sub { font-size: 14px; color: #4b5563; margin: 4px 0; }
+  .article-content { margin-top: 40px; line-height: 1.6; }
+  .article-content h2 { margin-top: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; }
+</style>
