@@ -1,16 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
 ---
-<Layout title="Free Finance Calculators | Finance Hub" description="Free, accurate financial calculators for US, UK, Canada, and Australia.">
+<Layout title="Free Finance Calculators | Finance Hub" description="30+ free, accurate financial calculators for US, UK, Canada, and Australia.">
   <main class="container">
 
     <header class="hero">
       <h1>Free Finance Calculators</h1>
-      <p>29+ fast, accurate, math-driven tools for your financial planning.</p>
+      <p>30+ fast, accurate, math-driven tools for your financial planning.</p>
     </header>
 
     <div class="grid">
-
+      
       <!-- CATEGORY 1: TAX, LOANS & INVESTING -->
       <h2 class="category-title">Tax, Loans & Investing</h2>
 
@@ -168,7 +168,6 @@ import Layout from '../layouts/Layout.astro';
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-
       <!-- CATEGORY 2: INSURANCE & REAL ESTATE -->
       <h2 class="category-title">Insurance & Real Estate</h2>
 
@@ -183,6 +182,13 @@ import Layout from '../layouts/Layout.astro';
         <div class="card-icon">🏦</div>
         <h2>UK Equity Release</h2>
         <p>See the true cost of a Lifetime Mortgage roll-up.</p>
+        <span class="cta">Calculate &rarr;</span>
+      </a>
+
+      <a href="/tools/uk-btl-stress-test-calculator" class="card">
+        <div class="card-icon">📉</div>
+        <h2>UK BTL Stress Test</h2>
+        <p>Test your rental property against interest rate hikes and tenant defaults.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
@@ -222,7 +228,6 @@ import Layout from '../layouts/Layout.astro';
       </a>
 
     </div>
-
   </main>
 </Layout>
 
@@ -236,36 +241,36 @@ import Layout from '../layouts/Layout.astro';
   .grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
   @media (min-width: 768px) { .grid { grid-template-columns: 1fr 1fr; } }
   @media (min-width: 1024px) { .grid { grid-template-columns: 1fr 1fr 1fr; } }
-  
+
   /* Category Header Styling */
   .category-title { 
     grid-column: 1 / -1; 
     font-size: 1.5rem; 
     color: #374151; 
-    margin-top: 32px; 
+    margin-top: 32px;
     margin-bottom: 8px;
     padding-bottom: 12px;
     border-bottom: 2px solid #e5e7eb;
   }
 
   .card { 
-    display: block; 
-    background: white; 
-    padding: 24px; 
-    border-radius: 12px; 
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); 
-    text-decoration: none; 
-    color: inherit; 
-    transition: transform 0.2s ease, box-shadow 0.2s ease; 
-    border: 1px solid #e5e7eb; 
+    display: block;
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid #e5e7eb;
   }
-  
+
   .card:hover { 
-    transform: translateY(-4px); 
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); 
-    border-color: #2563eb; 
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border-color: #2563eb;
   }
-  
+
   .card-icon { font-size: 2rem; margin-bottom: 16px; }
   .card h2 { font-size: 1.15rem; margin-top: 0; margin-bottom: 12px; color: #1f2937; }
   .card p { color: #6b7280; margin-bottom: 24px; line-height: 1.5; font-size: 0.95rem; }
