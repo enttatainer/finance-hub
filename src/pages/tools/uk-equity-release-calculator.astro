@@ -1,0 +1,89 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="UK Equity Release Calculator | Lifetime Mortgage Growth" description="Calculate how much a Lifetime Mortgage will compound over time and how much equity is left for your estate.">
+  <main class="container">
+    <h1>UK Equity Release Calculator</h1>
+    <p class="subtitle">See the true cost of a roll-up Lifetime Mortgage.</p>
+
+    <div class="calc-box">
+      <div class="input-group">
+        <label>Amount Released (£)</label>
+        <input type="number" id="loan" placeholder="e.g. 99000" />
+      </div>
+      <div class="input-group">
+        <label>Current Property Value (£)</label>
+        <input type="number" id="property" placeholder="e.g. 340000" />
+      </div>
+      <div class="input-group">
+        <label>Interest Rate (%)</label>
+        <input type="number" id="rate" placeholder="e.g. 6.5" step="0.1" />
+      </div>
+      <div class="input-group">
+        <label>Years Until Property Sale (e.g., 15)</label>
+        <input type="number" id="years" placeholder="e.g. 15" />
+      </div>
+      <button id="calcBtn">Calculate Growth</button>
+      
+      <div id="result" class="hidden result-box">
+        <p class="total" style="color: #dc2626;">Total Debt at Sale: <strong id="totalDebt"></strong></p>
+        <p class="sub">Equity Left for Family: <span id="equityLeft"></span></p>
+        <p class="sub" style="font-size: 12px; margin-top: 10px; color: #6b7280;">*Assumes no monthly interest payments are made and the property value stays flat.</p>
+      </div>
+    </div>
+
+    <article class="article-content">
+      <h2>How Lifetime Mortgages Compound</h2>
+      <p>With a standard mortgage, you pay the interest every month. With a "roll-up" Lifetime Mortgage, the interest is added to the loan balance. Next month, you pay interest on the interest. This is compound interest working against you.</p>
+      <p>If you take out £99,000 at 6.5% and don't make payments, the debt will double in roughly 11 years. By year 15, the debt could be over £250,000, eating a massive chunk of your estate.</p>
+      <h2>The "Payment Term" Alternative</h2>
+      <p>Some lenders offer a Payment Term Lifetime Mortgage (PTLM). This allows you to pay the interest monthly (like a standard mortgage), preventing the debt from compounding. If you can afford the monthly payments, this is vastly cheaper in the long run.</p>
+    </article>
+  </main>
+</Layout>
+
+<script>
+  document.getElementById('calcBtn')?.addEventListener('click', () => {
+    const loan = parseFloat(document.getElementById('loan').value);
+    const property = parseFloat(document.getElementById('property').value);
+    const rate = parseFloat(document.getElementById('rate').value) / 100;
+    const years = parseFloat(document.getElementById('years').value);
+
+    if (isNaN(loan) || isNaN(property) || isNaN(rate) || isNaN(years)) {
+      alert("Please fill in all fields correctly.");
+      return;
+    }
+
+    // Compound Interest Formula: A = P * (1 + r)^t
+    const totalDebt = loan * Math.pow((1 + rate), years);
+    const equityLeft = property - totalDebt;
+
+    const debtEl = document.getElementById('totalDebt');
+    const equityEl = document.getElementById('equityLeft');
+
+    debtEl.innerText = "£" + totalDebt.toLocaleString('en-GB', {maximumFractionDigits: 0});
+    equityEl.innerText = "£" + equityLeft.toLocaleString('en-GB', {maximumFractionDigits: 0});
+
+    if (equityLeft <= 0) {
+      equityEl.style.color = "#dc2626";
+      equityEl.innerText = "£0 (Negative Equity)";
+    } else {
+      equityEl.style.color = "#16a34a";
+    }
+
+    document.getElementById('result').classList.remove('hidden');
+  });
+</script>
+
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
+  h1 { text-align: center; } .subtitle { text-align: center; color: #6b7280; margin-bottom: 32px; }
+  .calc-box { background: white; padding: 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 400px; margin: 32px auto; }
+  .input-group { margin-bottom: 16px; } .input-group label { display: block; font-size: 14px; margin-bottom: 4px; }
+  .input-group input { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; }
+  button { width: 100%; padding: 10px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+  .result-box { margin-top: 24px; padding: 16px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; }
+  .hidden { display: none; } .total { font-size: 18px; margin: 0 0 8px 0; font-weight: bold; } .sub { font-size: 14px; color: #4b5563; margin: 4px 0; }
+  .article-content { margin-top: 40px; line-height: 1.6; }
+  .article-content h2 { margin-top: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; }
+</style>
