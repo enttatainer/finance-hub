@@ -1,0 +1,138 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="UK Rent vs. Buy Calculator | The True Cost" description="Calculate whether it is cheaper to rent or buy a property in the UK, factoring in Stamp Duty, fees, and opportunity cost.">
+  <main class="container">
+    <h1>UK Rent vs. Buy Calculator</h1>
+    <p class="subtitle">Find the break-even point between renting and buying.</p>
+
+    <div class="calc-box">
+      <div class="input-group">
+        <label>Property Purchase Price (£)</label>
+        <input type="number" id="price" placeholder="e.g. 200000" />
+      </div>
+      <div class="input-group">
+        <label>Deposit Available (£)</label>
+        <input type="number" id="deposit" placeholder="e.g. 60000" />
+      </div>
+      <div class="input-group">
+        <label>Mortgage Interest Rate (%)</label>
+        <input type="number" id="rate" placeholder="e.g. 5.0" step="0.1" />
+      </div>
+      <div class="input-group">
+        <label>Equivalent Monthly Rent (£)</label>
+        <input type="number" id="rent" placeholder="e.g. 600" />
+      </div>
+      <div class="input-group">
+        <label>Years You Plan to Stay</label>
+        <input type="number" id="years" placeholder="e.g. 3" />
+      </div>
+      <button id="calcBtn">Calculate True Cost</button>
+      
+      <div id="result" class="hidden result-box">
+        <p class="total">Cheaper Option: <strong id="winner"></strong></p>
+        <p class="sub">Cost of Renting: <span id="rentCost"></span></p>
+        <p class="sub">Cost of Buying: <span id="buyCost"></span></p>
+        <p class="sub" style="font-size: 12px; margin-top: 10px; color: #6b7280;">*Includes Stamp Duty, legal fees, maintenance, and lost investment interest on deposit.</p>
+      </div>
+    </div>
+
+    <article class="article-content">
+      <h2>The Hidden Costs of Buying</h2>
+      <p>When comparing rent vs. buy, most people only look at the mortgage payment vs. the rent. This is a mathematical error.</p>
+      <ul>
+        <li><strong>Transaction Costs:</strong> Legal fees, surveys, and Stamp Duty (SDLT) cost thousands on day one.</li>
+        <li><strong>Opportunity Cost:</strong> If you use a £60,000 deposit to buy a house, you lose the 7% annual return you could have made in the stock market. Over 3 years, that is over £13,000 in lost compound interest.</li>
+        <li><strong>Maintenance:</strong> When you own, you pay for the boiler, the roof, and the repairs.</li>
+      </ul>
+      <p>If you plan to stay in a property for less than 5 years, renting is often the mathematically superior choice.</p>
+    </article>
+  </main>
+</Layout>
+
+<script>
+  document.getElementById('calcBtn')?.addEventListener('click', () => {
+    const price = parseFloat(document.getElementById('price').value);
+    const deposit = parseFloat(document.getElementById('deposit').value);
+    const rate = parseFloat(document.getElementById('rate').value) / 100 / 12;
+    const rent = parseFloat(document.getElementById('rent').value);
+    const years = parseFloat(document.getElementById('years').value);
+
+    if (isNaN(price) || isNaN(deposit) || isNaN(rate) || isNaN(rent) || isNaN(years)) {
+      alert("Please fill in all fields correctly.");
+      return;
+    }
+
+    // 1. RENTING COST
+    // Assume deposit is invested at 7% annual return
+    const investmentReturn = 0.07 / 12; 
+    let investmentBalance = deposit;
+    for (let i = 0; i < years * 12; i++) {
+      investmentBalance = investmentBalance * (1 + investmentReturn);
+    }
+    const opportunityCost = investmentBalance - deposit;
+    const totalRent = rent * 12 * years;
+    const totalRentingCost = totalRent + opportunityCost;
+
+    // 2. BUYING COST
+    // Simplified Stamp Duty (Standard rate for UK)
+    let stampDuty = 0;
+    if (price > 250000 && price <= 925000) stampDuty = (price - 250000) * 0.05 + 2500;
+    else if (price > 925000) stampDuty = 33750 + ((price - 925000) * 0.10);
+    else if (price > 425000) stampDuty = 0; // Assuming FTB relief if under 625k
+    else stampDuty = 0; // Under 425k (FTB)
+    
+    // Add legal/survey fees (approx £3,000)
+    const buyingFees = stampDuty + 3000;
+
+    // Maintenance (approx 1% of property value per year)
+    const maintenance = (price * 0.01) * years;
+
+    // Mortgage Math (Interest paid over the term)
+    const principal = price - deposit;
+    const n = years * 12;
+    const x = Math.pow(1 + rate, n);
+    const monthlyPayment = (principal * x * rate) / (x - 1);
+    const totalMortgagePaid = monthlyPayment * n;
+    
+    // Equity gained (approx: Deposit + Principal Paid)
+    let balance = principal;
+    let interestPaid = 0;
+    for (let i = 0; i < n; i++) {
+      const interest = balance * rate;
+      interestPaid += interest;
+      balance = balance + interest - monthlyPayment;
+    }
+
+    // Total Cost of Buying = Interest Paid + Buying Fees + Maintenance
+    const totalBuyingCost = interestPaid + buyingFees + maintenance;
+
+    // Update UI
+    const winnerEl = document.getElementById('winner');
+    if (totalRentingCost < totalBuyingCost) {
+      winnerEl.innerText = "Renting is Cheaper by £" + (totalBuyingCost - totalRentingCost).toFixed(0);
+      winnerEl.style.color = "#2563eb";
+    } else {
+      winnerEl.innerText = "Buying is Cheaper by £" + (totalRentingCost - totalBuyingCost).toFixed(0);
+      winnerEl.style.color = "#16a34a";
+    }
+
+    document.getElementById('rentCost').innerText = "£" + totalRentingCost.toLocaleString('en-GB', {maximumFractionDigits: 0});
+    document.getElementById('buyCost').innerText = "£" + totalBuyingCost.toLocaleString('en-GB', {maximumFractionDigits: 0});
+    
+    document.getElementById('result').classList.remove('hidden');
+  });
+</script>
+
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
+  h1 { text-align: center; } .subtitle { text-align: center; color: #6b7280; margin-bottom: 32px; }
+  .calc-box { background: white; padding: 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 400px; margin: 32px auto; }
+  .input-group { margin-bottom: 16px; } .input-group label { display: block; font-size: 14px; margin-bottom: 4px; }
+  .input-group input { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; }
+  button { width: 100%; padding: 10px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+  .result-box { margin-top: 24px; padding: 16px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; }
+  .hidden { display: none; } .total { font-size: 18px; margin: 0 0 8px 0; font-weight: bold; } .sub { font-size: 14px; color: #4b5563; margin: 4px 0; }
+  .article-content { margin-top: 40px; line-height: 1.6; }
+  .article-content h2 { margin-top: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; }
+</style>
