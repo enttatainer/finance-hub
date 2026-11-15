@@ -4,12 +4,12 @@ import Layout from '../../layouts/Layout.astro';
 <Layout title="UK Rent vs. Buy Calculator | The True Cost" description="Calculate whether it is cheaper to rent or buy a property in the UK, factoring in Stamp Duty, fees, and opportunity cost.">
   <main class="container">
     <h1>UK Rent vs. Buy Calculator</h1>
-    <p class="subtitle">Find the break-even point between renting and buying.</p>
+    <p class="subtitle">Find the true sunk cost of renting vs. buying over your planned stay.</p>
 
     <div class="calc-box">
       <div class="input-group">
         <label>Property Purchase Price (£)</label>
-        <input type="number" id="price" placeholder="e.g. 200000" />
+        <input type="number" id="price" placeholder="e.g. 150000" />
       </div>
       <div class="input-group">
         <label>Deposit Available (£)</label>
@@ -31,21 +31,20 @@ import Layout from '../../layouts/Layout.astro';
       
       <div id="result" class="hidden result-box">
         <p class="total">Cheaper Option: <strong id="winner"></strong></p>
-        <p class="sub">Cost of Renting: <span id="rentCost"></span></p>
-        <p class="sub">Cost of Buying: <span id="buyCost"></span></p>
-        <p class="sub" style="font-size: 12px; margin-top: 10px; color: #6b7280;">*Includes Stamp Duty, legal fees, maintenance, and lost investment interest on deposit.</p>
+        <p class="sub">Sunk Cost of Renting: <span id="rentCost"></span></p>
+        <p class="sub">Sunk Cost of Buying: <span id="buyCost"></span></p>
+        <p class="sub" style="font-size: 12px; margin-top: 10px; color: #6b7280;">*Buying assumes a standard 25-year mortgage. Sunk costs include interest paid during your stay, Stamp Duty, legal fees, maintenance, and lost investment interest on deposit.</p>
       </div>
     </div>
 
     <article class="article-content">
       <h2>The Hidden Costs of Buying</h2>
-      <p>When comparing rent vs. buy, most people only look at the mortgage payment vs. the rent. This is a mathematical error.</p>
+      <p>When comparing rent vs. buy, most people only look at the monthly payment. This is a mathematical error. You must look at the <strong>sunk costs</strong>—the money you will never get back.</p>
       <ul>
-        <li><strong>Transaction Costs:</strong> Legal fees, surveys, and Stamp Duty (SDLT) cost thousands on day one.</li>
-        <li><strong>Opportunity Cost:</strong> If you use a £60,000 deposit to buy a house, you lose the 7% annual return you could have made in the stock market. Over 3 years, that is over £13,000 in lost compound interest.</li>
-        <li><strong>Maintenance:</strong> When you own, you pay for the boiler, the roof, and the repairs.</li>
+        <li><strong>Transaction Costs:</strong> Legal fees, surveys, and Stamp Duty (SDLT).</li>
+        <li><strong>Opportunity Cost:</strong> If you use a £60,000 deposit to buy a house, you lose the 7% annual return you could have made in the stock market.</li>
+        <li><strong>Interest:</strong> In the early years of a mortgage, 80% of your payment is pure interest to the bank.</li>
       </ul>
-      <p>If you plan to stay in a property for less than 5 years, renting is often the mathematically superior choice.</p>
     </article>
   </main>
 </Layout>
@@ -54,7 +53,8 @@ import Layout from '../../layouts/Layout.astro';
   document.getElementById('calcBtn')?.addEventListener('click', () => {
     const price = parseFloat(document.getElementById('price').value);
     const deposit = parseFloat(document.getElementById('deposit').value);
-    const rate = parseFloat(document.getElementById('rate').value) / 100 / 12;
+    const annualRate = parseFloat(document.getElementById('rate').value) / 100;
+    const rate = annualRate / 12;
     const rent = parseFloat(document.getElementById('rent').value);
     const years = parseFloat(document.getElementById('years').value);
 
@@ -75,7 +75,7 @@ import Layout from '../../layouts/Layout.astro';
     const totalRentingCost = totalRent + opportunityCost;
 
     // 2. BUYING COST
-    // Simplified Stamp Duty (Standard rate for UK)
+    // Calculate Stamp Duty (Standard rate for UK)
     let stampDuty = 0;
     if (price > 250000 && price <= 925000) stampDuty = (price - 250000) * 0.05 + 2500;
     else if (price > 925000) stampDuty = 33750 + ((price - 925000) * 0.10);
@@ -88,23 +88,23 @@ import Layout from '../../layouts/Layout.astro';
     // Maintenance (approx 1% of property value per year)
     const maintenance = (price * 0.01) * years;
 
-    // Mortgage Math (Interest paid over the term)
+    // Mortgage Math (Standard 25-year term)
     const principal = price - deposit;
-    const n = years * 12;
-    const x = Math.pow(1 + rate, n);
-    const monthlyPayment = (principal * x * rate) / (x - 1);
-    const totalMortgagePaid = monthlyPayment * n;
+    const standardTermMonths = 25 * 12; 
+    const monthlyPayment = (principal * Math.pow(1 + rate, standardTermMonths) * rate) / (Math.pow(1 + rate, standardTermMonths) - 1);
     
-    // Equity gained (approx: Deposit + Principal Paid)
+    // Calculate interest paid ONLY during the years you stay
     let balance = principal;
     let interestPaid = 0;
-    for (let i = 0; i < n; i++) {
+    const stayMonths = years * 12;
+
+    for (let i = 0; i < stayMonths; i++) {
       const interest = balance * rate;
       interestPaid += interest;
       balance = balance + interest - monthlyPayment;
     }
 
-    // Total Cost of Buying = Interest Paid + Buying Fees + Maintenance
+    // Total Buying Sunk Cost = Interest Paid + Buying Fees + Maintenance
     const totalBuyingCost = interestPaid + buyingFees + maintenance;
 
     // Update UI
