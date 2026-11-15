@@ -1,0 +1,77 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="Safe Withdrawal Rate Calculator | Retirement Drawdown" description="Calculate how much you can safely withdraw from your investment portfolio each year without running out of money.">
+  <main class="container">
+    <h1>Safe Withdrawal Rate Calculator</h1>
+    <p class="subtitle">Find out how much passive income your portfolio can actually generate.</p>
+
+    <div class="calc-box">
+      <div class="input-group">
+        <label>Total Investment Portfolio (£)</label>
+        <input type="number" id="portfolio" placeholder="e.g. 1100000" />
+      </div>
+      <div class="input-group">
+        <label>Expected Annual Return (%)</label>
+        <input type="number" id="return" placeholder="e.g. 7" step="0.1" />
+      </div>
+      <div class="input-group">
+        <label>Withdrawal Rate (%)</label>
+        <input type="number" id="swr" placeholder="e.g. 4" step="0.1" />
+      </div>
+      <button id="calcBtn">Calculate Safe Income</button>
+      
+      <div id="result" class="hidden result-box">
+        <p class="total">Safe Annual Income: <strong id="annualIncome" style="color: #16a34a;"></strong></p>
+        <p class="sub">Safe Monthly Income: <span id="monthlyIncome"></span></p>
+        <p class="sub" style="color: #dc2626;">If you withdraw 10% (Your Friend's Advice): <span id="riskyWithdrawal"></span></p>
+        <p class="desc">*Note: A 4% withdrawal rate has historically survived 30-year retirements. A 10% withdrawal rate will likely deplete your portfolio in a market downturn.</p>
+      </div>
+    </div>
+
+    <article class="article-content">
+      <h2>What is a Safe Withdrawal Rate (SWR)?</h2>
+      <p>The Safe Withdrawal Rate is the percentage of your investment portfolio you can withdraw each year in retirement without running out of money. Based on historical stock market data (the Trinity Study), the "golden rule" is typically <strong>4%</strong>.</p>
+      <p>If you withdraw more than 5-6% per year, sequence-of-returns risk (a market crash right when you start withdrawing) can permanently destroy your portfolio.</p>
+    </article>
+  </main>
+</Layout>
+
+<script>
+  document.getElementById('calcBtn')?.addEventListener('click', () => {
+    const portfolio = parseFloat(document.getElementById('portfolio').value);
+    const expectedReturn = parseFloat(document.getElementById('return').value);
+    const swr = parseFloat(document.getElementById('swr').value);
+
+    if (isNaN(portfolio) || isNaN(expectedReturn) || isNaN(swr) || portfolio <= 0) {
+      alert("Please enter valid numbers.");
+      return;
+    }
+
+    const annualIncome = portfolio * (swr / 100);
+    const monthlyIncome = annualIncome / 12;
+    const riskyWithdrawal = portfolio * 0.10; // 10% withdrawal
+
+    const fmt = (num) => "£" + num.toLocaleString('en-GB', {maximumFractionDigits: 0});
+
+    document.getElementById('annualIncome').innerText = fmt(annualIncome);
+    document.getElementById('monthlyIncome').innerText = fmt(monthlyIncome);
+    document.getElementById('riskyWithdrawal').innerText = fmt(riskyWithdrawal);
+    
+    document.getElementById('result').classList.remove('hidden');
+  });
+</script>
+
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
+  h1 { text-align: center; } .subtitle { text-align: center; color: #6b7280; margin-bottom: 32px; }
+  .calc-box { background: white; padding: 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 400px; margin: 32px auto; }
+  .input-group { margin-bottom: 16px; } .input-group label { display: block; font-size: 14px; margin-bottom: 4px; }
+  .input-group input { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; box-sizing: border-box; }
+  button { width: 100%; padding: 10px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+  .result-box { margin-top: 24px; padding: 16px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; }
+  .hidden { display: none; } .total { font-size: 18px; margin: 0 0 8px 0; font-weight: bold; } .sub { font-size: 14px; color: #4b5563; margin: 6px 0; display: flex; justify-content: space-between; }
+  .desc { font-size: 12px; color: #6b7280; margin-top: 16px; line-height: 1.4; }
+  .article-content { margin-top: 40px; line-height: 1.6; }
+  .article-content h2 { margin-top: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; }
+</style>
