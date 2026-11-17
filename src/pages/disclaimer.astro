@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Financial Disclaimer | Finance Hub" description="Financial disclaimer for Finance Hub calculators.">
+  <main class="container">
+    <h1>Financial Disclaimer</h1>
+    <p>Last updated: {new Date().toLocaleDateString()}</p>
+
+    <h2>Not Financial Advice</h2>
+    <p>The information and calculators provided by Finance Hub are for <strong>educational and informational purposes only</strong>. They are not intended to be a substitute for professional financial, legal, or tax advice.</p>
+
+    <h2>Accuracy of Information</h2>
+    <p>While we are engineers and mathematicians who strive for absolute accuracy, tax laws and interest rates change frequently across different jurisdictions (US, UK, Canada, Australia). We make no representations or warranties of any kind, express or implied, about the completeness, accuracy, or reliability of the results.</p>
+
+    <h2>Professional Consultation</h2>
+    <p>Always seek the advice of a qualified financial advisor, CPA, or tax professional with any questions you may have regarding your specific financial situation. Never disregard professional financial advice or delay in seeking it because of something you have read or calculated on this website.</p>
+
+    <h2>Limitation of Liability</h2>
+    <p>In no event will Finance Hub be liable for any loss or damage including without limitation, indirect or consequential loss or damage, arising from the use of this website.</p>
+  </main>
+</Layout>
+
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 48px 16px; line-height: 1.8; }
+  h1 { font-size: 2.5rem; color: #111827; border-bottom: 2px solid #e5e7eb; padding-bottom: 16px; }
+  h2 { font-size: 1.5rem; color: #1f2937; margin-top: 40px; }
+  p { color: #4b5563; }
+</style>

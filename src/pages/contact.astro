@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Contact Us | Finance Hub" description="Get in touch with the Finance Hub team.">
+  <main class="container">
+    <h1>Contact Us</h1>
+    <p class="subtitle">We usually respond within 24-48 hours.</p>
+
+    <div class="contact-box">
+      <h2>Email Us</h2>
+      <p>For bug reports, partnership inquiries, or general questions, please email us at:</p>
+      <p class="email">support@financehub.com</p>
+      <p class="note">(Note: Please replace this email with your actual email address before launching.)</p>
+    </div>
+
+    <div class="contact-box">
+      <h2>Report an Error</h2>
+      <p>If you find a math error in one of our calculators, please include the name of the calculator and the exact numbers you entered so our engineering team can debug it.</p>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 48px 16px; }
+  h1 { font-size: 2.5rem; text-align: center; margin-bottom: 8px; color: #111827; }
+  .subtitle { text-align: center; color: #6b7280; margin-bottom: 48px; font-size: 1.2rem; }
+  .contact-box { background: white; padding: 32px; border-radius: 8px; border: 1px solid #e5e7eb; margin-bottom: 24px; }
+  .contact-box h2 { margin-top: 0; color: #1f2937; }
+  .contact-box p { color: #4b5563; line-height: 1.6; }
+  .email { font-size: 1.5rem; font-weight: bold; color: #2563eb; margin: 16px 0; }
+  .note { font-size: 0.85rem; color: #dc2626; font-style: italic; }
+</style>

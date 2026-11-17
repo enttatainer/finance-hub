@@ -46,11 +46,17 @@ const { title, description } = Astro.props;
           <span class="divider">|</span>
           <a href="/blog">Blog</a>
           <span class="divider">|</span>
+          <a href="/help">Help & FAQ</a>
+          <span class="divider">|</span>
           <a href="/about">About Us</a>
           <span class="divider">|</span>
-          <a href="/privacy">Privacy Policy</a> 
-          <span class="divider">|</span> 
+          <a href="/contact">Contact</a>
+          <span class="divider">|</span>
+          <a href="/privacy">Privacy Policy</a>
+          <span class="divider">|</span>
           <a href="/terms">Terms & Conditions</a>
+          <span class="divider">|</span>
+          <a href="/disclaimer">Disclaimer</a>
         </p>
       </div>
     </footer>
@@ -74,7 +80,7 @@ const { title, description } = Astro.props;
     min-height: 100vh;
   }
 
-  /* FIX: Removed :global() to clear the warning */
+  /* Ensures the footer stays at the bottom on short pages */
   body > main {
     flex: 1;
   }
@@ -85,7 +91,7 @@ const { title, description } = Astro.props;
     border-bottom: 1px solid #e5e7eb;
     padding: 16px 0;
   }
-  
+
   .header-content {
     max-width: 900px;
     margin: 0 auto;
@@ -128,6 +134,10 @@ const { title, description } = Astro.props;
 
   .footer-content p {
     margin: 8px 0;
+  }
+
+  .footer-links {
+    line-height: 1.8;
   }
 
   .footer-links a {

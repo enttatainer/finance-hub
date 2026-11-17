@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Help & FAQ | Finance Hub" description="Find answers to common questions about our financial calculators.">
+  <main class="container">
+    <h1>Help & Frequently Asked Questions</h1>
+    <p class="subtitle">Everything you need to know about using Finance Hub.</p>
+
+    <div class="faq-section">
+      <h2>General Questions</h2>
+      
+      <div class="faq-item">
+        <h3>Are these calculators free to use?</h3>
+        <p>Yes, 100% free. There are no hidden fees, no sign-up required, and we do not ask for your email address to use any of our tools.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Do you save the numbers I input?</h3>
+        <p>No. All calculations are performed locally in your web browser. We never see, transmit, or store the financial figures you enter.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Why are the results estimates?</h3>
+        <p>Tax laws, interest rates, and regulations change frequently. While our engineering team strives for 100% mathematical accuracy, you should always consult a qualified professional (like a CPA or financial advisor) before making major financial decisions.</p>
+      </div>
+
+      <h2>Technical Questions</h2>
+      
+      <div class="faq-item">
+        <h3>Why is the site so fast?</h3>
+        <p>Finance Hub is built by software engineers using modern static site technology (Astro). This means the pages load instantly without heavy, slow plugins.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>A calculator is giving me an error. What should I do?</h3>
+        <p>Please visit our <a href="/contact">Contact Page</a> and let us know which calculator is failing and what numbers you entered. We will fix it immediately.</p>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 48px 16px; }
+  h1 { font-size: 2.5rem; text-align: center; margin-bottom: 8px; color: #111827; }
+  .subtitle { text-align: center; color: #6b7280; margin-bottom: 48px; font-size: 1.2rem; }
+  .faq-section h2 { font-size: 1.5rem; color: #1f2937; border-bottom: 2px solid #e5e7eb; padding-bottom: 8px; margin-top: 40px; }
+  .faq-item { margin-bottom: 24px; }
+  .faq-item h3 { font-size: 1.1rem; color: #2563eb; margin-bottom: 8px; }
+  .faq-item p { color: #4b5563; line-height: 1.6; margin: 0; }
+  a { color: #2563eb; text-decoration: underline; }
+</style>
