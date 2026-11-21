@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Block junk bots
+User-agent: AhrefsBot
+Disallow: /
+User-agent: SemrushBot
+Disallow: /
+
+# Point to sitemap
+Sitemap: https://revocalc.com/sitemap-index.xml
