@@ -73,6 +73,12 @@ import Layout from '../../layouts/Layout.astro';
       </a>
 
       <!-- GLOBAL ARTICLES -->
+      <a href="/blog/how-to-pay-off-credit-card-debt" class="article-card" data-region="global">
+        <h2>How to Pay Off Credit Card Debt Fast</h2>
+        <p>A complete engineering guide to destroying credit card debt using the Snowball and Avalanche methods.</p>
+        <span class="read-more">Read Article &rarr;</span>
+      </a>
+
       <a href="/blog/how-much-life-insurance-do-i-need" class="article-card" data-region="global">
         <h2>How Much Life Insurance Do You Actually Need?</h2>
         <p>Stop guessing. Use the DIME method to calculate the exact amount of coverage your family needs.</p>
@@ -104,7 +110,7 @@ import Layout from '../../layouts/Layout.astro';
       button.addEventListener('click', () => {
         // 1. Remove active class from all buttons
         filterButtons.forEach(btn => btn.classList.remove('active'));
-        
+
         // 2. Add active class to clicked button
         button.classList.add('active');
 
@@ -164,24 +170,24 @@ import Layout from '../../layouts/Layout.astro';
 
   /* Article List Styling */
   .article-list { display: flex; flex-direction: column; gap: 24px; }
-  
-  .article-card { 
-    display: block; 
-    background: white; 
-    padding: 24px; 
-    border-radius: 8px; 
-    text-decoration: none; 
-    color: inherit; 
-    border: 1px solid #e5e7eb; 
-    transition: transform 0.2s; 
+
+  .article-card {
+    display: block;
+    background: white;
+    padding: 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid #e5e7eb;
+    transition: transform 0.2s;
   }
-  
-  .article-card:hover { 
-    transform: translateY(-2px); 
-    border-color: #2563eb; 
+
+  .article-card:hover {
+    transform: translateY(-2px);
+    border-color: #2563eb;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   }
-  
+
   .article-card h2 { margin-top: 0; color: #1f2937; font-size: 1.3rem; }
   .article-card p { color: #6b7280; line-height: 1.6; }
   .read-more { color: #2563eb; font-weight: bold; display: inline-block; margin-top: 8px; }

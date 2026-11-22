@@ -1,0 +1,30 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CreditCardPayoff_Calc from '../../components/CreditCardPayoff_Calc.astro';
+---
+<Layout title="Credit Card Payoff Calculator | Calculate Debt-Free Date" description="Calculate how long it will take to pay off your credit card debt and how much interest you'll save by increasing your monthly payments.">
+  <main class="container">
+    <h1>Credit Card Payoff Calculator</h1>
+    <p class="subtitle">See your debt-free date and the true cost of your interest.</p>
+
+    <CreditCardPayoff_Calc />
+
+    <article class="article-content">
+      <h2>How to Use This Calculator</h2>
+      <p>Enter your current credit card balance, the annual interest rate (APR), and the amount you plan to pay each month. The calculator will instantly show you how many months it will take to clear the debt, and the total amount of interest you will pay to the bank.</p>
+
+      <h2>The Danger of Minimum Payments</h2>
+      <p>Credit card companies design minimum payments (usually 1% to 3% of the balance) to maximize their profit. If you only pay the minimum on a $5,000 balance at 24.9% APR, it will take you over 20 years to pay it off, and you will pay more in interest than the original balance.</p>
+
+      <h2>Why Your Payment Must Exceed the Interest</h2>
+      <p>If you have a $5,000 balance at 24.9% APR, the monthly interest charge is roughly $103. If your monthly payment is only $100, you will never pay off the debt. The balance will actually grow due to interest. You must pay significantly more than the interest charge to make a dent in the principal.</p>
+    </article>
+  </main>
+</Layout>
+
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
+  h1 { text-align: center; margin-bottom: 8px; } .subtitle { text-align: center; color: #6b7280; margin-bottom: 32px; }
+  .article-content { margin-top: 40px; line-height: 1.6; }
+  .article-content h2 { margin-top: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; }
+</style>
