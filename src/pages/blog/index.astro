@@ -1,76 +1,93 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 ---
-<Layout title="Finance Blog | Tips & Guides" description="Read the latest financial tips, guides, and mathematical breakdowns.">
+<Layout title="Finance Blog | Tips & Guides" description="Read the latest financial tips, guides, and mathematical breakdowns for the US, UK, and beyond.">
   <main class="container">
     <h1>Finance Blog</h1>
     <p class="subtitle">Deep dives into tax, investing, and financial math.</p>
 
-    <div class="article-list">
-      
-      <a href="/blog/ultimate-uk-lisa-guide" class="article-card">
+    <!-- REGION FILTERS -->
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">🌍 All Articles</button>
+      <button class="filter-btn" data-filter="uk">🇬🇧 UK</button>
+      <button class="filter-btn" data-filter="us">🇺🇸 US</button>
+      <button class="filter-btn" data-filter="global">📈 Global</button>
+    </div>
+
+    <div class="article-list" id="articleList">
+
+      <!-- UK ARTICLES -->
+      <a href="/blog/uk-bounce-back-loan-repayment-guide" class="article-card" data-region="uk">
+        <h2>How to Calculate Bounce Back Loan Repayments (2026)</h2>
+        <p>Learn exactly how the 2.5% interest rate works and how to navigate the Pay As You Grow options.</p>
+        <span class="read-more">Read Article &rarr;</span>
+      </a>
+
+      <a href="/blog/ultimate-uk-lisa-guide" class="article-card" data-region="uk">
         <h2>The Ultimate Guide to the UK Lifetime ISA (LISA)</h2>
         <p>Learn how the 25% government bonus works, the brutal early withdrawal penalty, and how to use a LISA to buy your first home.</p>
         <span class="read-more">Read Article &rarr;</span>
       </a>
 
-      <a href="/blog/how-to-calculate-mortgage-payment" class="article-card">
-        <h2>How to Calculate Your Mortgage Payment</h2>
-        <p>Learn the exact formula used to calculate mortgage payments and discover strategies to save on interest.</p>
-        <span class="read-more">Read Article &rarr;</span>
-      </a>
-
-      <a href="/blog/freelance-tax-guide" class="article-card">
-        <h2>The Freelancer's Guide to 1099 Taxes</h2>
-        <p>Understand self-employment tax, quarterly payments, and how to avoid a massive IRS bill.</p>
-        <span class="read-more">Read Article &rarr;</span>
-      </a>
-
-      <a href="/blog/how-much-life-insurance-do-i-need" class="article-card">
-        <h2>How Much Life Insurance Do You Actually Need?</h2>
-        <p>Stop guessing. Use the DIME method to calculate the exact amount of coverage your family needs.</p>
-        <span class="read-more">Read Article &rarr;</span>
-      </a>
-
-      <a href="/blog/magic-of-compound-interest" class="article-card">
-        <h2>The Magic of Compound Interest</h2>
-        <p>Albert Einstein called it the 8th wonder of the world. Learn how to use it to build wealth.</p>
-        <span class="read-more">Read Article &rarr;</span>
-      </a>
-
-      <a href="/blog/uk-stamp-duty-explained" class="article-card">
+      <a href="/blog/uk-stamp-duty-explained" class="article-card" data-region="uk">
         <h2>UK Stamp Duty (SDLT) Explained</h2>
         <p>Everything first-time buyers and home movers need to know about UK Stamp Duty.</p>
         <span class="read-more">Read Article &rarr;</span>
       </a>
 
-      <a href="/blog/heloc-payment-guide" class="article-card">
-        <h2>The Ultimate Guide to HELOC Payments (Draw vs. Repayment)</h2>
-        <p>Understand how Home Equity Line of Credit payments work. Learn the math behind interest-only draw periods and the amortization shock.</p>
+      <!-- US ARTICLES -->
+      <a href="/blog/how-to-calculate-mortgage-payment" class="article-card" data-region="us">
+        <h2>How to Calculate Your Mortgage Payment</h2>
+        <p>Learn the exact formula used to calculate mortgage payments and discover strategies to save on interest.</p>
         <span class="read-more">Read Article &rarr;</span>
       </a>
 
-      <a href="/blog/ultimate-401k-retirement-guide" class="article-card">
+      <a href="/blog/freelancer-1099-tax-guide" class="article-card" data-region="us">
+        <h2>The Freelancer's Guide to 1099 Taxes</h2>
+        <p>Understand self-employment tax, quarterly payments, and how to avoid a massive IRS bill.</p>
+        <span class="read-more">Read Article &rarr;</span>
+      </a>
+
+      <a href="/blog/heloc-payment-guide" class="article-card" data-region="us">
+        <h2>The Ultimate Guide to HELOC Payments (Draw vs. Repayment)</h2>
+        <p>Understand how Home Equity Line of Credit payments work. Learn the math behind interest-only draw periods.</p>
+        <span class="read-more">Read Article &rarr;</span>
+      </a>
+
+      <a href="/blog/ultimate-401k-retirement-guide" class="article-card" data-region="us">
         <h2>The Ultimate 401(k) Guide: How to Maximize Your Retirement</h2>
         <p>Learn how to calculate your 401(k) growth, secure your employer match, and avoid hidden fees.</p>
         <span class="read-more">Read Article &rarr;</span>
       </a>
 
-      <a href="/blog/auto-insurance-deductible-guide" class="article-card">
+      <a href="/blog/auto-insurance-deductible-guide" class="article-card" data-region="us">
         <h2>The Auto Insurance Deductible Dilemma</h2>
         <p>Should you choose a $500 or $1000 deductible? Learn the exact break-even math.</p>
         <span class="read-more">Read Article &rarr;</span>
       </a>
 
-      <a href="/blog/airbnb-rental-roi-guide" class="article-card">
-        <h2>The Airbnb & Rental ROI Guide</h2>
-        <p>Learn how to accurately calculate the ROI of a rental property and avoid hidden costs.</p>
+      <a href="/blog/ultimate-roth-ira-guide" class="article-card" data-region="us">
+        <h2>The Ultimate Roth IRA Guide: Tax-Free Wealth Building</h2>
+        <p>Learn how a Roth IRA works, the contribution limits, and how to calculate your tax-free retirement growth.</p>
         <span class="read-more">Read Article &rarr;</span>
       </a>
 
-      <a href="/blog/ultimate-roth-ira-guide" class="article-card">
-        <h2>The Ultimate Roth IRA Guide: Tax-Free Wealth Building</h2>
-        <p>Learn how a Roth IRA works, the 2024 contribution limits, and how to calculate your tax-free retirement growth.</p>
+      <!-- GLOBAL ARTICLES -->
+      <a href="/blog/how-much-life-insurance-do-i-need" class="article-card" data-region="global">
+        <h2>How Much Life Insurance Do You Actually Need?</h2>
+        <p>Stop guessing. Use the DIME method to calculate the exact amount of coverage your family needs.</p>
+        <span class="read-more">Read Article &rarr;</span>
+      </a>
+
+      <a href="/blog/magic-of-compound-interest" class="article-card" data-region="global">
+        <h2>The Magic of Compound Interest</h2>
+        <p>Albert Einstein called it the 8th wonder of the world. Learn how to use it to build wealth.</p>
+        <span class="read-more">Read Article &rarr;</span>
+      </a>
+
+      <a href="/blog/airbnb-rental-roi-guide" class="article-card" data-region="global">
+        <h2>The Airbnb & Rental ROI Guide</h2>
+        <p>Learn how to accurately calculate the ROI of a rental property and avoid hidden costs.</p>
         <span class="read-more">Read Article &rarr;</span>
       </a>
 
@@ -78,14 +95,94 @@ import Layout from '../../layouts/Layout.astro';
   </main>
 </Layout>
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const articleCards = document.querySelectorAll('.article-card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // 1. Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        
+        // 2. Add active class to clicked button
+        button.classList.add('active');
+
+        // 3. Get the filter value
+        const filterValue = button.getAttribute('data-filter');
+
+        // 4. Show/Hide articles based on data-region
+        articleCards.forEach(card => {
+          if (filterValue === 'all' || card.getAttribute('data-region') === filterValue) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>
+
 <style>
   .container { max-width: 800px; margin: 0 auto; padding: 48px 16px; }
   h1 { text-align: center; font-size: 2.5rem; margin-bottom: 8px; }
-  .subtitle { text-align: center; color: #6b7280; margin-bottom: 48px; font-size: 1.2rem; }
+  .subtitle { text-align: center; color: #6b7280; margin-bottom: 32px; font-size: 1.2rem; }
+
+  /* Filter Bar Styling */
+  .filters {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: 1px solid #e5e7eb;
+    background: white;
+    color: #4b5563;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .filter-btn:hover {
+    border-color: #2563eb;
+    color: #2563eb;
+  }
+
+  .filter-btn.active {
+    background: #2563eb;
+    color: white;
+    border-color: #2563eb;
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+  }
+
+  /* Article List Styling */
   .article-list { display: flex; flex-direction: column; gap: 24px; }
-  .article-card { display: block; background: white; padding: 24px; border-radius: 8px; text-decoration: none; color: inherit; border: 1px solid #e5e7eb; transition: transform 0.2s; }
-  .article-card:hover { transform: translateY(-2px); border-color: #2563eb; }
-  .article-card h2 { margin-top: 0; color: #1f2937; }
-  .article-card p { color: #6b7280; }
-  .read-more { color: #2563eb; font-weight: bold; }
+  
+  .article-card { 
+    display: block; 
+    background: white; 
+    padding: 24px; 
+    border-radius: 8px; 
+    text-decoration: none; 
+    color: inherit; 
+    border: 1px solid #e5e7eb; 
+    transition: transform 0.2s; 
+  }
+  
+  .article-card:hover { 
+    transform: translateY(-2px); 
+    border-color: #2563eb; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+  
+  .article-card h2 { margin-top: 0; color: #1f2937; font-size: 1.3rem; }
+  .article-card p { color: #6b7280; line-height: 1.6; }
+  .read-more { color: #2563eb; font-weight: bold; display: inline-block; margin-top: 8px; }
 </style>
