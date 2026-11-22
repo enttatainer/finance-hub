@@ -2,9 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import CreditCardPayoff_Calc from '../../components/CreditCardPayoff_Calc.astro';
 ---
-<Layout title="Credit Card Payoff Calculator | Calculate Debt-Free Date" description="Calculate how long it will take to pay off your credit card debt and how much interest you'll save by increasing your monthly payments.">
+<Layout 
+  title="Credit Card Payoff & Debt Interest Calculator" 
+  description="Calculate how much interest you are paying on your debt and find out exactly when you will be debt-free based on your monthly payments."
+>
   <main class="container">
-    <h1>Credit Card Payoff Calculator</h1>
+    <h1>Credit Card Payoff & Debt Interest Calculator</h1>
     <p class="subtitle">See your debt-free date and the true cost of your interest.</p>
 
     <CreditCardPayoff_Calc />
@@ -12,6 +15,13 @@ import CreditCardPayoff_Calc from '../../components/CreditCardPayoff_Calc.astro'
     <article class="article-content">
       <h2>How to Use This Calculator</h2>
       <p>Enter your current credit card balance, the annual interest rate (APR), and the amount you plan to pay each month. The calculator will instantly show you how many months it will take to clear the debt, and the total amount of interest you will pay to the bank.</p>
+
+      <h2>How to Calculate Your Debt Interest Manually</h2>
+      <p>If you want to know exactly how much interest you are being charged every month, you can calculate it using this formula:</p>
+      <p style="text-align: center; font-weight: bold; background: #f3f4f6; padding: 12px; border-radius: 6px;">
+        Monthly Interest = (Current Balance × APR) / 12
+      </p>
+      <p>For example, if you have a $5,000 balance at a 24.9% APR, your monthly interest charge is roughly <strong>$103.75</strong>. This means if you only pay $100 a month, your balance will actually <em>increase</em>. This is why understanding your debt interest is the first step to paying it off.</p>
 
       <h2>The Danger of Minimum Payments</h2>
       <p>Credit card companies design minimum payments (usually 1% to 3% of the balance) to maximize their profit. If you only pay the minimum on a $5,000 balance at 24.9% APR, it will take you over 20 years to pay it off, and you will pay more in interest than the original balance.</p>
@@ -24,7 +34,8 @@ import CreditCardPayoff_Calc from '../../components/CreditCardPayoff_Calc.astro'
 
 <style>
   .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
-  h1 { text-align: center; margin-bottom: 8px; } .subtitle { text-align: center; color: #6b7280; margin-bottom: 32px; }
+  h1 { text-align: center; margin-bottom: 8px; } 
+  .subtitle { text-align: center; color: #6b7280; margin-bottom: 32px; }
   .article-content { margin-top: 40px; line-height: 1.6; }
   .article-content h2 { margin-top: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; }
 </style>
