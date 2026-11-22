@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 ---
-<Layout title="Free Finance Calculators | Finance Hub" description="35+ free, accurate financial calculators for US, UK, Canada, and Australia.">
+<Layout title="Free Finance Calculators | RevoCalc" description="35+ free, accurate financial calculators for US, UK, Canada, and Australia.">
   <main class="container">
     
     <header class="hero">
@@ -12,8 +12,17 @@ import Layout from '../layouts/Layout.astro';
     <!-- SEARCH BAR -->
     <div class="search-container">
       <input type="text" id="toolSearch" placeholder="🔍 Search calculators (e.g., mortgage, tax, UK)..." />
-      <p id="noResults" class="no-results hidden">No calculators found. Try a different keyword.</p>
     </div>
+
+    <!-- REGION FILTERS -->
+    <div class="filters">
+      <button class="filter-btn active" data-region="all">🌍 All Tools</button>
+      <button class="filter-btn" data-region="us">🇺🇸 US</button>
+      <button class="filter-btn" data-region="uk">🇬🇧 UK</button>
+      <button class="filter-btn" data-region="global">🌐 Global / Other</button>
+    </div>
+
+    <p id="noResults" class="no-results hidden">No calculators found. Try a different keyword or filter.</p>
 
     <div class="grid" id="toolsGrid">
 
@@ -22,182 +31,182 @@ import Layout from '../layouts/Layout.astro';
       <!-- ========================================== -->
       <h2 class="category-title">Tax, Loans & Investing</h2>
 
-      <a href="/tools/us-freelancer-tax-calculator" class="card">
+      <a href="/tools/us-freelancer-tax-calculator" class="card" data-region="us">
         <div class="card-icon">📝</div>
         <h2>US Freelancer Tax (1099)</h2>
         <p>Estimate 2024 Self-Employment and Federal Income taxes.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/us-mortgage-calculator" class="card">
+      <a href="/tools/us-mortgage-calculator" class="card" data-region="us">
         <div class="card-icon">🏠</div>
         <h2>US Mortgage Calculator</h2>
         <p>Calculate monthly payments, total interest, and amortization.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/compound-interest-calculator" class="card">
+      <a href="/tools/compound-interest-calculator" class="card" data-region="global">
         <div class="card-icon">📈</div>
         <h2>Compound Interest</h2>
         <p>See how your investments grow over time with compounding.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/us-car-loan-calculator" class="card">
+      <a href="/tools/us-car-loan-calculator" class="card" data-region="us">
         <div class="card-icon">🚗</div>
         <h2>US Car Loan Calculator</h2>
         <p>Estimate monthly auto loan payments, including trade-ins.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/salary-to-hourly-calculator" class="card">
+      <a href="/tools/salary-to-hourly-calculator" class="card" data-region="global">
         <div class="card-icon">⏱️</div>
         <h2>Salary to Hourly</h2>
         <p>Convert your annual salary into an hourly and monthly wage.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/uk-stamp-duty-calculator" class="card">
+      <a href="/tools/uk-stamp-duty-calculator" class="card" data-region="uk">
         <div class="card-icon">🇬🇧</div>
         <h2>UK Stamp Duty (FTB)</h2>
         <p>Calculate your SDLT bill instantly for UK properties.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/uk-lisa-calculator" class="card">
+      <a href="/tools/uk-lisa-calculator" class="card" data-region="uk">
         <div class="card-icon">🇬🇧</div>
         <h2>UK Lifetime ISA (LISA)</h2>
         <p>Calculate your 25% government bonus and early withdrawal penalty.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/us-mortgage-calculator-pmi" class="card">
+      <a href="/tools/us-mortgage-calculator-pmi" class="card" data-region="us">
         <div class="card-icon">🏡</div>
         <h2>Mortgage with PMI</h2>
         <p>See your true payment, including Private Mortgage Insurance.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/dividend-reinvestment-calculator" class="card">
+      <a href="/tools/dividend-reinvestment-calculator" class="card" data-region="global">
         <div class="card-icon">💰</div>
         <h2>Dividend Reinvestment (DRIP)</h2>
         <p>See how reinvesting dividends can compound your wealth.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/uk-student-loan-calculator" class="card">
+      <a href="/tools/uk-student-loan-calculator" class="card" data-region="uk">
         <div class="card-icon">🎓</div>
         <h2>UK Student Loan (Plan 2)</h2>
         <p>Estimate monthly repayments and take-home pay.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/us-401k-retirement-calculator" class="card">
+      <a href="/tools/us-401k-retirement-calculator" class="card" data-region="us">
         <div class="card-icon">💼</div>
         <h2>401(k) Retirement</h2>
         <p>Calculate how much your 401(k) will be worth at retirement.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/heloc-payment-calculator" class="card">
+      <a href="/tools/heloc-payment-calculator" class="card" data-region="us">
         <div class="card-icon">🏦</div>
         <h2>HELOC Payment Calculator</h2>
         <p>Estimate interest-only draw period payments.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/us-boat-loan-calculator" class="card">
+      <a href="/tools/us-boat-loan-calculator" class="card" data-region="us">
         <div class="card-icon">⛵</div>
         <h2>Boat Loan Calculator</h2>
         <p>Calculate monthly boat loan payments and interest.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/uk-income-tax-calculator" class="card">
+      <a href="/tools/uk-income-tax-calculator" class="card" data-region="uk">
         <div class="card-icon">💷</div>
         <h2>UK Income Tax</h2>
         <p>Calculate take-home pay after UK income tax and NI.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/canada-mortgage-calculator" class="card">
+      <a href="/tools/canada-mortgage-calculator" class="card" data-region="global">
         <div class="card-icon">🇨🇦</div>
         <h2>Canada Mortgage Calculator</h2>
         <p>Estimate payments with semi-annual compounding.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/australia-income-tax-calculator" class="card">
+      <a href="/tools/australia-income-tax-calculator" class="card" data-region="global">
         <div class="card-icon">🇦🇺</div>
         <h2>Australia Income Tax</h2>
         <p>Calculate take-home pay after tax and Medicare.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/uk-dividend-tax-calculator" class="card">
+      <a href="/tools/uk-dividend-tax-calculator" class="card" data-region="uk">
         <div class="card-icon">📊</div>
         <h2>UK Dividend Tax</h2>
         <p>Estimate tax liability on UK dividend income.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/us-roth-ira-calculator" class="card">
+      <a href="/tools/us-roth-ira-calculator" class="card" data-region="us">
         <div class="card-icon">🛡️</div>
         <h2>Roth IRA Growth</h2>
         <p>Project tax-free retirement growth.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/uk-rental-yield-calculator" class="card">
+      <a href="/tools/uk-rental-yield-calculator" class="card" data-region="uk">
         <div class="card-icon">🔑</div>
         <h2>UK Rental Yield</h2>
         <p>Analyze buy-to-let property investments.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/us-self-employed-health-insurance" class="card">
+      <a href="/tools/us-self-employed-health-insurance" class="card" data-region="us">
         <div class="card-icon">🩺</div>
         <h2>Self-Employed Health Deduction</h2>
         <p>See how much of your health premiums you can deduct.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/us-mortgage-extra-payments" class="card">
+      <a href="/tools/us-mortgage-extra-payments" class="card" data-region="us">
         <div class="card-icon">⚡</div>
         <h2>Mortgage with Extra Payments</h2>
         <p>See how much time and interest you save.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/uk-mortgage-overpayment-calculator" class="card">
+      <a href="/tools/uk-mortgage-overpayment-calculator" class="card" data-region="uk">
         <div class="card-icon">🇬🇧</div>
         <h2>UK Mortgage Overpayment</h2>
         <p>Calculate how much time and interest you save by overpaying.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/uk-debt-payoff-calculator" class="card">
+      <a href="/tools/uk-debt-payoff-calculator" class="card" data-region="uk">
         <div class="card-icon">✂️</div>
         <h2>UK Debt Payoff Calculator</h2>
         <p>Calculate your debt-free date and the true cost of interest.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/uk-monthly-budget-calculator" class="card">
+      <a href="/tools/uk-monthly-budget-calculator" class="card" data-region="uk">
         <div class="card-icon">📋</div>
         <h2>50/30/20 Budget Calculator</h2>
         <p>Split your monthly take-home pay into Needs, Wants, and Savings.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/uk-safe-withdrawal-rate-calculator" class="card">
+      <a href="/tools/uk-safe-withdrawal-rate-calculator" class="card" data-region="uk">
         <div class="card-icon">🏖️</div>
         <h2>Safe Withdrawal Rate</h2>
         <p>Find out how much passive income your portfolio can safely generate.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/uk-investment-fee-calculator" class="card">
+      <a href="/tools/uk-investment-fee-calculator" class="card" data-region="uk">
         <div class="card-icon">📉</div>
         <h2>Investment Fee Calculator</h2>
         <p>See how much platform fees eat into your long-term returns.</p>
@@ -210,63 +219,63 @@ import Layout from '../layouts/Layout.astro';
       <!-- ========================================== -->
       <h2 class="category-title">Insurance & Real Estate</h2>
 
-      <a href="/tools/uk-rent-vs-buy-calculator" class="card">
+      <a href="/tools/uk-rent-vs-buy-calculator" class="card" data-region="uk">
         <div class="card-icon">⚖️</div>
         <h2>UK Rent vs. Buy</h2>
         <p>Calculate whether it is cheaper to rent or buy a UK property.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/uk-equity-release-calculator" class="card">
+      <a href="/tools/uk-equity-release-calculator" class="card" data-region="uk">
         <div class="card-icon">🏦</div>
         <h2>UK Equity Release</h2>
         <p>See the true cost of a Lifetime Mortgage roll-up.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/uk-btl-stress-test-calculator" class="card">
+      <a href="/tools/uk-btl-stress-test-calculator" class="card" data-region="uk">
         <div class="card-icon">📉</div>
         <h2>UK BTL Stress Test</h2>
         <p>Test your rental property against interest rate hikes and tenant defaults.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/uk-sell-vs-rent-out-calculator" class="card">
+      <a href="/tools/uk-sell-vs-rent-out-calculator" class="card" data-region="uk">
         <div class="card-icon">🔄</div>
         <h2>UK Sell vs. Rent Out</h2>
         <p>Find out if holding onto your property is mathematically worth it.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/life-insurance-needs-calculator" class="card">
+      <a href="/tools/life-insurance-needs-calculator" class="card" data-region="global">
         <div class="card-icon">🛡️</div>
         <h2>Life Insurance Needs (DIME)</h2>
         <p>Find out how much coverage your family needs.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/auto-insurance-deductible-calculator" class="card">
+      <a href="/tools/auto-insurance-deductible-calculator" class="card" data-region="us">
         <div class="card-icon">🚗</div>
         <h2>Auto Insurance Deductible</h2>
         <p>See if a higher deductible is worth the savings.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/home-closing-costs-calculator" class="card">
+      <a href="/tools/home-closing-costs-calculator" class="card" data-region="us">
         <div class="card-icon">📝</div>
         <h2>Home Closing Costs</h2>
         <p>Estimate the hidden fees of buying a home.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/airbnb-roi-calculator" class="card">
+      <a href="/tools/airbnb-roi-calculator" class="card" data-region="global">
         <div class="card-icon">🔑</div>
         <h2>Airbnb / Rental ROI</h2>
         <p>Analyze the profitability of a rental investment.</p>
         <span class="cta">Calculate &rarr;</span>
       </a>
 
-      <a href="/tools/us-property-tax-calculator" class="card">
+      <a href="/tools/us-property-tax-calculator" class="card" data-region="us">
         <div class="card-icon">🏘️</div>
         <h2>US Property Tax</h2>
         <p>Estimate your annual property tax bill.</p>
@@ -280,18 +289,26 @@ import Layout from '../layouts/Layout.astro';
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('toolSearch');
+    const filterButtons = document.querySelectorAll('.filter-btn');
     const cards = document.querySelectorAll('.card');
     const categoryTitles = document.querySelectorAll('.category-title');
     const noResults = document.getElementById('noResults');
 
-    searchInput.addEventListener('input', (e) => {
-      const searchTerm = e.target.value.toLowerCase();
+    let activeRegion = 'all';
+    let searchTerm = '';
+
+    function filterContent() {
       let visibleCardsCount = 0;
 
-      // 1. Filter Cards
+      // 1. Filter Cards (Combined Search + Region)
       cards.forEach(card => {
         const text = card.innerText.toLowerCase();
-        if (text.includes(searchTerm)) {
+        const region = card.getAttribute('data-region');
+        
+        const matchesSearch = text.includes(searchTerm);
+        const matchesRegion = (activeRegion === 'all' || region === activeRegion);
+
+        if (matchesSearch && matchesRegion) {
           card.style.display = 'block';
           visibleCardsCount++;
         } else {
@@ -319,7 +336,26 @@ import Layout from '../layouts/Layout.astro';
           nextEl = nextEl.nextElementSibling;
         }
         
-        title.style.display = hasVisibleCards || searchTerm === '' ? 'block' : 'none';
+        title.style.display = (hasVisibleCards || (searchTerm === '' && activeRegion === 'all')) ? 'block' : 'none';
+      });
+    }
+
+    // Event Listener: Search
+    searchInput.addEventListener('input', (e) => {
+      searchTerm = e.target.value.toLowerCase();
+      filterContent();
+    });
+
+    // Event Listener: Region Buttons
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Update active class
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        
+        // Update active region and filter
+        activeRegion = button.getAttribute('data-region');
+        filterContent();
       });
     });
   });
@@ -335,7 +371,7 @@ import Layout from '../layouts/Layout.astro';
   /* Search Bar Styling */
   .search-container {
     max-width: 600px;
-    margin: 0 auto 48px auto;
+    margin: 0 auto 24px auto;
     text-align: center;
   }
 
@@ -355,8 +391,43 @@ import Layout from '../layouts/Layout.astro';
     box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
   }
 
+  /* Filter Bar Styling */
+  .filters {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: 1px solid #e5e7eb;
+    background: white;
+    color: #4b5563;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .filter-btn:hover {
+    border-color: #2563eb;
+    color: #2563eb;
+  }
+
+  .filter-btn.active {
+    background: #2563eb;
+    color: white;
+    border-color: #2563eb;
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+  }
+
   .no-results {
+    text-align: center;
     margin-top: 24px;
+    margin-bottom: 48px;
     color: #6b7280;
     font-size: 1.1rem;
     font-weight: 500;
