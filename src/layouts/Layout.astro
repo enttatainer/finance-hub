@@ -5,8 +5,12 @@ export interface Props {
 }
 const { title, description } = Astro.props;
 
-// Generate the absolute canonical URL for the current page
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+// Canonical URL Logic: Ensures the URL always has the trailing slash
+let pathname = Astro.url.pathname;
+if (!pathname.endsWith('/')) {
+  pathname = `${pathname}/`;
+}
+const canonicalURL = new URL(pathname, Astro.site);
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +20,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <title>{title}</title>
     <meta name="description" content={description} />
     
-    <!-- Canonical Tag (Fixes the Google Search Console duplicate error) -->
+    <!-- Canonical Tag (Tells Google the definitive URL for this page) -->
     <link rel="canonical" href={canonicalURL} />
 
     <!-- Google Search Console Verification -->
@@ -52,8 +56,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           <span class="divider">|</span>
           <a href="/blog">Blog</a>
           <span class="divider">|</span>
-          <a href="/help">Help & FAQ</a>
-          <span class="divider">|</span>
           <a href="/about">About Us</a>
           <span class="divider">|</span>
           <a href="/contact">Contact</a>
@@ -61,8 +63,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           <a href="/privacy">Privacy Policy</a>
           <span class="divider">|</span>
           <a href="/terms">Terms & Conditions</a>
-          <span class="divider">|</span>
-          <a href="/disclaimer">Disclaimer</a>
         </p>
       </div>
     </footer>

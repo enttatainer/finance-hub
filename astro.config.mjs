@@ -3,7 +3,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://revocalc.com',
-  trailingSlash: 'always', // Forces consistent URLs (e.g., /tools/debt/ instead of /tools/debt)
+  site: 'https://www.revocalc.com', // Forces www
+  trailingSlash: 'always',          // Forces the trailing slash
   integrations: [sitemap()],
 });
