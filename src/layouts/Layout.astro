@@ -4,6 +4,9 @@ export interface Props {
   description: string;
 }
 const { title, description } = Astro.props;
+
+// Generate the absolute canonical URL for the current page
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +16,9 @@ const { title, description } = Astro.props;
     <title>{title}</title>
     <meta name="description" content={description} />
     
+    <!-- Canonical Tag (Fixes the Google Search Console duplicate error) -->
+    <link rel="canonical" href={canonicalURL} />
+
     <!-- Google Search Console Verification -->
     <meta name="google-site-verification" content="P585haeVL-WwSR1fYC20qQDEQyqHiHmnQzUs7m8_Fxo" />
 
@@ -26,7 +32,7 @@ const { title, description } = Astro.props;
     <!-- Top Navigation Header -->
     <header class="site-header">
       <div class="header-content">
-        <a href="/" class="logo">Finance Hub</a>
+        <a href="/" class="logo">RevoCalc</a>
         <nav class="nav-links">
           <a href="/">Home</a>
           <a href="/blog">Blog</a>
@@ -40,7 +46,7 @@ const { title, description } = Astro.props;
     <!-- Global Footer -->
     <footer class="site-footer">
       <div class="footer-content">
-        <p>&copy; {new Date().getFullYear()} Finance Hub. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} RevoCalc. All rights reserved.</p>
         <p class="footer-links">
           <a href="/">Home</a>
           <span class="divider">|</span>
