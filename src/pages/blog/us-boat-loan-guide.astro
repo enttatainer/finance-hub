@@ -1,0 +1,61 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="How to Calculate Boat Loan Payments (US Guide)" description="Learn how boat loan payments are calculated, typical interest rates, and how to avoid overpaying on your marine financing.">
+  <main class="container">
+    <article class="prose">
+      <h1>How to Calculate Boat Loan Payments</h1>
+      <p class="meta">Written by the Engineering Team at RevoCalc | Updated for 2026/2027</p>
+
+      <p>Buying a boat is an exciting milestone, but marine financing can be complex. Unlike auto loans, boat loans often span 10 to 20 years, and the interest rates can vary wildly depending on the age of the boat, the loan amount, and your credit score.</p>
+
+      <p>In this guide, we will break down how boat loan payments are calculated so you can budget accurately before stepping onto the lot.</p>
+
+      <h2>The Formula for Boat Loan Payments</h2>
+      <p>Boat loans use standard amortization math, just like a mortgage. The formula is:</p>
+      <p style="text-align: center; font-weight: bold; background: #f3f4f6; padding: 12px; border-radius: 6px;">
+        M = P [ i(1 + i)^n ] / [ (1 + i)^n – 1 ]
+      </p>
+      <ul>
+        <li><strong>M</strong> = Monthly payment</li>
+        <li><strong>P</strong> = Principal (Boat price minus down payment and trade-in)</li>
+        <li><strong>i</strong> = Monthly interest rate (Annual rate divided by 12)</li>
+        <li><strong>n</strong> = Number of payments (Loan term in years multiplied by 12)</li>
+      </ul>
+
+      <p>Instead of doing this by hand, use our free <a href="/tools/us-boat-loan-calculator">US Boat Loan Calculator</a> to get your exact monthly payment and total interest paid.</p>
+
+      <h2>Typical Boat Loan Terms and Rates</h2>
+      <p>Boat loans are typically longer than car loans because boats are more expensive and hold their value differently.</p>
+      <ul>
+        <li><strong>New Boats:</strong> Loan terms can stretch up to 15 or even 20 years. Interest rates are often lower (e.g., 6% - 8%).</li>
+        <li><strong>Used Boats:</strong> Terms are usually shorter (5 to 10 years), and interest rates are higher (e.g., 8% - 12%) because older boats are riskier for the lender.</li>
+      </ul>
+
+      <h2>The Hidden Costs of Boat Ownership</h2>
+      <p>Your monthly loan payment is only the beginning. You must budget for:</p>
+      <ul>
+        <li><strong>Marine Insurance:</strong> Often more expensive than auto insurance.</li>
+        <li><strong>Storage:</strong> Slip fees or dry storage can cost hundreds of dollars a month.</li>
+        <li><strong>Maintenance:</strong> The acronym "BOAT" stands for "Break Out Another Thousand" for a reason. Engine maintenance, hull cleaning, and winterization are expensive.</li>
+      </ul>
+
+      <h2>The Bottom Line</h2>
+      <p>Before you sign the paperwork, run the numbers. A longer loan term might lower your monthly payment, but it dramatically increases the total interest you pay over the life of the loan. Use our <a href="/tools/us-boat-loan-calculator">Boat Payment Calculator</a> to find the sweet spot between affordability and total cost.</p>
+    </article>
+  </main>
+</Layout>
+
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 16px; }
+  .prose { line-height: 1.8; color: #374151; font-size: 1.05rem; } 
+  h1 { font-size: 2.5rem; font-weight: 800; color: #111827; margin-bottom: 8px; }
+  .meta { color: #6b7280; font-size: 0.9rem; margin-bottom: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 16px; }
+  h2 { font-size: 1.75rem; color: #1f2937; margin-top: 40px; margin-bottom: 16px; border-bottom: 1px solid #f3f4f6; padding-bottom: 8px; }
+  h3 { font-size: 1.3rem; color: #374151; margin-top: 24px; margin-bottom: 12px; }
+  p { margin-bottom: 20px; } 
+  ul { margin-bottom: 20px; padding-left: 24px; }
+  li { margin-bottom: 8px; }
+  a { color: #2563eb; text-decoration: none; font-weight: 600; } 
+  a:hover { text-decoration: underline; }
+</style>

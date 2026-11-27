@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 ---
-<Layout title="UK Mortgage Overpayment Calculator | Save Interest" description="Calculate how much time and interest you save by overpaying your UK mortgage.">
+<Layout title="UK Mortgage Overpayment Calculator | Save Interest" description="Calculate how much time and interest you save by overpaying your UK mortgage. Find out if you should overpay or save.">
   <main class="container">
     <h1>UK Mortgage Overpayment Calculator</h1>
     <p class="subtitle">See the massive savings from keeping your payments the same.</p>
@@ -28,7 +28,7 @@ import Layout from '../../layouts/Layout.astro';
         <input type="number" id="overpayment" placeholder="e.g. 19300" />
       </div>
       <button id="calcBtn">Calculate Savings</button>
-      
+
       <div id="result" class="hidden result-box">
         <p class="total">New Payoff Time: <strong id="newTerm"></strong></p>
         <p class="sub">Years Saved: <span id="yearsSaved"></span></p>
@@ -39,10 +39,16 @@ import Layout from '../../layouts/Layout.astro';
     <article class="article-content">
       <h2>How Mortgage Overpayments Work in the UK</h2>
       <p>Most UK mortgages allow you to overpay up to 10% of your remaining balance each year without incurring an Early Repayment Charge (ERC).</p>
-      
+
       <h2>The Secret: "Keep Payments the Same"</h2>
       <p>When you make a lump sum overpayment, your lender will usually offer to reduce your monthly payment. However, if you ask them to <strong>keep your monthly payment the same</strong> and reduce your term instead, the math works heavily in your favor.</p>
       <p>Because the principal is smaller but your monthly payment is unchanged, you are aggressively attacking the principal. This calculator shows exactly how many years you will shave off your mortgage and how much interest you will save.</p>
+
+      <h2>Should I Overpay My Mortgage or Save?</h2>
+      <p>This is one of the most common financial questions. If your mortgage interest rate is 5%, every pound you overpay is a guaranteed 5% return on your money (because you are saving that interest). If your savings account only pays 4%, overpaying your mortgage is mathematically superior.</p>
+      
+      <h2>How to Calculate Interest Saved on Mortgage</h2>
+      <p>To calculate your exact interest saved, you must compare the total interest of your original term against the total interest of your new term after the overpayment. Our calculator above does this instantly, showing you exactly how much money you keep in your pocket by paying off the principal early.</p>
     </article>
   </main>
 </Layout>
